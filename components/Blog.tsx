@@ -116,7 +116,7 @@ const Blog: React.FC = () => {
 
                {/* Scrollable Content Area */}
                <div className="p-8 md:p-10 overflow-y-auto custom-scrollbar bg-white dark:bg-gray-900">
-                  <h2 className="font-heading font-bold text-2xl md:text-3xl text-paza-dark dark:text-white mb-6 sticky top-0 bg-white/95 dark:bg-gray-900/95 pb-4 pt-2 -mt-2">
+                  <h2 className="font-heading font-bold text-2xl md:text-3xl text-paza-dark dark:text-white mb-6">
                     {selectedPost.title}
                   </h2>
                   

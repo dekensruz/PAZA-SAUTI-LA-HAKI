@@ -8,6 +8,7 @@ import FAQ from './components/FAQ';
 import Blog from './components/Blog';
 import Contact from './components/Contact';
 import Footer from './components/Footer';
+import BackToTop from './components/BackToTop';
 import { LanguageProvider } from './LanguageContext';
 
 function AppContent() {
@@ -37,6 +38,7 @@ function AppContent() {
         <Contact />
       </main>
       <Footer />
+      <BackToTop />
     </div>
   );
 }
