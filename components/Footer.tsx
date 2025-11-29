@@ -1,7 +1,11 @@
+
 import React from 'react';
 import { Phone, MapPin, Facebook, Twitter, Instagram } from 'lucide-react';
+import { useLanguage } from '../LanguageContext';
 
 const Footer: React.FC = () => {
+  const { t } = useLanguage();
+  
   const scrollToTop = () => {
     window.scrollTo({ top: 0, behavior: 'smooth' });
   };
@@ -15,7 +19,7 @@ const Footer: React.FC = () => {
   };
 
   return (
-    <footer id="contact" className="bg-paza-dark text-white pt-16 pb-8">
+    <footer className="bg-paza-dark text-white pt-16 pb-8 border-t border-gray-800">
       <div className="container mx-auto px-4">
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-12 mb-12">
           
@@ -29,7 +33,7 @@ const Footer: React.FC = () => {
               </div>
             </div>
             <p className="text-gray-400 text-sm leading-relaxed">
-              Une initiative des jeunes de Goma pour rendre la justice accessible à tous et promouvoir la paix en RDC.
+              {t.footer.description}
             </p>
             <div className="flex gap-4 pt-2">
               <a href="#" onClick={(e) => { e.preventDefault(); scrollToTop(); }} className="w-10 h-10 rounded-full bg-gray-800 flex items-center justify-center hover:bg-paza-blue transition-colors">
@@ -46,18 +50,18 @@ const Footer: React.FC = () => {
 
           {/* Quick Links */}
           <div>
-            <h4 className="font-heading font-bold text-lg mb-6 text-white border-l-4 border-paza-blue pl-3">Liens Rapides</h4>
+            <h4 className="font-heading font-bold text-lg mb-6 text-white border-l-4 border-paza-blue pl-3">{t.footer.quickLinks}</h4>
             <ul className="space-y-3 text-gray-400">
-              <li><a href="#home" onClick={(e) => { e.preventDefault(); scrollToTop(); }} className="hover:text-white transition-colors cursor-pointer">Accueil</a></li>
-              <li><a href="#mission" onClick={(e) => handleLinkClick(e, 'mission')} className="hover:text-white transition-colors cursor-pointer">Notre Mission</a></li>
-              <li><a href="#team" onClick={(e) => handleLinkClick(e, 'team')} className="hover:text-white transition-colors cursor-pointer">L'Équipe</a></li>
-              <li><a href="#blog" onClick={(e) => handleLinkClick(e, 'blog')} className="hover:text-white transition-colors cursor-pointer">Actualités</a></li>
+              <li><a href="#home" onClick={(e) => { e.preventDefault(); scrollToTop(); }} className="hover:text-white transition-colors cursor-pointer">{t.nav.home}</a></li>
+              <li><a href="#mission" onClick={(e) => handleLinkClick(e, 'mission')} className="hover:text-white transition-colors cursor-pointer">{t.nav.mission}</a></li>
+              <li><a href="#team" onClick={(e) => handleLinkClick(e, 'team')} className="hover:text-white transition-colors cursor-pointer">{t.nav.team}</a></li>
+              <li><a href="#blog" onClick={(e) => handleLinkClick(e, 'blog')} className="hover:text-white transition-colors cursor-pointer">{t.nav.blog}</a></li>
             </ul>
           </div>
 
           {/* Contact */}
           <div>
-             <h4 className="font-heading font-bold text-lg mb-6 text-white border-l-4 border-paza-red pl-3">Contactez-nous</h4>
+             <h4 className="font-heading font-bold text-lg mb-6 text-white border-l-4 border-paza-red pl-3">{t.footer.contactUs}</h4>
              <ul className="space-y-4 text-gray-400">
                <li className="flex items-start gap-3">
                  <MapPin className="text-paza-red shrink-0" size={20} />
@@ -74,10 +78,10 @@ const Footer: React.FC = () => {
 
         <div className="border-t border-gray-800 pt-8 flex flex-col md:flex-row justify-between items-center gap-4">
           <p className="text-gray-500 text-sm">
-            © {new Date().getFullYear()} Paza Sauti La Haki. Tous droits réservés.
+            © {new Date().getFullYear()} Paza Sauti La Haki. {t.footer.rights}
           </p>
           <p className="text-gray-600 text-sm">
-            Développé par <a href="https://portfoliodek.netlify.app/" target="_blank" rel="noopener noreferrer" className="text-paza-blue hover:text-white transition-colors font-semibold">Dekens Ruzuba</a>
+            {t.footer.developedBy} <a href="https://portfoliodek.netlify.app/" target="_blank" rel="noopener noreferrer" className="text-paza-blue hover:text-white transition-colors font-semibold">Dekens Ruzuba</a>
           </p>
         </div>
       </div>

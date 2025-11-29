@@ -1,18 +1,27 @@
+
 import React, { useState, useEffect } from 'react';
-import { Menu, X } from 'lucide-react';
+import { Menu, X, Moon, Sun, Globe } from 'lucide-react';
 import { NavItem } from '../types';
+import { useLanguage } from '../LanguageContext';
 
-const navItems: NavItem[] = [
-  { label: 'Accueil', href: '#home' },
-  { label: 'Mission', href: '#mission' },
-  { label: 'Équipe', href: '#team' },
-  { label: 'Blog', href: '#blog' },
-  { label: 'Contact', href: '#contact' },
-];
+interface NavbarProps {
+  isDarkMode: boolean;
+  toggleTheme: () => void;
+}
 
-const Navbar: React.FC = () => {
+const Navbar: React.FC<NavbarProps> = ({ isDarkMode, toggleTheme }) => {
   const [isScrolled, setIsScrolled] = useState(false);
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
+  const { t, language, setLanguage } = useLanguage();
+
+  const navItems: NavItem[] = [
+    { label: t.nav.home, href: '#home' },
+    { label: t.nav.mission, href: '#mission' },
+    { label: t.nav.team, href: '#team' },
+    { label: t.nav.faq, href: '#faq' },
+    { label: t.nav.blog, href: '#blog' },
+    { label: t.nav.contact, href: '#contact' },
+  ];
 
   useEffect(() => {
     const handleScroll = () => {
@@ -39,10 +48,16 @@ const Navbar: React.FC = () => {
     }
   };
 
+  const toggleLanguage = () => {
+    setLanguage(language === 'fr' ? 'en' : 'fr');
+  };
+
   return (
     <nav
       className={`fixed top-0 left-0 w-full z-50 transition-all duration-300 ${
-        isScrolled ? 'bg-white/95 backdrop-blur-md shadow-md py-2' : 'bg-white py-4'
+        isScrolled 
+          ? 'bg-white/95 dark:bg-gray-900/95 backdrop-blur-md shadow-md py-2' 
+          : 'bg-white dark:bg-gray-900 py-4'
       }`}
     >
       <div className="container mx-auto px-4 flex justify-between items-center">
@@ -60,7 +75,7 @@ const Navbar: React.FC = () => {
             />
           </div>
           <div className="flex flex-col">
-            <span className="font-heading font-bold text-paza-dark text-lg md:text-xl tracking-tight leading-none">
+            <span className="font-heading font-bold text-paza-dark dark:text-white text-lg md:text-xl tracking-tight leading-none">
               PAZA SAUTI
             </span>
             <span className="font-heading font-bold text-paza-red text-base md:text-lg tracking-tight leading-none">
@@ -70,38 +85,73 @@ const Navbar: React.FC = () => {
         </a>
 
         {/* Desktop Menu */}
-        <div className="hidden md:flex space-x-8">
+        <div className="hidden md:flex items-center space-x-6">
           {navItems.map((item) => (
             <a
               key={item.label}
               href={item.href}
               onClick={(e) => handleNavClick(e, item.href)}
-              className="text-gray-600 hover:text-paza-blue font-medium transition-colors duration-200 text-sm uppercase tracking-wide cursor-pointer"
+              className="text-gray-600 dark:text-gray-300 hover:text-paza-blue dark:hover:text-paza-blue font-medium transition-colors duration-200 text-sm uppercase tracking-wide cursor-pointer"
             >
               {item.label}
             </a>
           ))}
+          
+          <div className="flex items-center gap-2 border-l border-gray-300 dark:border-gray-700 pl-4 ml-2">
+            {/* Language Toggle */}
+            <button 
+              onClick={toggleLanguage}
+              className="p-2 rounded-full hover:bg-gray-100 dark:hover:bg-gray-800 transition-colors text-paza-dark dark:text-white font-bold text-sm flex items-center gap-1"
+              aria-label="Switch Language"
+            >
+              <Globe size={18} />
+              {language.toUpperCase()}
+            </button>
+
+            {/* Theme Toggle Button */}
+            <button 
+              onClick={toggleTheme}
+              className="p-2 rounded-full hover:bg-gray-100 dark:hover:bg-gray-800 transition-colors text-paza-dark dark:text-yellow-400"
+              aria-label="Toggle Dark Mode"
+            >
+              {isDarkMode ? <Sun size={20} /> : <Moon size={20} />}
+            </button>
+          </div>
         </div>
 
         {/* Mobile Menu Button */}
-        <button
-          className="md:hidden text-paza-dark p-2"
-          onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
-        >
-          {isMobileMenuOpen ? <X size={24} /> : <Menu size={24} />}
-        </button>
+        <div className="md:hidden flex items-center gap-2">
+           <button 
+              onClick={toggleLanguage}
+              className="p-2 rounded-full hover:bg-gray-100 dark:hover:bg-gray-800 transition-colors text-paza-dark dark:text-white font-bold text-sm flex items-center gap-1"
+            >
+              {language.toUpperCase()}
+            </button>
+          <button 
+            onClick={toggleTheme}
+            className="p-2 rounded-full hover:bg-gray-100 dark:hover:bg-gray-800 transition-colors text-paza-dark dark:text-yellow-400"
+          >
+            {isDarkMode ? <Sun size={20} /> : <Moon size={20} />}
+          </button>
+          <button
+            className="text-paza-dark dark:text-white p-2"
+            onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
+          >
+            {isMobileMenuOpen ? <X size={24} /> : <Menu size={24} />}
+          </button>
+        </div>
       </div>
 
       {/* Mobile Menu Dropdown */}
       {isMobileMenuOpen && (
-        <div className="md:hidden bg-white border-t border-gray-100 absolute w-full shadow-lg">
+        <div className="md:hidden bg-white dark:bg-gray-800 border-t border-gray-100 dark:border-gray-700 absolute w-full shadow-lg">
           <div className="flex flex-col p-4 space-y-4">
             {navItems.map((item) => (
               <a
                 key={item.label}
                 href={item.href}
                 onClick={(e) => handleNavClick(e, item.href)}
-                className="text-gray-800 hover:text-paza-blue font-semibold block cursor-pointer"
+                className="text-gray-800 dark:text-gray-200 hover:text-paza-blue dark:hover:text-paza-blue font-semibold block cursor-pointer"
               >
                 {item.label}
               </a>

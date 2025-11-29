@@ -1,7 +1,9 @@
+
 import React, { useState, useEffect } from 'react';
 import { TeamMember } from '../types';
 import { motion, AnimatePresence } from 'framer-motion';
 import { X, User, ArrowLeft } from 'lucide-react';
+import { useLanguage } from '../LanguageContext';
 
 const teamMembers: TeamMember[] = [
   { id: '1', name: 'Mwangilwa Kituango Gédéon', image: 'https://i.ibb.co/w56NdS7/1.png' },
@@ -17,7 +19,7 @@ const teamMembers: TeamMember[] = [
   { id: '11', name: 'Karisi Kaboyo Bénédicte', image: 'https://i.ibb.co/vf0J0Hn/incognito.jpg' },
 ];
 
-const MemberCard: React.FC<{ member: TeamMember; onClick: () => void }> = ({ member, onClick }) => (
+const MemberCard: React.FC<{ member: TeamMember; onClick: () => void; roleLabel: string }> = ({ member, onClick, roleLabel }) => (
   <motion.div
     initial={{ opacity: 0, scale: 0.9 }}
     whileInView={{ opacity: 1, scale: 1 }}
@@ -25,7 +27,7 @@ const MemberCard: React.FC<{ member: TeamMember; onClick: () => void }> = ({ mem
     className="group relative cursor-pointer"
     onClick={onClick}
   >
-    <div className="relative overflow-hidden rounded-xl aspect-[4/5] bg-gray-100 shadow-md">
+    <div className="relative overflow-hidden rounded-xl aspect-[4/5] bg-gray-100 dark:bg-gray-800 shadow-md">
       <img
         src={member.image}
         alt={member.name}
@@ -35,7 +37,7 @@ const MemberCard: React.FC<{ member: TeamMember; onClick: () => void }> = ({ mem
       
       <div className="absolute bottom-0 left-0 right-0 p-4 transform translate-y-2 group-hover:translate-y-0 transition-transform">
         <h3 className="text-white font-bold text-lg leading-tight">{member.name}</h3>
-        <p className="text-paza-yellow text-xs font-medium mt-1 uppercase tracking-wider opacity-0 group-hover:opacity-100 transition-opacity delay-100">Membre Actif</p>
+        <p className="text-paza-yellow text-xs font-medium mt-1 uppercase tracking-wider opacity-0 group-hover:opacity-100 transition-opacity delay-100">{roleLabel}</p>
       </div>
     </div>
   </motion.div>
@@ -44,6 +46,7 @@ const MemberCard: React.FC<{ member: TeamMember; onClick: () => void }> = ({ mem
 const Team: React.FC = () => {
   const [showFullPage, setShowFullPage] = useState(false);
   const [selectedMember, setSelectedMember] = useState<TeamMember | null>(null);
+  const { t } = useLanguage();
 
   // Disable body scroll when full page or modal is open
   useEffect(() => {
@@ -58,13 +61,13 @@ const Team: React.FC = () => {
   }, [showFullPage, selectedMember]);
 
   return (
-    <section id="team" className="py-20 bg-white">
+    <section id="team" className="py-20 bg-white dark:bg-gray-900 transition-colors duration-300">
       <div className="container mx-auto px-4">
         <div className="text-center mb-16">
-          <h2 className="font-heading font-bold text-3xl md:text-4xl text-paza-dark mb-4">Notre Équipe</h2>
+          <h2 className="font-heading font-bold text-3xl md:text-4xl text-paza-dark dark:text-white mb-4">{t.team.title}</h2>
           <div className="w-20 h-1 bg-paza-yellow mx-auto rounded-full mb-4"></div>
-          <p className="text-gray-600 max-w-2xl mx-auto">
-            Des jeunes engagés de différentes universités de Goma, unis pour la cause de la justice.
+          <p className="text-gray-600 dark:text-gray-300 max-w-2xl mx-auto">
+            {t.team.subtitle}
           </p>
         </div>
 
@@ -74,7 +77,8 @@ const Team: React.FC = () => {
             <MemberCard 
               key={member.id} 
               member={member} 
-              onClick={() => setSelectedMember(member)} 
+              onClick={() => setSelectedMember(member)}
+              roleLabel={t.team.role}
             />
           ))}
         </div>
@@ -84,7 +88,7 @@ const Team: React.FC = () => {
                 onClick={() => setShowFullPage(true)}
                 className="px-6 py-2 border-2 border-paza-blue text-paza-blue hover:bg-paza-blue hover:text-white font-bold rounded-full transition-colors duration-300"
             >
-                Voir tous les membres
+                {t.team.viewAll}
             </button>
         </div>
       </div>
@@ -97,21 +101,21 @@ const Team: React.FC = () => {
             animate={{ opacity: 1, y: 0 }}
             exit={{ opacity: 0, y: '100%' }}
             transition={{ type: "spring", damping: 25, stiffness: 200 }}
-            className="fixed inset-0 z-[60] bg-white overflow-y-auto"
+            className="fixed inset-0 z-[60] bg-white dark:bg-gray-900 overflow-y-auto"
           >
             <div className="min-h-screen pb-20">
               {/* Header of the full page */}
-              <div className="sticky top-0 bg-white/95 backdrop-blur-md border-b border-gray-100 z-10 px-4 py-4 mb-8 shadow-sm">
+              <div className="sticky top-0 bg-white/95 dark:bg-gray-900/95 backdrop-blur-md border-b border-gray-100 dark:border-gray-700 z-10 px-4 py-4 mb-8 shadow-sm">
                 <div className="container mx-auto flex items-center justify-between">
                   <button 
                     onClick={() => setShowFullPage(false)}
-                    className="flex items-center gap-2 text-paza-dark font-bold hover:text-paza-blue transition-colors"
+                    className="flex items-center gap-2 text-paza-dark dark:text-white font-bold hover:text-paza-blue transition-colors"
                   >
                     <ArrowLeft size={24} />
-                    Retour
+                    {t.team.back}
                   </button>
-                  <span className="font-heading font-bold text-xl text-paza-dark hidden md:block">
-                    Équipe Complète
+                  <span className="font-heading font-bold text-xl text-paza-dark dark:text-white hidden md:block">
+                    {t.team.fullPageTitle}
                   </span>
                   <div className="w-8"></div> {/* Spacer for balance */}
                 </div>
@@ -119,8 +123,8 @@ const Team: React.FC = () => {
 
               <div className="container mx-auto px-4">
                 <div className="text-center mb-12">
-                   <h2 className="font-heading font-bold text-3xl text-paza-dark mb-2">Tous nos membres</h2>
-                   <p className="text-gray-500">L'équipe complète Paza Sauti La Haki</p>
+                   <h2 className="font-heading font-bold text-3xl text-paza-dark dark:text-white mb-2">{t.team.fullPageTitle}</h2>
+                   <p className="text-gray-500 dark:text-gray-400">{t.team.fullPageSubtitle}</p>
                 </div>
 
                 <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6 md:gap-8">
@@ -128,7 +132,8 @@ const Team: React.FC = () => {
                     <MemberCard 
                       key={member.id} 
                       member={member} 
-                      onClick={() => setSelectedMember(member)} 
+                      onClick={() => setSelectedMember(member)}
+                      roleLabel={t.team.role}
                     />
                   ))}
                 </div>
@@ -152,7 +157,7 @@ const Team: React.FC = () => {
               initial={{ y: 50, opacity: 0 }}
               animate={{ y: 0, opacity: 1 }}
               exit={{ y: 50, opacity: 0 }}
-              className="bg-white rounded-2xl max-w-sm w-full overflow-hidden shadow-2xl relative"
+              className="bg-white dark:bg-gray-800 rounded-2xl max-w-sm w-full overflow-hidden shadow-2xl relative"
               onClick={(e) => e.stopPropagation()}
             >
               <button 
@@ -172,19 +177,19 @@ const Team: React.FC = () => {
               </div>
               
               <div className="p-6">
-                <h3 className="font-heading font-bold text-2xl text-paza-dark mb-1">{selectedMember.name}</h3>
-                <p className="text-paza-blue font-medium mb-4">Membre de l'équipe Paza Sauti La Haki</p>
+                <h3 className="font-heading font-bold text-2xl text-paza-dark dark:text-white mb-1">{selectedMember.name}</h3>
+                <p className="text-paza-blue font-medium mb-4">{t.team.memberRoleDesc}</p>
                 <div className="space-y-3">
-                    <div className="flex items-center gap-3 text-gray-600 text-sm">
-                        <div className="p-2 bg-gray-100 rounded-full">
+                    <div className="flex items-center gap-3 text-gray-600 dark:text-gray-300 text-sm">
+                        <div className="p-2 bg-gray-100 dark:bg-gray-700 rounded-full">
                             <User size={16} />
                         </div>
-                        <p>Étudiant(e) à Goma, RDC</p>
+                        <p>{t.team.studentDesc}</p>
                     </div>
                 </div>
-                <div className="mt-6 pt-6 border-t border-gray-100">
-                    <p className="text-gray-500 text-sm italic">
-                        "Engagé(e) pour une justice équitable et accessible à tous."
+                <div className="mt-6 pt-6 border-t border-gray-100 dark:border-gray-700">
+                    <p className="text-gray-500 dark:text-gray-400 text-sm italic">
+                        {t.team.quote}
                     </p>
                 </div>
               </div>
