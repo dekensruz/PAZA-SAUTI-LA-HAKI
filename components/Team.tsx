@@ -12,7 +12,7 @@ const teamMembers: TeamMember[] = [
   { id: '6', name: 'Nabintu Bisimwa Clémence', image: 'https://i.ibb.co/BVsfwjtK/6.jpg' },
   { id: '7', name: 'Irazika Bamporiki Vertueuse', image: 'https://i.ibb.co/kVsf5H3v/7.jpg' },
   { id: '8', name: 'Miderho Magadju Dieumerci', image: 'https://i.ibb.co/vf0J0Hn/incognito.jpg' },
-  { id: '9', name: 'Furaha Zirimwagabo Nessia', image: 'https://i.ibb.co/wFBBrdvw/527452060-602830646229470-3538579722418400104-n.jpg' },
+  { id: '9', name: 'Furaha Zirimwagabo Nessia', image: 'https://i.ibb.co/vf0J0Hn/incognito.jpg' },
   { id: '10', name: 'Habamungu Magendo Augustin', image: 'https://i.ibb.co/bgqk2mHD/8.jpg' },
   { id: '11', name: 'Karisi Kaboyo Bénédicte', image: 'https://i.ibb.co/vf0J0Hn/incognito.jpg' },
 ];

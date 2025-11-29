@@ -9,7 +9,7 @@ const blogPosts: BlogPost[] = [
     title: "L'ACCÈS À LA JUSTICE",
     summary: "La justice n'est pas un privilège, c'est le fondement de notre société.",
     date: '29 Novembre 2025',
-    image: 'https://www.jambonews.net/wp-content/uploads/2024/03/rci-justice-balance.jpg',
+    image: 'https://images.pexels.com/photos/6077091/pexels-photo-6077091.jpeg',
     contentPoints: [
       "La justice, c’est un droit pour tous, pas un privilège pour quelques-uns.",
       "Chacun mérite d’être écouté et défendu, peu importe qui il est.",
@@ -24,7 +24,7 @@ const blogPosts: BlogPost[] = [
     title: "PAIX ET SENSIBILITÉ AUX CONFLITS",
     summary: "Comprendre les conflits pour mieux bâtir une paix durable.",
     date: '29 Novembre 2025',
-    image: 'https://icaworldcoopcongress.coop/wp-content/uploads/2021/09/iStock-1069557312-1-scaled.jpg',
+    image: 'https://images.pexels.com/photos/1835016/pexels-photo-1835016.jpeg',
     contentPoints: [
       "Sans la paix, pas de progrès durable.",
       "Investir dans la paix c'est investir pour un avenir meilleur.",
