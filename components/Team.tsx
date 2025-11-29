@@ -1,0 +1,199 @@
+import React, { useState, useEffect } from 'react';
+import { TeamMember } from '../types';
+import { motion, AnimatePresence } from 'framer-motion';
+import { X, User, ArrowLeft } from 'lucide-react';
+
+const teamMembers: TeamMember[] = [
+  { id: '1', name: 'Mwangilwa Kituango Gédéon', image: 'https://i.ibb.co/w56NdS7/1.png' },
+  { id: '2', name: 'Balola Mugisho Daniel', image: 'https://i.ibb.co/ksxYXrsY/2.jpg' },
+  { id: '3', name: 'Dekens Ruzuba', image: 'https://i.ibb.co/nMMpPKZt/9.jpg' },
+  { id: '4', name: 'Byeka Kipanga Chanceline', image: 'https://i.ibb.co/sJH3vZMc/3.jpg' },
+  { id: '5', name: 'Safari Muzero Xavier', image: 'https://i.ibb.co/twB8r91F/4.jpg' },
+  { id: '6', name: 'Nabintu Bisimwa Clémence', image: 'https://i.ibb.co/BVsfwjtK/6.jpg' },
+  { id: '7', name: 'Irazika Bamporiki Vertueuse', image: 'https://i.ibb.co/kVsf5H3v/7.jpg' },
+  { id: '8', name: 'Miderho Magadju Dieumerci', image: 'https://i.ibb.co/vf0J0Hn/incognito.jpg' },
+  { id: '9', name: 'Furaha Zirimwagabo Nessia', image: 'https://i.ibb.co/wFBBrdvw/527452060-602830646229470-3538579722418400104-n.jpg' },
+  { id: '10', name: 'Habamungu Magendo Augustin', image: 'https://i.ibb.co/bgqk2mHD/8.jpg' },
+  { id: '11', name: 'Karisi Kaboyo Bénédicte', image: 'https://i.ibb.co/vf0J0Hn/incognito.jpg' },
+];
+
+const MemberCard: React.FC<{ member: TeamMember; onClick: () => void }> = ({ member, onClick }) => (
+  <motion.div
+    initial={{ opacity: 0, scale: 0.9 }}
+    whileInView={{ opacity: 1, scale: 1 }}
+    viewport={{ once: true }}
+    className="group relative cursor-pointer"
+    onClick={onClick}
+  >
+    <div className="relative overflow-hidden rounded-xl aspect-[4/5] bg-gray-100 shadow-md">
+      <img
+        src={member.image}
+        alt={member.name}
+        className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-110"
+      />
+      <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/20 to-transparent opacity-80 group-hover:opacity-100 transition-opacity"></div>
+      
+      <div className="absolute bottom-0 left-0 right-0 p-4 transform translate-y-2 group-hover:translate-y-0 transition-transform">
+        <h3 className="text-white font-bold text-lg leading-tight">{member.name}</h3>
+        <p className="text-paza-yellow text-xs font-medium mt-1 uppercase tracking-wider opacity-0 group-hover:opacity-100 transition-opacity delay-100">Membre Actif</p>
+      </div>
+    </div>
+  </motion.div>
+);
+
+const Team: React.FC = () => {
+  const [showFullPage, setShowFullPage] = useState(false);
+  const [selectedMember, setSelectedMember] = useState<TeamMember | null>(null);
+
+  // Disable body scroll when full page or modal is open
+  useEffect(() => {
+    if (showFullPage || selectedMember) {
+      document.body.style.overflow = 'hidden';
+    } else {
+      document.body.style.overflow = 'unset';
+    }
+    return () => {
+      document.body.style.overflow = 'unset';
+    };
+  }, [showFullPage, selectedMember]);
+
+  return (
+    <section id="team" className="py-20 bg-white">
+      <div className="container mx-auto px-4">
+        <div className="text-center mb-16">
+          <h2 className="font-heading font-bold text-3xl md:text-4xl text-paza-dark mb-4">Notre Équipe</h2>
+          <div className="w-20 h-1 bg-paza-yellow mx-auto rounded-full mb-4"></div>
+          <p className="text-gray-600 max-w-2xl mx-auto">
+            Des jeunes engagés de différentes universités de Goma, unis pour la cause de la justice.
+          </p>
+        </div>
+
+        {/* Display only first 4 members initially */}
+        <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6 md:gap-8">
+          {teamMembers.slice(0, 4).map((member) => (
+            <MemberCard 
+              key={member.id} 
+              member={member} 
+              onClick={() => setSelectedMember(member)} 
+            />
+          ))}
+        </div>
+
+        <div className="mt-12 text-center">
+            <button 
+                onClick={() => setShowFullPage(true)}
+                className="px-6 py-2 border-2 border-paza-blue text-paza-blue hover:bg-paza-blue hover:text-white font-bold rounded-full transition-colors duration-300"
+            >
+                Voir tous les membres
+            </button>
+        </div>
+      </div>
+
+      {/* Full Page "All Members" View */}
+      <AnimatePresence>
+        {showFullPage && (
+          <motion.div 
+            initial={{ opacity: 0, y: '100%' }}
+            animate={{ opacity: 1, y: 0 }}
+            exit={{ opacity: 0, y: '100%' }}
+            transition={{ type: "spring", damping: 25, stiffness: 200 }}
+            className="fixed inset-0 z-[60] bg-white overflow-y-auto"
+          >
+            <div className="min-h-screen pb-20">
+              {/* Header of the full page */}
+              <div className="sticky top-0 bg-white/95 backdrop-blur-md border-b border-gray-100 z-10 px-4 py-4 mb-8 shadow-sm">
+                <div className="container mx-auto flex items-center justify-between">
+                  <button 
+                    onClick={() => setShowFullPage(false)}
+                    className="flex items-center gap-2 text-paza-dark font-bold hover:text-paza-blue transition-colors"
+                  >
+                    <ArrowLeft size={24} />
+                    Retour
+                  </button>
+                  <span className="font-heading font-bold text-xl text-paza-dark hidden md:block">
+                    Équipe Complète
+                  </span>
+                  <div className="w-8"></div> {/* Spacer for balance */}
+                </div>
+              </div>
+
+              <div className="container mx-auto px-4">
+                <div className="text-center mb-12">
+                   <h2 className="font-heading font-bold text-3xl text-paza-dark mb-2">Tous nos membres</h2>
+                   <p className="text-gray-500">L'équipe complète Paza Sauti La Haki</p>
+                </div>
+
+                <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6 md:gap-8">
+                  {teamMembers.map((member) => (
+                    <MemberCard 
+                      key={member.id} 
+                      member={member} 
+                      onClick={() => setSelectedMember(member)} 
+                    />
+                  ))}
+                </div>
+              </div>
+            </div>
+          </motion.div>
+        )}
+      </AnimatePresence>
+
+      {/* Member Details Modal */}
+      <AnimatePresence>
+        {selectedMember && (
+          <motion.div 
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            exit={{ opacity: 0 }}
+            className="fixed inset-0 z-[70] flex items-center justify-center p-4 bg-black/60 backdrop-blur-sm"
+            onClick={() => setSelectedMember(null)}
+          >
+            <motion.div 
+              initial={{ y: 50, opacity: 0 }}
+              animate={{ y: 0, opacity: 1 }}
+              exit={{ y: 50, opacity: 0 }}
+              className="bg-white rounded-2xl max-w-sm w-full overflow-hidden shadow-2xl relative"
+              onClick={(e) => e.stopPropagation()}
+            >
+              <button 
+                onClick={() => setSelectedMember(null)}
+                className="absolute top-4 right-4 z-10 p-2 bg-white/20 backdrop-blur-md hover:bg-white/40 rounded-full text-white transition-colors"
+              >
+                <X size={20} />
+              </button>
+              
+              <div className="h-64 relative">
+                <img 
+                  src={selectedMember.image} 
+                  alt={selectedMember.name}
+                  className="w-full h-full object-cover" 
+                />
+                <div className="absolute inset-0 bg-gradient-to-t from-black/60 to-transparent"></div>
+              </div>
+              
+              <div className="p-6">
+                <h3 className="font-heading font-bold text-2xl text-paza-dark mb-1">{selectedMember.name}</h3>
+                <p className="text-paza-blue font-medium mb-4">Membre de l'équipe Paza Sauti La Haki</p>
+                <div className="space-y-3">
+                    <div className="flex items-center gap-3 text-gray-600 text-sm">
+                        <div className="p-2 bg-gray-100 rounded-full">
+                            <User size={16} />
+                        </div>
+                        <p>Étudiant(e) à Goma, RDC</p>
+                    </div>
+                </div>
+                <div className="mt-6 pt-6 border-t border-gray-100">
+                    <p className="text-gray-500 text-sm italic">
+                        "Engagé(e) pour une justice équitable et accessible à tous."
+                    </p>
+                </div>
+              </div>
+            </motion.div>
+          </motion.div>
+        )}
+      </AnimatePresence>
+    </section>
+  );
+};
+
+export default Team;
