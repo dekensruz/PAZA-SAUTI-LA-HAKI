@@ -71,7 +71,7 @@ const Hero: React.FC = () => {
             {/* Using a placeholder for Goma/Justice concept */}
             <div className="absolute inset-0 bg-white rounded-2xl shadow-2xl overflow-hidden rotate-3 transform transition-transform hover:rotate-0 duration-500">
                 <img 
-                  src="https://picsum.photos/800/800?grayscale&blur=1" 
+                  src="https://images.pexels.com/photos/9685285/pexels-photo-9685285.jpeg" 
                   alt="Justice background" 
                   className="w-full h-full object-cover opacity-10"
                 />
