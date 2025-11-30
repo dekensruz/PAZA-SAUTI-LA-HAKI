@@ -6,15 +6,15 @@ import { X, User, ArrowLeft } from 'lucide-react';
 import { useLanguage } from '../LanguageContext';
 
 const teamMembers: TeamMember[] = [
-  { id: '1', name: 'Mwangilwa Kituango Gédéon', image: 'https://i.ibb.co/w56NdS7/1.png' },
+  { id: '1', name: 'Mwangilwa Kituango Gédéon', image: 'https://i.ibb.co/5xJD99Jh/17.jpg' },
   { id: '2', name: 'Balola Mugisho Daniel', image: 'https://i.ibb.co/ksxYXrsY/2.jpg' },
-  { id: '3', name: 'Dekens Ruzuba', image: 'https://i.ibb.co/nMMpPKZt/9.jpg' },
-  { id: '4', name: 'Byeka Kipanga Chanceline', image: 'https://i.ibb.co/sJH3vZMc/3.jpg' },
-  { id: '5', name: 'Safari Muzero Xavier', image: 'https://i.ibb.co/twB8r91F/4.jpg' },
+  { id: '3', name: 'Dekens Ruzuba', image: 'https://i.ibb.co/s9zQCqbj/16.jpg' },
+  { id: '4', name: 'Byeka Kipanga Chanceline', image: 'https://i.ibb.co/4ZKVCQDd/14.jpg' },
+  { id: '5', name: 'SAFARI MUZERO Xavier', image: 'https://i.ibb.co/PsYjyTpT/13.jpg' },
   { id: '6', name: 'Nabintu Bisimwa Clémence', image: 'https://i.ibb.co/BVsfwjtK/6.jpg' },
-  { id: '7', name: 'Irazika Bamporiki Vertueuse', image: 'https://i.ibb.co/kVsf5H3v/7.jpg' },
-  { id: '8', name: 'Miderho Magadju Dieumerci', image: 'https://i.ibb.co/vf0J0Hn/incognito.jpg' },
-  { id: '9', name: 'Furaha Zirimwagabo Nessia', image: 'https://i.ibb.co/vf0J0Hn/incognito.jpg' },
+  { id: '7', name: 'Irazika Bamporiki Vertueuse', image: 'https://i.ibb.co/LmSdgZq/15.jpg' },
+  { id: '8', name: 'Miderho Magadju Dieumerci', image: 'https://i.ibb.co/LdGtgBmv/12.jpg' },
+  { id: '9', name: 'Furaha Zirimwagabo Nessia', image: 'https://i.ibb.co/LDnPtQ1L/11.jpg' },
   { id: '10', name: 'Habamungu Magendo Augustin', image: 'https://i.ibb.co/bgqk2mHD/8.jpg' },
   { id: '11', name: 'Karisi Kaboyo Bénédicte', image: 'https://i.ibb.co/vf0J0Hn/incognito.jpg' },
 ];

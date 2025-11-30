@@ -42,6 +42,10 @@ export const content = {
         {
           title: "Investir l'avenir",
           text: "Investir dans la paix et la gestion des conflits, c'est investir pour un avenir meilleur pour tous."
+        },
+        {
+          title: "Justice Climatique",
+          text: "Protéger l'environnement est une question de justice. Nous défendons le droit à un environnement sain pour les générations futures."
         }
       ]
     },
@@ -197,6 +201,10 @@ export const content = {
         {
           title: "Investing in Future",
           text: "Investing in peace and conflict management is investing in a better future for all."
+        },
+        {
+          title: "Climate Justice",
+          text: "Protecting the environment is a matter of justice. We defend the right to a healthy environment for current and future generations."
         }
       ]
     },
