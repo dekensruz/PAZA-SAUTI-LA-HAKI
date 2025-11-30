@@ -16,7 +16,7 @@ const teamMembers: TeamMember[] = [
   { id: '8', name: 'Miderho Magadju Dieumerci', image: 'https://i.ibb.co/LdGtgBmv/12.jpg' },
   { id: '9', name: 'Furaha Zirimwagabo Nessia', image: 'https://i.ibb.co/LDnPtQ1L/11.jpg' },
   { id: '10', name: 'Habamungu Magendo Augustin', image: 'https://i.ibb.co/bgqk2mHD/8.jpg' },
-  { id: '11', name: 'Karisi Kaboyo Bénédicte', image: 'https://i.ibb.co/vf0J0Hn/incognito.jpg' },
+  { id: '11', name: 'Karisi Kaboyo Bénédicte', image: 'https://i.ibb.co/VYF1VDs8/19.jpg' },
 ];
 
 const MemberCard: React.FC<{ member: TeamMember; onClick: () => void; roleLabel: string }> = ({ member, onClick, roleLabel }) => (
