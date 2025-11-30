@@ -7,7 +7,7 @@ import { useLanguage } from '../LanguageContext';
 
 const teamMembers: TeamMember[] = [
   { id: '1', name: 'Mwangilwa Kituango Gédéon', image: 'https://i.ibb.co/5xJD99Jh/17.jpg' },
-  { id: '2', name: 'Balola Mugisho Daniel', image: 'https://i.ibb.co/ksxYXrsY/2.jpg' },
+  { id: '2', name: 'Balola Mugisho Daniel', image: 'https://i.ibb.co/BVSPJLgv/18.jpg' },
   { id: '3', name: 'Dekens Ruzuba', image: 'https://i.ibb.co/s9zQCqbj/16.jpg' },
   { id: '4', name: 'Byeka Kipanga Chanceline', image: 'https://i.ibb.co/4ZKVCQDd/14.jpg' },
   { id: '5', name: 'SAFARI MUZERO Xavier', image: 'https://i.ibb.co/PsYjyTpT/13.jpg' },
