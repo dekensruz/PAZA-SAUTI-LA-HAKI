@@ -6,6 +6,7 @@ export const content = {
     nav: {
       home: 'Accueil',
       mission: 'Mission',
+      gallery: 'Galerie',
       team: 'Équipe',
       faq: 'FAQ',
       blog: 'Blog',
@@ -49,6 +50,25 @@ export const content = {
         }
       ]
     },
+    gallery: {
+        title: 'Notre Galerie',
+        subtitle: 'Retour en images sur nos activités, nos descentes sur terrain et nos moments forts.',
+        viewAll: 'Voir toutes les images',
+        close: 'Fermer la galerie',
+        images: [
+            "https://i.ibb.co/21WwKYxw/IMG-106.jpg",
+            "https://i.ibb.co/LDjJBZdK/IMG-146.jpg",
+            "https://i.ibb.co/HpLdwmjB/IMG-99.jpg",
+            "https://i.ibb.co/mFgStt02/IMG-139.jpg",
+            "https://i.ibb.co/FL9hHLzJ/IMG-126.jpg",
+            "https://i.ibb.co/Q7FNK3vJ/IMG-33.jpg",
+            "https://i.ibb.co/F4FXgDfy/IMG-112.jpg",
+            "https://i.ibb.co/wXdQTqt/IMG-12.jpg",
+            "https://i.ibb.co/Zz7Fwbtb/IMG-25.jpg",
+            "https://i.ibb.co/FLLFfYHH/IMG-8.jpg",
+            "https://i.ibb.co/WWVHTzc4/IMG-170.jpg"
+        ]
+    },
     team: {
       title: 'Notre Équipe',
       subtitle: 'Des jeunes engagés de différentes universités de Goma, unis pour la cause de la justice.',
@@ -67,6 +87,20 @@ export const content = {
       readMore: 'Lire plus',
       close: 'Fermer',
       posts: [
+        {
+          id: '3',
+          title: "SENSIBILISATION À L'INSTITUT UWEZO",
+          summary: "Une journée d'échange enrichissante avec les élèves sur la paix, les conflits et la justice.",
+          date: '02 Décembre 2024',
+          image: 'https://i.ibb.co/21WwKYxw/IMG-106.jpg',
+          contentPoints: [
+            "Le 02 Décembre, l'équipe Paza Sauti La Haki s'est rendue à l'Institut Uwezo.",
+            "Nous avons sensibilisé les jeunes sur l'importance cruciale de la paix dans notre société.",
+            "Des échanges interactifs ont eu lieu sur la sensibilité aux conflits : comment les identifier et les prévenir.",
+            "L'accès à la justice a été au cœur des discussions, rappelant que chaque jeune a des droits.",
+            "Les élèves ont montré un grand intérêt et se sont engagés à être des acteurs de paix dans leur école."
+          ]
+        },
         {
           id: '1',
           title: "L'ACCÈS À LA JUSTICE",
@@ -165,6 +199,7 @@ export const content = {
     nav: {
       home: 'Home',
       mission: 'Mission',
+      gallery: 'Gallery',
       team: 'Team',
       faq: 'FAQ',
       blog: 'Blog',
@@ -208,6 +243,25 @@ export const content = {
         }
       ]
     },
+    gallery: {
+        title: 'Our Gallery',
+        subtitle: 'A look back in images at our activities, field visits, and highlights.',
+        viewAll: 'View all images',
+        close: 'Close gallery',
+        images: [
+            "https://i.ibb.co/21WwKYxw/IMG-106.jpg",
+            "https://i.ibb.co/LDjJBZdK/IMG-146.jpg",
+            "https://i.ibb.co/HpLdwmjB/IMG-99.jpg",
+            "https://i.ibb.co/mFgStt02/IMG-139.jpg",
+            "https://i.ibb.co/FL9hHLzJ/IMG-126.jpg",
+            "https://i.ibb.co/Q7FNK3vJ/IMG-33.jpg",
+            "https://i.ibb.co/F4FXgDfy/IMG-112.jpg",
+            "https://i.ibb.co/wXdQTqt/IMG-12.jpg",
+            "https://i.ibb.co/Zz7Fwbtb/IMG-25.jpg",
+            "https://i.ibb.co/FLLFfYHH/IMG-8.jpg",
+            "https://i.ibb.co/WWVHTzc4/IMG-170.jpg"
+        ]
+    },
     team: {
       title: 'Our Team',
       subtitle: 'Committed youth from different universities in Goma, united for the cause of justice.',
@@ -226,6 +280,20 @@ export const content = {
       readMore: 'Read more',
       close: 'Close',
       posts: [
+        {
+          id: '3',
+          title: "SENSITIZATION AT UWEZO INSTITUTE",
+          summary: "An enriching day of exchange with students on peace, conflicts, and justice.",
+          date: 'December 02, 2024',
+          image: 'https://i.ibb.co/21WwKYxw/IMG-106.jpg',
+          contentPoints: [
+            "On December 2nd, the Paza Sauti La Haki team visited the Uwezo Institute.",
+            "We raised awareness among youth about the crucial importance of peace in our society.",
+            "Interactive exchanges took place on conflict sensitivity: how to identify and prevent them.",
+            "Access to justice was at the heart of the discussions, reminding everyone that every young person has rights.",
+            "The students showed great interest and committed to being actors of peace in their school."
+          ]
+        },
         {
           id: '1',
           title: "ACCESS TO JUSTICE",

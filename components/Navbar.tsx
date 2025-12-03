@@ -17,6 +17,7 @@ const Navbar: React.FC<NavbarProps> = ({ isDarkMode, toggleTheme }) => {
   const navItems: NavItem[] = [
     { label: t.nav.home, href: '#home' },
     { label: t.nav.mission, href: '#mission' },
+    { label: t.nav.gallery, href: '#gallery' },
     { label: t.nav.team, href: '#team' },
     { label: t.nav.faq, href: '#faq' },
     { label: t.nav.blog, href: '#blog' },
