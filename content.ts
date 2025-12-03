@@ -91,7 +91,7 @@ export const content = {
           id: '3',
           title: "SENSIBILISATION À L'INSTITUT UWEZO",
           summary: "Une journée d'échange enrichissante avec les élèves sur la paix, les conflits et la justice.",
-          date: '02 Décembre 2024',
+          date: '02 Décembre 2025',
           image: 'https://i.ibb.co/21WwKYxw/IMG-106.jpg',
           contentPoints: [
             "Le 02 Décembre, l'équipe Paza Sauti La Haki s'est rendue à l'Institut Uwezo.",
