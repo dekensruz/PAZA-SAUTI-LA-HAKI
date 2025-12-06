@@ -24,15 +24,26 @@ const Contact: React.FC = () => {
     e.preventDefault();
     setIsSubmitting(true);
     
-    // Simulate API call
+    // Construct the mailto link
+    const recipient = "pazasautilahaki@gmail.com";
+    const mailSubject = `[Contact Site Web] ${formData.subject}: ${formData.name}`;
+    const mailBody = `Nom: ${formData.name}\nEmail: ${formData.email}\n\nMessage:\n${formData.message}`;
+    
+    const mailtoLink = `mailto:${recipient}?subject=${encodeURIComponent(mailSubject)}&body=${encodeURIComponent(mailBody)}`;
+
+    // Simulate loading for better UX, then open mail client
     setTimeout(() => {
       setIsSubmitting(false);
       setIsSubmitted(true);
+      
+      // Open the user's email client
+      window.location.href = mailtoLink;
+      
       setFormData({ name: '', email: '', subject: '', message: '' });
       
       // Reset success message after 5 seconds
       setTimeout(() => setIsSubmitted(false), 5000);
-    }, 1500);
+    }, 1000);
   };
 
   return (

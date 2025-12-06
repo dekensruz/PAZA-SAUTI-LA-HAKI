@@ -1,6 +1,6 @@
 
 import React from 'react';
-import { Phone, MapPin, Facebook, Twitter, Instagram } from 'lucide-react';
+import { Phone, MapPin, Facebook, Twitter, Instagram, Mail } from 'lucide-react';
 import { useLanguage } from '../LanguageContext';
 
 const Footer: React.FC = () => {
@@ -70,6 +70,10 @@ const Footer: React.FC = () => {
                <li className="flex items-center gap-3">
                  <Phone className="text-paza-red shrink-0" size={20} />
                  <span>+243 977 812 672</span>
+               </li>
+               <li className="flex items-center gap-3">
+                 <Mail className="text-paza-red shrink-0" size={20} />
+                 <a href="mailto:pazasautilahaki@gmail.com" className="hover:text-white transition-colors break-all">pazasautilahaki@gmail.com</a>
                </li>
              </ul>
           </div>
