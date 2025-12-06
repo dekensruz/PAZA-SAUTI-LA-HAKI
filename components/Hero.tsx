@@ -1,4 +1,3 @@
-
 import React from 'react';
 import { motion } from 'framer-motion';
 import { ChevronDown, Scale, Mic } from 'lucide-react';
@@ -81,7 +80,7 @@ const Hero: React.FC = () => {
                 />
                 <div className="absolute inset-0 flex items-center justify-center flex-col p-8">
                    <img 
-                      src="https://i.ibb.co/1t3CxJcp/PSLH.png" 
+                      src="https://i.ibb.co/5gCvZcKM/Logo.png" 
                       alt="Logo PSLH"
                       className="w-32 h-32 md:w-48 md:h-48 object-contain mb-6 drop-shadow-md"
                    />

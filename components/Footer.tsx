@@ -1,4 +1,3 @@
-
 import React from 'react';
 import { Phone, MapPin, Facebook, Twitter, Instagram, Mail } from 'lucide-react';
 import { useLanguage } from '../LanguageContext';
@@ -26,7 +25,7 @@ const Footer: React.FC = () => {
           {/* Brand & Info */}
           <div className="space-y-4">
             <div className="flex items-center gap-3 mb-4 bg-white p-2 rounded-lg w-fit">
-              <img src="https://i.ibb.co/1t3CxJcp/PSLH.png" alt="PSLH Logo" className="w-10 h-10 object-contain" />
+              <img src="https://i.ibb.co/5gCvZcKM/Logo.png" alt="PSLH Logo" className="w-10 h-10 object-contain" />
               <div className="flex flex-col">
                 <span className="font-heading font-bold text-paza-dark text-sm leading-none">PAZA SAUTI</span>
                 <span className="font-heading font-bold text-paza-red text-xs leading-none">LA HAKI</span>

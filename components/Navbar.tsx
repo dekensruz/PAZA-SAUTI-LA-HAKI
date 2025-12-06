@@ -1,4 +1,3 @@
-
 import React, { useState, useEffect } from 'react';
 import { Menu, X, Moon, Sun, Globe } from 'lucide-react';
 import { NavItem } from '../types';
@@ -70,7 +69,7 @@ const Navbar: React.FC<NavbarProps> = ({ isDarkMode, toggleTheme }) => {
         >
           <div className="bg-white rounded-full p-1 w-12 h-12 md:w-16 md:h-16 flex items-center justify-center shadow-sm border border-gray-100 overflow-hidden">
             <img 
-              src="https://i.ibb.co/1t3CxJcp/PSLH.png" 
+              src="https://i.ibb.co/5gCvZcKM/Logo.png" 
               alt="Paza Sauti La Haki Logo" 
               className="w-full h-full object-contain"
             />
