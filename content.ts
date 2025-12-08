@@ -88,6 +88,20 @@ export const content = {
       close: 'Fermer',
       posts: [
         {
+          id: '4',
+          title: "JOURNÉE MONDIALE DU CLIMAT",
+          summary: "Aujourd'hui, le 08 Décembre 2025, nous célébrons la journée mondiale du climat. Protégeons notre planète pour un avenir durable.",
+          date: '08 Décembre 2025',
+          image: 'https://i.ibb.co/fw8zJ4R/Vert-Publication-Instagram-Engagement-cologique-Moderne.jpg',
+          contentPoints: [
+            "Le changement climatique n'est pas seulement un défi environnemental, c'est une question de justice.",
+            "Nous avons le devoir de protéger notre planète pour les générations actuelles et futures.",
+            "La dégradation de l'environnement affecte souvent les plus vulnérables en premier.",
+            "Agir pour le climat, c'est agir pour la paix et la stabilité.",
+            "Ensemble, adoptons des comportements responsables pour réduire notre impact écologique."
+          ]
+        },
+        {
           id: '3',
           title: "SENSIBILISATION À L'INSTITUT UWEZO",
           summary: "Une journée d'échange enrichissante avec les élèves sur la paix, les conflits et la justice.",
@@ -281,6 +295,20 @@ export const content = {
       close: 'Close',
       posts: [
         {
+          id: '4',
+          title: "WORLD CLIMATE DAY",
+          summary: "Today, December 8, 2025, let's celebrate World Climate Day. Let's protect our planet for a sustainable future.",
+          date: 'December 08, 2025',
+          image: 'https://i.ibb.co/fw8zJ4R/Vert-Publication-Instagram-Engagement-cologique-Moderne.jpg',
+          contentPoints: [
+            "Climate change is not just an environmental challenge, it is a matter of justice.",
+            "We have a duty to protect our planet for current and future generations.",
+            "Environmental degradation often affects the most vulnerable first.",
+            "Acting for the climate means acting for peace and stability.",
+            "Together, let's adopt responsible behaviors to reduce our ecological impact."
+          ]
+        },
+        {
           id: '3',
           title: "SENSITIZATION AT UWEZO INSTITUTE",
           summary: "An enriching day of exchange with students on peace, conflicts, and justice.",
@@ -342,7 +370,7 @@ export const content = {
         },
         {
           question: "How to resolve a conflict without going to court?",
-          answer: "Mediation is a powerful tool. We encourage community dialogue and the intervention of neutral mediators (neighborhood chiefs, religious leaders, or our trained mediators) to find a peaceful common ground before considering legal action."
+          answer: "Mediation is a powerful tool. We encourage community dialogue and the intervention de neutral mediators (neighborhood chiefs, religious leaders, or our trained mediators) to find a peaceful common ground before considering legal action."
         },
         {
           question: "Is the initiative politically affiliated?",
