@@ -4,10 +4,12 @@ import { BlogPost } from '../types';
 import { Calendar, ArrowRight, X } from 'lucide-react';
 import { motion, AnimatePresence } from 'framer-motion';
 import { useLanguage } from '../LanguageContext';
+import { Link, useLocation } from 'react-router-dom';
 
 const Blog: React.FC = () => {
   const [selectedPost, setSelectedPost] = useState<BlogPost | null>(null);
   const { t } = useLanguage();
+  const location = useLocation();
 
   // Lock body scroll when modal is open
   useEffect(() => {
@@ -21,6 +23,9 @@ const Blog: React.FC = () => {
     };
   }, [selectedPost]);
 
+  const isBlogPage = location.pathname === '/blog';
+  const displayedPosts = isBlogPage ? t.blog.posts : t.blog.posts.slice(0, 3);
+
   return (
     <section id="blog" className="py-20 bg-gray-50 dark:bg-gray-800 transition-colors duration-300">
       <div className="container mx-auto px-4">
@@ -33,7 +38,7 @@ const Blog: React.FC = () => {
         </div>
 
         <div className="grid grid-cols-1 md:grid-cols-2 gap-10">
-          {t.blog.posts.map((post, index) => (
+          {displayedPosts.map((post, index) => (
             <motion.article 
               key={post.id}
               initial={{ opacity: 0, y: 30 }}
@@ -75,6 +80,18 @@ const Blog: React.FC = () => {
             </motion.article>
           ))}
         </div>
+
+        {/* Show 'View All' button if not on blog page */}
+        {!isBlogPage && (
+          <div className="mt-12 text-center">
+            <Link 
+              to="/blog" 
+              className="px-8 py-3 bg-white dark:bg-gray-800 text-paza-blue border-2 border-paza-blue font-bold rounded-lg shadow-sm hover:bg-paza-blue hover:text-white transition-all transform hover:-translate-y-1 inline-flex items-center gap-2"
+            >
+              {t.blog.viewAll} <ArrowRight size={20} />
+            </Link>
+          </div>
+        )}
       </div>
 
       {/* Blog Post Modal */}

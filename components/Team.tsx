@@ -2,8 +2,9 @@
 import React, { useState, useEffect } from 'react';
 import { TeamMember } from '../types';
 import { motion, AnimatePresence } from 'framer-motion';
-import { X, User } from 'lucide-react';
+import { X, User, ArrowRight } from 'lucide-react';
 import { useLanguage } from '../LanguageContext';
+import { Link, useLocation } from 'react-router-dom';
 
 const teamMembers: TeamMember[] = [
   { id: '1', name: 'Mwangilwa Kituangano Gédéon', image: 'https://i.ibb.co/5xJD99Jh/17.jpg' },
@@ -46,6 +47,7 @@ const MemberCard: React.FC<{ member: TeamMember; onClick: () => void; roleLabel:
 const Team: React.FC = () => {
   const [selectedMember, setSelectedMember] = useState<TeamMember | null>(null);
   const { t } = useLanguage();
+  const location = useLocation();
 
   // Disable body scroll when modal is open
   useEffect(() => {
@@ -59,6 +61,9 @@ const Team: React.FC = () => {
     };
   }, [selectedMember]);
 
+  const isTeamPage = location.pathname === '/team';
+  const displayedMembers = isTeamPage ? teamMembers : teamMembers.slice(0, 3);
+
   return (
     <section id="team" className="py-20 bg-white dark:bg-gray-900 transition-colors duration-300 min-h-screen">
       <div className="container mx-auto px-4">
@@ -70,9 +75,9 @@ const Team: React.FC = () => {
           </p>
         </div>
 
-        {/* Display all members */}
+        {/* Display members grid */}
         <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6 md:gap-8">
-          {teamMembers.map((member) => (
+          {displayedMembers.map((member) => (
             <MemberCard 
               key={member.id} 
               member={member} 
@@ -81,6 +86,18 @@ const Team: React.FC = () => {
             />
           ))}
         </div>
+
+        {/* Show 'View All' button if not on team page */}
+        {!isTeamPage && (
+          <div className="mt-12 text-center">
+            <Link 
+              to="/team" 
+              className="px-8 py-3 bg-white dark:bg-gray-800 text-paza-blue border-2 border-paza-blue font-bold rounded-lg shadow-sm hover:bg-paza-blue hover:text-white transition-all transform hover:-translate-y-1 inline-flex items-center gap-2"
+            >
+              {t.team.viewAll} <ArrowRight size={20} />
+            </Link>
+          </div>
+        )}
       </div>
 
       {/* Member Details Modal */}

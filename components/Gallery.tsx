@@ -2,13 +2,16 @@
 import React, { useState, useEffect } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import { useLanguage } from '../LanguageContext';
-import { Camera, X, Maximize2 } from 'lucide-react';
+import { Camera, X, Maximize2, ArrowRight } from 'lucide-react';
+import { Link, useLocation } from 'react-router-dom';
 
 const Gallery: React.FC = () => {
   const { t } = useLanguage();
   const [selectedImage, setSelectedImage] = useState<string | null>(null);
+  const location = useLocation();
 
-  const images = t.gallery.images;
+  const isGalleryPage = location.pathname === '/gallery';
+  const images = isGalleryPage ? t.gallery.images : t.gallery.images.slice(0, 3);
 
   useEffect(() => {
     if (selectedImage) {
@@ -59,6 +62,18 @@ const Gallery: React.FC = () => {
                 </motion.div>
             ))}
         </div>
+
+        {/* Show 'View All' button if not on gallery page */}
+        {!isGalleryPage && (
+          <div className="mt-12 text-center">
+            <Link 
+              to="/gallery" 
+              className="px-8 py-3 bg-white dark:bg-gray-800 text-paza-red border-2 border-paza-red font-bold rounded-lg shadow-sm hover:bg-paza-red hover:text-white transition-all transform hover:-translate-y-1 inline-flex items-center gap-2"
+            >
+              {t.gallery.viewAll} <ArrowRight size={20} />
+            </Link>
+          </div>
+        )}
       </div>
 
       {/* Lightbox Modal for Single Image */}

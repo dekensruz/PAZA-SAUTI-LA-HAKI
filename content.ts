@@ -109,6 +109,7 @@ export const content = {
       title: 'Articles Récents',
       subtitle: 'Sensibilisation et éducation pour le changement.',
       readMore: 'Lire plus',
+      viewAll: 'Voir tous les articles',
       close: 'Fermer',
       posts: [
         {
@@ -340,6 +341,7 @@ export const content = {
       title: 'Recent Articles',
       subtitle: 'Awareness and education for change.',
       readMore: 'Read more',
+      viewAll: 'View all articles',
       close: 'Close',
       posts: [
         {
