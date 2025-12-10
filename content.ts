@@ -43,7 +43,7 @@ export const content = {
         },
         {
           name: 'Pole Institute',
-          logo: 'https://i.ibb.co/PvncrQf8/pole.jpg', // Placeholder car le lien image n'était pas fourni
+          logo: 'https://i.ibb.co/PvncrQf8/pole.jpg',
           url: 'https://pole-institute.org'
         }
       ]
@@ -112,6 +112,20 @@ export const content = {
       viewAll: 'Voir tous les articles',
       close: 'Fermer',
       posts: [
+        {
+          id: '5',
+          title: "JOURNÉE INTERNATIONALE DES DROITS DE L'HOMME",
+          summary: "Conférence en ligne sur Google Meet : Liberté d'expression vs discours de haine. Où se situe la limite ?",
+          date: '10 Décembre 2025',
+          image: 'https://i.ibb.co/Q3bgRjkZ/Publication-instagram-journ-e-internationale-des-droits-des-femmes-photographie-simple-violet-1.jpg',
+          contentPoints: [
+            "Nous avons organisé une conférence en ligne sur Google Meet pour célébrer cette journée importante.",
+            "Le thème du débat était : 'Liberté d'expression vs discours de haine. Où se situe la limite ?'.",
+            "Il est crucial de comprendre que la liberté d'expression ne justifie pas l'incitation à la haine ou à la violence.",
+            "Les échanges ont permis de définir des lignes directrices pour un discours constructif et respectueux.",
+            "Ensemble, nous nous engageons à promouvoir des droits humains universels dans nos communautés et en ligne."
+          ]
+        },
         {
           id: '4',
           title: "JOURNÉE MONDIALE DU CLIMAT",
@@ -344,6 +358,20 @@ export const content = {
       viewAll: 'View all articles',
       close: 'Close',
       posts: [
+        {
+          id: '5',
+          title: "INTERNATIONAL HUMAN RIGHTS DAY",
+          summary: "Online conference on Google Meet: Freedom of expression vs hate speech. Where is the limit?",
+          date: 'December 10, 2025',
+          image: 'https://i.ibb.co/Q3bgRjkZ/Publication-instagram-journ-e-internationale-des-droits-des-femmes-photographie-simple-violet-1.jpg',
+          contentPoints: [
+            "We organized an online conference on Google Meet to celebrate this important day.",
+            "The theme of the debate was: 'Freedom of expression vs hate speech. Where is the limit?'.",
+            "It is crucial to understand that freedom of expression does not justify incitement to hate or violence.",
+            "The exchanges helped define guidelines for constructive and respectful discourse.",
+            "Together, we commit to promoting universal human rights in our communities and online."
+          ]
+        },
         {
           id: '4',
           title: "WORLD CLIMATE DAY",
