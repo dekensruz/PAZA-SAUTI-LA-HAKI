@@ -1,27 +1,21 @@
+
 import React from 'react';
 import { motion } from 'framer-motion';
-import { ChevronDown, Scale, Mic } from 'lucide-react';
+import { ChevronRight, Scale, Mic } from 'lucide-react';
 import { useLanguage } from '../LanguageContext';
+import { Link } from 'react-router-dom';
 
 const Hero: React.FC = () => {
   const { t } = useLanguage();
 
-  const handleScroll = (e: React.MouseEvent<HTMLAnchorElement>, id: string) => {
-    e.preventDefault();
-    const element = document.getElementById(id);
-    if (element) {
-      element.scrollIntoView({ behavior: 'smooth' });
-    }
-  };
-
   return (
-    <section id="home" className="relative min-h-screen flex items-center justify-center pt-24 pb-12 overflow-hidden bg-gradient-to-br from-slate-50 to-slate-100 dark:from-gray-900 dark:to-gray-800 transition-colors duration-300">
+    <section className="relative min-h-[calc(100vh-80px)] flex items-center justify-center pt-8 pb-12 overflow-hidden bg-gradient-to-br from-slate-50 to-slate-100 dark:from-gray-900 dark:to-gray-800 transition-colors duration-300">
       
       {/* Abstract Background Elements */}
       <div className="absolute top-0 right-0 w-1/3 h-1/3 bg-paza-blue/10 dark:bg-paza-blue/20 rounded-full blur-3xl -translate-y-1/2 translate-x-1/2"></div>
       <div className="absolute bottom-0 left-0 w-1/3 h-1/3 bg-paza-red/10 dark:bg-paza-red/20 rounded-full blur-3xl translate-y-1/2 -translate-x-1/2"></div>
 
-      <div className="container mx-auto px-4 z-10 grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
+      <div className="container mx-auto px-4 z-10 grid grid-cols-1 lg:grid-cols-2 gap-12 items-center h-full">
         
         {/* Text Content */}
         <motion.div 
@@ -44,22 +38,20 @@ const Hero: React.FC = () => {
           </p>
 
           <div className="flex flex-col sm:flex-row gap-4 justify-center lg:justify-start">
-            <a 
-              href="#mission" 
-              onClick={(e) => handleScroll(e, 'mission')}
+            <Link 
+              to="/mission" 
               className="px-8 py-3 bg-paza-blue text-white font-bold rounded-lg shadow-lg hover:bg-blue-700 transition-all transform hover:-translate-y-1 flex items-center justify-center gap-2 cursor-pointer"
             >
               <Scale size={20} />
               {t.hero.ctaMission}
-            </a>
-            <a 
-              href="#contact" 
-              onClick={(e) => handleScroll(e, 'contact')}
+            </Link>
+            <Link 
+              to="/contact" 
               className="px-8 py-3 bg-white dark:bg-gray-800 text-paza-dark dark:text-white border border-gray-200 dark:border-gray-700 font-bold rounded-lg shadow-sm hover:shadow-md transition-all hover:bg-gray-50 dark:hover:bg-gray-700 flex items-center justify-center gap-2 cursor-pointer"
             >
               <Mic size={20} />
               {t.hero.ctaJoin}
-            </a>
+            </Link>
           </div>
         </motion.div>
 
@@ -68,9 +60,9 @@ const Hero: React.FC = () => {
           initial={{ opacity: 0, scale: 0.9 }}
           animate={{ opacity: 1, scale: 1 }}
           transition={{ duration: 0.8, delay: 0.2 }}
-          className="relative order-1 lg:order-2"
+          className="relative order-1 lg:order-2 flex justify-center"
         >
-          <div className="relative w-full aspect-square max-w-sm md:max-w-md mx-auto">
+          <div className="relative w-full aspect-square max-w-sm md:max-w-md">
             {/* Using a placeholder for Goma/Justice concept */}
             <div className="absolute inset-0 bg-white dark:bg-gray-800 rounded-2xl shadow-2xl overflow-hidden rotate-3 transform transition-transform hover:rotate-0 duration-500 border border-gray-100 dark:border-gray-700">
                 <img 
@@ -98,10 +90,6 @@ const Hero: React.FC = () => {
             </div>
           </div>
         </motion.div>
-      </div>
-
-      <div className="hidden lg:block absolute bottom-8 left-1/2 transform -translate-x-1/2 animate-bounce text-gray-400 dark:text-gray-600">
-        <ChevronDown size={32} />
       </div>
     </section>
   );

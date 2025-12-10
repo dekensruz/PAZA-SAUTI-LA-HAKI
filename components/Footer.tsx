@@ -2,20 +2,13 @@
 import React from 'react';
 import { Phone, MapPin, Facebook, Twitter, Instagram, Mail } from 'lucide-react';
 import { useLanguage } from '../LanguageContext';
+import { Link } from 'react-router-dom';
 
 const Footer: React.FC = () => {
   const { t } = useLanguage();
   
   const scrollToTop = () => {
     window.scrollTo({ top: 0, behavior: 'smooth' });
-  };
-
-  const handleLinkClick = (e: React.MouseEvent<HTMLAnchorElement>, id: string) => {
-    e.preventDefault();
-    const element = document.getElementById(id);
-    if (element) {
-      element.scrollIntoView({ behavior: 'smooth' });
-    }
   };
 
   return (
@@ -36,13 +29,13 @@ const Footer: React.FC = () => {
               {t.footer.description}
             </p>
             <div className="flex gap-4 pt-2">
-              <a href="#" onClick={(e) => { e.preventDefault(); scrollToTop(); }} className="w-10 h-10 rounded-full bg-gray-800 flex items-center justify-center hover:bg-paza-blue transition-colors">
+              <a href="#" onClick={(e) => { e.preventDefault(); }} className="w-10 h-10 rounded-full bg-gray-800 flex items-center justify-center hover:bg-paza-blue transition-colors">
                 <Facebook size={18} />
               </a>
-              <a href="#" onClick={(e) => { e.preventDefault(); scrollToTop(); }} className="w-10 h-10 rounded-full bg-gray-800 flex items-center justify-center hover:bg-paza-blue transition-colors">
+              <a href="#" onClick={(e) => { e.preventDefault(); }} className="w-10 h-10 rounded-full bg-gray-800 flex items-center justify-center hover:bg-paza-blue transition-colors">
                 <Twitter size={18} />
               </a>
-              <a href="#" onClick={(e) => { e.preventDefault(); scrollToTop(); }} className="w-10 h-10 rounded-full bg-gray-800 flex items-center justify-center hover:bg-paza-blue transition-colors">
+              <a href="#" onClick={(e) => { e.preventDefault(); }} className="w-10 h-10 rounded-full bg-gray-800 flex items-center justify-center hover:bg-paza-blue transition-colors">
                 <Instagram size={18} />
               </a>
             </div>
@@ -52,10 +45,10 @@ const Footer: React.FC = () => {
           <div>
             <h4 className="font-heading font-bold text-lg mb-6 text-white border-l-4 border-paza-blue pl-3">{t.footer.quickLinks}</h4>
             <ul className="space-y-3 text-gray-400">
-              <li><a href="#home" onClick={(e) => { e.preventDefault(); scrollToTop(); }} className="hover:text-white transition-colors cursor-pointer">{t.nav.home}</a></li>
-              <li><a href="#mission" onClick={(e) => handleLinkClick(e, 'mission')} className="hover:text-white transition-colors cursor-pointer">{t.nav.mission}</a></li>
-              <li><a href="#team" onClick={(e) => handleLinkClick(e, 'team')} className="hover:text-white transition-colors cursor-pointer">{t.nav.team}</a></li>
-              <li><a href="#blog" onClick={(e) => handleLinkClick(e, 'blog')} className="hover:text-white transition-colors cursor-pointer">{t.nav.blog}</a></li>
+              <li><Link to="/" onClick={scrollToTop} className="hover:text-white transition-colors cursor-pointer">{t.nav.home}</Link></li>
+              <li><Link to="/mission" onClick={scrollToTop} className="hover:text-white transition-colors cursor-pointer">{t.nav.mission}</Link></li>
+              <li><Link to="/team" onClick={scrollToTop} className="hover:text-white transition-colors cursor-pointer">{t.nav.team}</Link></li>
+              <li><Link to="/blog" onClick={scrollToTop} className="hover:text-white transition-colors cursor-pointer">{t.nav.blog}</Link></li>
             </ul>
           </div>
 

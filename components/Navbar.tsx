@@ -3,6 +3,7 @@ import React, { useState, useEffect } from 'react';
 import { Menu, X, Moon, Sun, Globe } from 'lucide-react';
 import { NavItem } from '../types';
 import { useLanguage } from '../LanguageContext';
+import { NavLink, Link, useLocation } from 'react-router-dom';
 
 interface NavbarProps {
   isDarkMode: boolean;
@@ -13,16 +14,17 @@ const Navbar: React.FC<NavbarProps> = ({ isDarkMode, toggleTheme }) => {
   const [isScrolled, setIsScrolled] = useState(false);
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
   const { t, language, setLanguage } = useLanguage();
+  const location = useLocation();
 
   const navItems: NavItem[] = [
-    { label: t.nav.home, href: '#home' },
-    { label: t.nav.about, href: '#about' },
-    { label: t.nav.mission, href: '#mission' },
-    { label: t.nav.gallery, href: '#gallery' },
-    { label: t.nav.team, href: '#team' },
-    { label: t.nav.faq, href: '#faq' },
-    { label: t.nav.blog, href: '#blog' },
-    { label: t.nav.contact, href: '#contact' },
+    { label: t.nav.home, href: '/' },
+    { label: t.nav.about, href: '/about' },
+    { label: t.nav.mission, href: '/mission' },
+    { label: t.nav.gallery, href: '/gallery' },
+    { label: t.nav.team, href: '/team' },
+    { label: t.nav.faq, href: '/faq' },
+    { label: t.nav.blog, href: '/blog' },
+    { label: t.nav.contact, href: '/contact' },
   ];
 
   useEffect(() => {
@@ -33,23 +35,6 @@ const Navbar: React.FC<NavbarProps> = ({ isDarkMode, toggleTheme }) => {
     return () => window.removeEventListener('scroll', handleScroll);
   }, []);
 
-  const handleNavClick = (e: React.MouseEvent<HTMLAnchorElement>, href: string) => {
-    e.preventDefault();
-    setIsMobileMenuOpen(false);
-    
-    // Check if it's the home link
-    if (href === '#home') {
-      window.scrollTo({ top: 0, behavior: 'smooth' });
-      return;
-    }
-
-    const targetId = href.replace('#', '');
-    const element = document.getElementById(targetId);
-    if (element) {
-      element.scrollIntoView({ behavior: 'smooth' });
-    }
-  };
-
   const toggleLanguage = () => {
     setLanguage(language === 'fr' ? 'en' : 'fr');
   };
@@ -59,14 +44,14 @@ const Navbar: React.FC<NavbarProps> = ({ isDarkMode, toggleTheme }) => {
       className={`fixed top-0 left-0 w-full z-50 transition-all duration-300 ${
         isScrolled 
           ? 'bg-white/95 dark:bg-gray-900/95 backdrop-blur-md shadow-md py-2' 
-          : 'bg-white dark:bg-gray-900 py-4'
+          : 'bg-white dark:bg-gray-900 py-4 shadow-sm'
       }`}
     >
       <div className="container mx-auto px-4 flex justify-between items-center">
         {/* Logo Section */}
-        <a 
-          href="#home" 
-          onClick={(e) => handleNavClick(e, '#home')}
+        <Link 
+          to="/" 
+          onClick={() => setIsMobileMenuOpen(false)}
           className="flex items-center gap-3"
         >
           <div className="bg-white rounded-full p-1 w-12 h-12 md:w-16 md:h-16 flex items-center justify-center shadow-sm border border-gray-100 overflow-hidden">
@@ -84,19 +69,24 @@ const Navbar: React.FC<NavbarProps> = ({ isDarkMode, toggleTheme }) => {
               LA HAKI
             </span>
           </div>
-        </a>
+        </Link>
 
         {/* Desktop Menu */}
         <div className="hidden lg:flex items-center space-x-6">
           {navItems.map((item) => (
-            <a
+            <NavLink
               key={item.label}
-              href={item.href}
-              onClick={(e) => handleNavClick(e, item.href)}
-              className="text-gray-600 dark:text-gray-300 hover:text-paza-blue dark:hover:text-paza-blue font-medium transition-colors duration-200 text-sm uppercase tracking-wide cursor-pointer"
+              to={item.href}
+              className={({ isActive }) => 
+                `font-medium transition-colors duration-200 text-sm uppercase tracking-wide cursor-pointer ${
+                  isActive 
+                    ? 'text-paza-blue font-bold border-b-2 border-paza-blue pb-1' 
+                    : 'text-gray-600 dark:text-gray-300 hover:text-paza-blue dark:hover:text-paza-blue'
+                }`
+              }
             >
               {item.label}
-            </a>
+            </NavLink>
           ))}
           
           <div className="flex items-center gap-2 border-l border-gray-300 dark:border-gray-700 pl-4 ml-2">
@@ -146,17 +136,23 @@ const Navbar: React.FC<NavbarProps> = ({ isDarkMode, toggleTheme }) => {
 
       {/* Mobile Menu Dropdown */}
       {isMobileMenuOpen && (
-        <div className="lg:hidden bg-white dark:bg-gray-800 border-t border-gray-100 dark:border-gray-700 absolute w-full shadow-lg">
+        <div className="lg:hidden bg-white dark:bg-gray-800 border-t border-gray-100 dark:border-gray-700 absolute w-full shadow-lg h-screen overflow-y-auto pb-20">
           <div className="flex flex-col p-4 space-y-4">
             {navItems.map((item) => (
-              <a
+              <NavLink
                 key={item.label}
-                href={item.href}
-                onClick={(e) => handleNavClick(e, item.href)}
-                className="text-gray-800 dark:text-gray-200 hover:text-paza-blue dark:hover:text-paza-blue font-semibold block cursor-pointer"
+                to={item.href}
+                onClick={() => setIsMobileMenuOpen(false)}
+                className={({ isActive }) => 
+                  `font-semibold block cursor-pointer py-2 ${
+                    isActive 
+                      ? 'text-paza-blue pl-2 border-l-4 border-paza-blue' 
+                      : 'text-gray-800 dark:text-gray-200 hover:text-paza-blue dark:hover:text-paza-blue'
+                  }`
+                }
               >
                 {item.label}
-              </a>
+              </NavLink>
             ))}
           </div>
         </div>

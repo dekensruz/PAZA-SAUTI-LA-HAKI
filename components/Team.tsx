@@ -2,7 +2,7 @@
 import React, { useState, useEffect } from 'react';
 import { TeamMember } from '../types';
 import { motion, AnimatePresence } from 'framer-motion';
-import { X, User, ArrowLeft } from 'lucide-react';
+import { X, User } from 'lucide-react';
 import { useLanguage } from '../LanguageContext';
 
 const teamMembers: TeamMember[] = [
@@ -44,13 +44,12 @@ const MemberCard: React.FC<{ member: TeamMember; onClick: () => void; roleLabel:
 );
 
 const Team: React.FC = () => {
-  const [showFullPage, setShowFullPage] = useState(false);
   const [selectedMember, setSelectedMember] = useState<TeamMember | null>(null);
   const { t } = useLanguage();
 
-  // Disable body scroll when full page or modal is open
+  // Disable body scroll when modal is open
   useEffect(() => {
-    if (showFullPage || selectedMember) {
+    if (selectedMember) {
       document.body.style.overflow = 'hidden';
     } else {
       document.body.style.overflow = 'unset';
@@ -58,10 +57,10 @@ const Team: React.FC = () => {
     return () => {
       document.body.style.overflow = 'unset';
     };
-  }, [showFullPage, selectedMember]);
+  }, [selectedMember]);
 
   return (
-    <section id="team" className="py-20 bg-white dark:bg-gray-900 transition-colors duration-300">
+    <section className="py-20 bg-white dark:bg-gray-900 transition-colors duration-300 min-h-screen">
       <div className="container mx-auto px-4">
         <div className="text-center mb-16">
           <h2 className="font-heading font-bold text-3xl md:text-4xl text-paza-dark dark:text-white mb-4">{t.team.title}</h2>
@@ -71,9 +70,9 @@ const Team: React.FC = () => {
           </p>
         </div>
 
-        {/* Display only first 4 members initially */}
+        {/* Display all members */}
         <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6 md:gap-8">
-          {teamMembers.slice(0, 4).map((member) => (
+          {teamMembers.map((member) => (
             <MemberCard 
               key={member.id} 
               member={member} 
@@ -82,66 +81,7 @@ const Team: React.FC = () => {
             />
           ))}
         </div>
-
-        <div className="mt-12 text-center">
-            <button 
-                onClick={() => setShowFullPage(true)}
-                className="px-6 py-2 border-2 border-paza-blue text-paza-blue hover:bg-paza-blue hover:text-white font-bold rounded-full transition-colors duration-300"
-            >
-                {t.team.viewAll}
-            </button>
-        </div>
       </div>
-
-      {/* Full Page "All Members" View */}
-      <AnimatePresence>
-        {showFullPage && (
-          <motion.div 
-            initial={{ opacity: 0, y: '100%' }}
-            animate={{ opacity: 1, y: 0 }}
-            exit={{ opacity: 0, y: '100%' }}
-            transition={{ type: "spring", damping: 25, stiffness: 200 }}
-            className="fixed inset-0 z-[60] bg-white dark:bg-gray-900 overflow-y-auto"
-          >
-            <div className="min-h-screen pb-20">
-              {/* Header of the full page */}
-              <div className="sticky top-0 bg-white/95 dark:bg-gray-900/95 backdrop-blur-md border-b border-gray-100 dark:border-gray-700 z-10 px-4 py-4 mb-8 shadow-sm">
-                <div className="container mx-auto flex items-center justify-between">
-                  <button 
-                    onClick={() => setShowFullPage(false)}
-                    className="flex items-center gap-2 text-paza-dark dark:text-white font-bold hover:text-paza-blue transition-colors"
-                  >
-                    <ArrowLeft size={24} />
-                    {t.team.back}
-                  </button>
-                  <span className="font-heading font-bold text-xl text-paza-dark dark:text-white hidden md:block">
-                    {t.team.fullPageTitle}
-                  </span>
-                  <div className="w-8"></div> {/* Spacer for balance */}
-                </div>
-              </div>
-
-              <div className="container mx-auto px-4">
-                <div className="text-center mb-12">
-                   <h2 className="font-heading font-bold text-3xl text-paza-dark dark:text-white mb-2">{t.team.fullPageTitle}</h2>
-                   <p className="text-gray-500 dark:text-gray-400">{t.team.fullPageSubtitle}</p>
-                </div>
-
-                <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6 md:gap-8">
-                  {teamMembers.map((member) => (
-                    <MemberCard 
-                      key={member.id} 
-                      member={member} 
-                      onClick={() => setSelectedMember(member)}
-                      roleLabel={t.team.role}
-                    />
-                  ))}
-                </div>
-              </div>
-            </div>
-          </motion.div>
-        )}
-      </AnimatePresence>
 
       {/* Member Details Modal */}
       <AnimatePresence>
