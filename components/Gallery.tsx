@@ -22,7 +22,7 @@ const Gallery: React.FC = () => {
   }, [selectedImage]);
 
   return (
-    <section className="py-20 bg-gray-50 dark:bg-gray-800 transition-colors duration-300 min-h-screen">
+    <section id="gallery" className="py-20 bg-gray-50 dark:bg-gray-800 transition-colors duration-300 min-h-screen">
       <div className="container mx-auto px-4">
         <div className="text-center mb-16">
           <div className="flex items-center justify-center gap-2 mb-2">

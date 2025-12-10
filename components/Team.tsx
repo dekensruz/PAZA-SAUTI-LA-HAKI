@@ -60,7 +60,7 @@ const Team: React.FC = () => {
   }, [selectedMember]);
 
   return (
-    <section className="py-20 bg-white dark:bg-gray-900 transition-colors duration-300 min-h-screen">
+    <section id="team" className="py-20 bg-white dark:bg-gray-900 transition-colors duration-300 min-h-screen">
       <div className="container mx-auto px-4">
         <div className="text-center mb-16">
           <h2 className="font-heading font-bold text-3xl md:text-4xl text-paza-dark dark:text-white mb-4">{t.team.title}</h2>

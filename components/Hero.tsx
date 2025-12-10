@@ -9,7 +9,7 @@ const Hero: React.FC = () => {
   const { t } = useLanguage();
 
   return (
-    <section className="relative min-h-[calc(100vh-80px)] flex items-center justify-center pt-8 pb-12 overflow-hidden bg-gradient-to-br from-slate-50 to-slate-100 dark:from-gray-900 dark:to-gray-800 transition-colors duration-300">
+    <section id="home" className="relative min-h-[calc(100vh-80px)] flex items-center justify-center pt-8 pb-12 overflow-hidden bg-gradient-to-br from-slate-50 to-slate-100 dark:from-gray-900 dark:to-gray-800 transition-colors duration-300">
       
       {/* Abstract Background Elements */}
       <div className="absolute top-0 right-0 w-1/3 h-1/3 bg-paza-blue/10 dark:bg-paza-blue/20 rounded-full blur-3xl -translate-y-1/2 translate-x-1/2"></div>
