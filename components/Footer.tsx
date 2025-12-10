@@ -1,3 +1,4 @@
+
 import React from 'react';
 import { Phone, MapPin, Facebook, Twitter, Instagram, Mail } from 'lucide-react';
 import { useLanguage } from '../LanguageContext';
@@ -72,7 +73,7 @@ const Footer: React.FC = () => {
                </li>
                <li className="flex items-center gap-3">
                  <Mail className="text-paza-red shrink-0" size={20} />
-                 <a href="mailto:pazasautilahaki@gmail.com" className="hover:text-white transition-colors break-all">pazasautilahaki@gmail.com</a>
+                 <a href="mailto:info@pazasautilahaki.org" className="hover:text-white transition-colors break-all">info@pazasautilahaki.org</a>
                </li>
              </ul>
           </div>

@@ -8,6 +8,7 @@ import Team from './components/Team';
 import FAQ from './components/FAQ';
 import Blog from './components/Blog';
 import Contact from './components/Contact';
+import Partners from './components/Partners';
 import Footer from './components/Footer';
 import BackToTop from './components/BackToTop';
 import { LanguageProvider } from './LanguageContext';
@@ -32,6 +33,7 @@ function AppContent() {
       <Navbar isDarkMode={isDarkMode} toggleTheme={toggleTheme} />
       <main>
         <Hero />
+        <Partners />
         <Mission />
         <Gallery />
         <Team />

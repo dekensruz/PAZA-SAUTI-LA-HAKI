@@ -25,7 +25,7 @@ const Contact: React.FC = () => {
     setIsSubmitting(true);
     
     // Construct the mailto link
-    const recipient = "pazasautilahaki@gmail.com";
+    const recipient = "info@pazasautilahaki.org";
     const mailSubject = `[Contact Site Web] ${formData.subject}: ${formData.name}`;
     const mailBody = `Nom: ${formData.name}\nEmail: ${formData.email}\n\nMessage:\n${formData.message}`;
     

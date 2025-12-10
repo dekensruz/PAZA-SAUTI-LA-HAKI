@@ -1,3 +1,4 @@
+
 import React, { useState, useEffect } from 'react';
 import { Menu, X, Moon, Sun, Globe } from 'lucide-react';
 import { NavItem } from '../types';
@@ -15,6 +16,7 @@ const Navbar: React.FC<NavbarProps> = ({ isDarkMode, toggleTheme }) => {
 
   const navItems: NavItem[] = [
     { label: t.nav.home, href: '#home' },
+    { label: t.nav.about, href: '#about' },
     { label: t.nav.mission, href: '#mission' },
     { label: t.nav.gallery, href: '#gallery' },
     { label: t.nav.team, href: '#team' },
@@ -85,7 +87,7 @@ const Navbar: React.FC<NavbarProps> = ({ isDarkMode, toggleTheme }) => {
         </a>
 
         {/* Desktop Menu */}
-        <div className="hidden md:flex items-center space-x-6">
+        <div className="hidden lg:flex items-center space-x-6">
           {navItems.map((item) => (
             <a
               key={item.label}
@@ -120,7 +122,7 @@ const Navbar: React.FC<NavbarProps> = ({ isDarkMode, toggleTheme }) => {
         </div>
 
         {/* Mobile Menu Button */}
-        <div className="md:hidden flex items-center gap-2">
+        <div className="lg:hidden flex items-center gap-2">
            <button 
               onClick={toggleLanguage}
               className="p-2 rounded-full hover:bg-gray-100 dark:hover:bg-gray-800 transition-colors text-paza-dark dark:text-white font-bold text-sm flex items-center gap-1"
@@ -144,7 +146,7 @@ const Navbar: React.FC<NavbarProps> = ({ isDarkMode, toggleTheme }) => {
 
       {/* Mobile Menu Dropdown */}
       {isMobileMenuOpen && (
-        <div className="md:hidden bg-white dark:bg-gray-800 border-t border-gray-100 dark:border-gray-700 absolute w-full shadow-lg">
+        <div className="lg:hidden bg-white dark:bg-gray-800 border-t border-gray-100 dark:border-gray-700 absolute w-full shadow-lg">
           <div className="flex flex-col p-4 space-y-4">
             {navItems.map((item) => (
               <a
