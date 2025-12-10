@@ -4,12 +4,15 @@ import { BlogPost } from '../types';
 import { Calendar, ArrowRight, X } from 'lucide-react';
 import { motion, AnimatePresence } from 'framer-motion';
 import { useLanguage } from '../LanguageContext';
-import { Link, useLocation } from 'react-router-dom';
+import { Link } from 'react-router-dom';
 
-const Blog: React.FC = () => {
+interface BlogProps {
+  isPage?: boolean;
+}
+
+const Blog: React.FC<BlogProps> = ({ isPage = false }) => {
   const [selectedPost, setSelectedPost] = useState<BlogPost | null>(null);
   const { t } = useLanguage();
-  const location = useLocation();
 
   // Lock body scroll when modal is open
   useEffect(() => {
@@ -23,11 +26,11 @@ const Blog: React.FC = () => {
     };
   }, [selectedPost]);
 
-  const isBlogPage = location.pathname === '/blog';
-  const displayedPosts = isBlogPage ? t.blog.posts : t.blog.posts.slice(0, 3);
+  // Modification ici : slice(0, 4) au lieu de slice(0, 3)
+  const displayedPosts = isPage ? t.blog.posts : t.blog.posts.slice(0, 4);
 
   return (
-    <section id="blog" className="py-20 bg-gray-50 dark:bg-gray-800 transition-colors duration-300">
+    <section id="blog" className={`py-20 bg-gray-50 dark:bg-gray-800 transition-colors duration-300 ${isPage ? 'min-h-screen' : ''}`}>
       <div className="container mx-auto px-4">
         <div className="flex flex-col md:flex-row justify-between items-end mb-12">
             <div>
@@ -81,8 +84,8 @@ const Blog: React.FC = () => {
           ))}
         </div>
 
-        {/* Show 'View All' button if not on blog page */}
-        {!isBlogPage && (
+        {/* Show 'View All' button if not on full page */}
+        {!isPage && (
           <div className="mt-12 text-center">
             <Link 
               to="/blog" 

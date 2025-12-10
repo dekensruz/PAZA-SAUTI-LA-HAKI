@@ -14,16 +14,23 @@ import Footer from './components/Footer';
 import BackToTop from './components/BackToTop';
 import { LanguageProvider } from './LanguageContext';
 
+// ScrollToTop Component
+const ScrollToTop = () => {
+  const location = useLocation();
+  useEffect(() => {
+    // Scroll to top whenever the route changes
+    window.scrollTo(0, 0);
+  }, [location]);
+  return null;
+};
+
 // Composant qui gère l'affichage unique et le scroll automatique
 const MainPage = () => {
   const location = useLocation();
 
   useEffect(() => {
-    // Si on est à la racine, on remonte tout en haut
-    if (location.pathname === '/') {
-      window.scrollTo({ top: 0, behavior: 'smooth' });
-      return;
-    }
+    // Si on est à la racine, on ne fait rien de spécial, le ScrollToTop gère
+    if (location.pathname === '/') return;
 
     // Sinon on cherche l'ID correspondant à l'URL (ex: /mission -> id="mission")
     const sectionId = location.pathname.substring(1); // enlève le "/"
@@ -49,10 +56,10 @@ const MainPage = () => {
       <Hero />
       <Partners />
       <Mission />
-      <Gallery />
-      <Team />
+      <Gallery isPage={false} />
+      <Team isPage={false} />
       <FAQ />
-      <Blog />
+      <Blog isPage={false} />
       <Contact />
     </>
   );
@@ -75,20 +82,26 @@ function AppContent() {
 
   return (
     <BrowserRouter>
+      <ScrollToTop />
       <div className={`min-h-screen font-sans transition-colors duration-300 flex flex-col ${isDarkMode ? 'dark bg-gray-900 text-white' : 'bg-white text-gray-900'} selection:bg-paza-blue selection:text-white`}>
         <Navbar isDarkMode={isDarkMode} toggleTheme={toggleTheme} />
         <main className="flex-grow pt-20">
           <Routes>
-            {/* Toutes les routes pointent vers MainPage qui gère le scroll */}
+            {/* Page d'accueil avec toutes les sections en mode aperçu */}
             <Route path="/" element={<MainPage />} />
+            
+            {/* Sections redirigeant vers MainPage avec scroll */}
             <Route path="/about" element={<MainPage />} />
             <Route path="/mission" element={<MainPage />} />
-            <Route path="/gallery" element={<MainPage />} />
-            <Route path="/team" element={<MainPage />} />
             <Route path="/faq" element={<MainPage />} />
-            <Route path="/blog" element={<MainPage />} />
             <Route path="/contact" element={<MainPage />} />
-            {/* Fallback pour n'importe quelle autre URL */}
+
+            {/* Pages dédiées pour voir tout le contenu */}
+            <Route path="/gallery" element={<Gallery isPage={true} />} />
+            <Route path="/team" element={<Team isPage={true} />} />
+            <Route path="/blog" element={<Blog isPage={true} />} />
+            
+            {/* Fallback */}
             <Route path="*" element={<MainPage />} />
           </Routes>
         </main>

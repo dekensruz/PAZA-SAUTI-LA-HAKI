@@ -4,7 +4,7 @@ import { TeamMember } from '../types';
 import { motion, AnimatePresence } from 'framer-motion';
 import { X, User, ArrowRight } from 'lucide-react';
 import { useLanguage } from '../LanguageContext';
-import { Link, useLocation } from 'react-router-dom';
+import { Link } from 'react-router-dom';
 
 const teamMembers: TeamMember[] = [
   { id: '1', name: 'Mwangilwa Kituangano Gédéon', image: 'https://i.ibb.co/5xJD99Jh/17.jpg' },
@@ -44,10 +44,13 @@ const MemberCard: React.FC<{ member: TeamMember; onClick: () => void; roleLabel:
   </motion.div>
 );
 
-const Team: React.FC = () => {
+interface TeamProps {
+  isPage?: boolean;
+}
+
+const Team: React.FC<TeamProps> = ({ isPage = false }) => {
   const [selectedMember, setSelectedMember] = useState<TeamMember | null>(null);
   const { t } = useLanguage();
-  const location = useLocation();
 
   // Disable body scroll when modal is open
   useEffect(() => {
@@ -61,11 +64,11 @@ const Team: React.FC = () => {
     };
   }, [selectedMember]);
 
-  const isTeamPage = location.pathname === '/team';
-  const displayedMembers = isTeamPage ? teamMembers : teamMembers.slice(0, 3);
+  // Modification ici : slice(0, 4) au lieu de slice(0, 3)
+  const displayedMembers = isPage ? teamMembers : teamMembers.slice(0, 4);
 
   return (
-    <section id="team" className="py-20 bg-white dark:bg-gray-900 transition-colors duration-300 min-h-screen">
+    <section id="team" className={`py-20 bg-white dark:bg-gray-900 transition-colors duration-300 ${isPage ? 'min-h-screen' : ''}`}>
       <div className="container mx-auto px-4">
         <div className="text-center mb-16">
           <h2 className="font-heading font-bold text-3xl md:text-4xl text-paza-dark dark:text-white mb-4">{t.team.title}</h2>
@@ -87,8 +90,8 @@ const Team: React.FC = () => {
           ))}
         </div>
 
-        {/* Show 'View All' button if not on team page */}
-        {!isTeamPage && (
+        {/* Show 'View All' button if not on full page */}
+        {!isPage && (
           <div className="mt-12 text-center">
             <Link 
               to="/team" 
