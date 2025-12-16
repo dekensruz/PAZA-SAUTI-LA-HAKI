@@ -1,3 +1,4 @@
 User-agent: *
 Allow: /
-Sitemap: https://pazasautilahaki.org/sitemap.xml
+
+Sitemap: https://www.getdjukey.com/sitemap.xml
