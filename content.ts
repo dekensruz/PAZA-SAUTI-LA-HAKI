@@ -26,27 +26,9 @@ export const content = {
       logoSubtitle: "L'avenir de la justice est entre nos mains."
     },
     about: {
-      title: 'Qui sommes-nous ?',
-      subtitle: 'Notre histoire et nos partenaires',
-      description: "Nous sommes Paza Sauti la haki, une initiative de jeunes venus de différentes universités de la ville de Goma. Notre initiative est née à l’issue d’une formation reçue à l’Université Alternative de Pole Institute, dans le cadre du projet Accès à la Justice, appuyé par I-Peace et International Alert.",
-      partnersTitle: 'Nos Partenaires',
-      partners: [
-        {
-          name: 'International Alert',
-          logo: 'https://i.ibb.co/4R0Vy8f3/ia.jpg',
-          url: 'https://www.international-alert.org'
-        },
-        {
-          name: 'I-Peace',
-          logo: 'https://i.ibb.co/7qd6snw/ipeace.jpg',
-          url: 'https://mis.iphr-ipdh.org/'
-        },
-        {
-          name: 'Pole Institute',
-          logo: 'https://i.ibb.co/PvncrQf8/pole.jpg',
-          url: 'https://pole-institute.org'
-        }
-      ]
+      title: 'Notre histoire',
+      subtitle: 'Origine de l\'initiative',
+      description: "Nous sommes Paza Sauti la haki, une initiative de jeunes venus de différentes universités de la ville de Goma. Notre initiative est née à l’issue d’une formation reçue à l’Université Alternative de Pole Institute, dans le cadre du projet Accès à la Justice, appuyé par un consortium de 3 organisations (Pole Institute, International Alert et I-Peace).",
     },
     mission: {
       title: 'Notre Vision',
@@ -272,27 +254,9 @@ export const content = {
       logoSubtitle: "The future of justice is in our hands."
     },
     about: {
-      title: 'Who are we?',
-      subtitle: 'Our story and partners',
-      description: "We are Paza Sauti la Haki, an initiative of young people from different universities in the city of Goma. Our initiative was born following training received at the Alternative University of Pole Institute, as part of the Access to Justice project, supported by I-Peace and International Alert.",
-      partnersTitle: 'Our Partners',
-      partners: [
-        {
-          name: 'International Alert',
-          logo: 'https://i.ibb.co/4R0Vy8f3/ia.jpg',
-          url: 'https://www.international-alert.org'
-        },
-        {
-          name: 'I-Peace',
-          logo: 'https://i.ibb.co/7qd6snw/ipeace.jpg',
-          url: 'https://mis.iphr-ipdh.org/'
-        },
-        {
-          name: 'Pole Institute',
-          logo: 'https://placehold.co/300x150/ffffff/333333?text=Pole+Institute',
-          url: 'https://pole-institute.org'
-        }
-      ]
+      title: 'Our History',
+      subtitle: 'Initiative Origin',
+      description: "We are Paza Sauti la Haki, an initiative of young people from different universities in the city of Goma. Our initiative was born following training received at the Alternative University of Pole Institute, as part of the Access to Justice project, supported by a consortium of 3 organizations (Pole Institute, International Alert and I-Peace).",
     },
     mission: {
       title: 'Our Vision',
