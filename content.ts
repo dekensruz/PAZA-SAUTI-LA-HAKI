@@ -93,7 +93,28 @@ export const content = {
       readMore: 'Lire plus',
       viewAll: 'Voir tous les articles',
       close: 'Fermer',
+      share: 'Partager',
+      copied: 'Lien copié !',
+      copyLink: 'Copier le lien',
+      shareWhatsApp: 'Partager sur WhatsApp',
+      shareFacebook: 'Partager sur Facebook',
+      shareX: 'Partager sur X',
+      shareLinkedIn: 'Partager sur LinkedIn',
       posts: [
+        {
+          id: '6',
+          title: "STOP EBOLA",
+          summary: "La lutte contre le virus Ebola n’est pas seulement un enjeu sanitaire, c'est une question de solidarité et de prévention collective.",
+          date: '29 Mai 2026',
+          image: 'https://i.ibb.co/FbcW9k1J/stop-ebola.jpg',
+          contentPoints: [
+            "La lutte contre le virus Ebola n’est pas seulement un enjeu sanitaire, c’est une question de solidarité.",
+            "Nous avons le devoir de protéger nos communautés et nos proches.",
+            "Le virus touche souvent les populations les plus vulnérables en premier.",
+            "Agir pour prévenir Ebola, c’est agir pour la sécurité et la santé de tous.",
+            "Ensemble, adoptons les gestes simples de prévention pour sauver des vies."
+          ]
+        },
         {
           id: '5',
           title: "JOURNÉE INTERNATIONALE DES DROITS DE L'HOMME",
@@ -321,7 +342,28 @@ export const content = {
       readMore: 'Read more',
       viewAll: 'View all articles',
       close: 'Close',
+      share: 'Share',
+      copied: 'Link copied!',
+      copyLink: 'Copy Link',
+      shareWhatsApp: 'Share on WhatsApp',
+      shareFacebook: 'Share on Facebook',
+      shareX: 'Share on X',
+      shareLinkedIn: 'Share on LinkedIn',
       posts: [
+        {
+          id: '6',
+          title: "STOP EBOLA",
+          summary: "The fight against the Ebola virus is not just a health issue, it is a matter of solidarity and collective prevention.",
+          date: 'May 29, 2026',
+          image: 'https://i.ibb.co/FbcW9k1J/stop-ebola.jpg',
+          contentPoints: [
+            "The fight against the Ebola virus is not just a health issue, it is a matter of solidarity.",
+            "We have a duty to protect our communities and loved ones.",
+            "The virus often affects the most vulnerable populations first.",
+            "Acting to prevent Ebola means acting for the safety and health of everyone.",
+            "Together, let's adopt simple prevention steps to save lives."
+          ]
+        },
         {
           id: '5',
           title: "INTERNATIONAL HUMAN RIGHTS DAY",
