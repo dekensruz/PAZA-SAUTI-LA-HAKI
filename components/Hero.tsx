@@ -24,11 +24,6 @@ const Hero: React.FC = () => {
           transition={{ duration: 0.8 }}
           className="text-center lg:text-left order-2 lg:order-1"
         >
-          <div className="inline-flex items-center gap-2 px-3 py-1 bg-white dark:bg-gray-800 border border-gray-200 dark:border-gray-700 rounded-full shadow-sm mb-6">
-            <span className="w-2 h-2 bg-paza-red rounded-full animate-pulse"></span>
-            <span className="text-xs font-bold text-gray-600 dark:text-gray-300 uppercase tracking-wider">{t.hero.badge}</span>
-          </div>
-          
           <h1 className="font-heading font-extrabold text-4xl md:text-6xl text-paza-dark dark:text-white mb-6 leading-tight">
             {t.hero.titleStart} <span className="text-transparent bg-clip-text bg-gradient-to-r from-paza-blue to-blue-600 dark:from-blue-400 dark:to-blue-600">{t.hero.titleHighlight1}</span> {t.hero.titleMiddle} <span className="text-transparent bg-clip-text bg-gradient-to-r from-paza-red to-red-600 dark:from-red-400 dark:to-red-600">{t.hero.titleHighlight2}</span>
           </h1>

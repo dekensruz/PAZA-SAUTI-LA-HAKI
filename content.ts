@@ -14,7 +14,6 @@ export const content = {
       contact: 'Contact'
     },
     hero: {
-      badge: 'Initiative de la Jeunesse de Goma',
       titleStart: 'Élève la',
       titleHighlight1: 'Voix',
       titleMiddle: 'de la',
@@ -263,7 +262,6 @@ export const content = {
       contact: 'Contact'
     },
     hero: {
-      badge: "Goma Youth Initiative",
       titleStart: 'Raise the',
       titleHighlight1: 'Voice',
       titleMiddle: 'of',
