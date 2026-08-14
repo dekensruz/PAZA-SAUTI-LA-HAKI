@@ -27,32 +27,32 @@ export const content = {
     about: {
       title: 'Notre histoire',
       subtitle: 'Origine de l\'initiative',
-      description: "Nous sommes Paza Sauti la haki, une initiative de jeunes venus de différentes universités de la ville de Goma. Notre initiative est née à l’issue d’une formation reçue à l’Université Alternative de Pole Institute, dans le cadre du projet Accès à la Justice, appuyé par un consortium de 3 organisations (Pole Institute, International Alert et I-Peace).",
+      description: "Nous sommes Paza Sauti La Haki, une initiative portée par de jeunes étudiants issus de différentes universités de Goma. Notre collectif est né à l'issue d'une formation reçue à l'Université Alternative de Pole Institute, dans le cadre du projet « Accès à la Justice » soutenu par un consortium de trois organisations (Pole Institute, International Alert et I-Peace).",
     },
     mission: {
-      title: 'Notre Vision',
-      subtitle: 'Nous croyons en une justice équitable et une paix durable. Voici les piliers de notre engagement.',
-      cards: [
-        {
-          title: 'Droit pour tous',
-          text: "La justice est un droit fondamental, pas un privilège réservé à une élite. Nous combattons pour l'égalité."
-        },
-        {
-          title: 'Voix entendue',
-          text: "Chacun mérite d'être écouté et défendu. L'accès à la justice permet à chaque voix de résonner."
-        },
-        {
-          title: 'Paix véritable',
-          text: "Sans justice, il n'y a pas de vraie paix. Nous travaillons pour bâtir des fondations solides."
-        },
-        {
-          title: "Investir l'avenir",
-          text: "Investir dans la paix et la gestion des conflits, c'est investir pour un avenir meilleur pour tous."
-        },
-        {
-          title: "Justice Climatique",
-          text: "Protéger l'environnement est une question de justice. Nous défendons le droit à un environnement sain pour les générations futures."
-        }
+      visionTitle: 'Notre Vision',
+      visionText: "Bâtir une société congolaise juste, pacifique et équitable, où l'accès à la justice n'est plus un privilège mais un droit garanti et accessible à chaque citoyen.",
+      missionTitle: 'Notre Mission',
+      missionText: "Rapprocher le droit du citoyen, favoriser la résolution pacifique des conflits et protéger les populations vulnérables.",
+      missionSubtitle: "Pour accomplir cette mission, nous nous appuyons sur trois piliers :",
+      missionPillars: [
+        { title: "Éduquer & Vulgariser", text: "Rendre les textes de loi et les droits fondamentaux compréhensibles par tous." },
+        { title: "Orienter & Accompagner", text: "Offrir une orientation et une assistance juridique gratuite en partenariat avec des professionnels du droit." },
+        { title: "Mobiliser & Agir", text: "Mener des actions humanitaires et communautaires concrètes pour garantir l'égalité des chances et la justice sociale." }
+      ],
+      valuesTitle: 'Nos Valeurs',
+      values: [
+        { title: "Équité & Inclusivité", text: "L'égalité des droits pour tous, sans distinction de statut socio-économique." },
+        { title: "Intégrité & Neutralité", text: "Une démarche citoyenne, apolitique et rigoureuse au service de l'intérêt général." },
+        { title: "Engagement de la jeunesse", text: "La conviction que les jeunes sont les acteurs principaux du changement social et de la consolidation de la paix." },
+        { title: "Solidarité & Humanité", text: "Une approche bienveillante axée sur la protection des membres les plus fragiles de notre communauté." }
+      ],
+      domainsTitle: "Nos Domaines d'Intervention",
+      domains: [
+        "Accès à la Justice & Assistance Juridique",
+        "Médiation & Prévention des Conflits",
+        "Solidarité & action humanitaire",
+        "Justice Climatique & Environnementale"
       ]
     },
     gallery: {
@@ -196,23 +196,23 @@ export const content = {
       items: [
         {
           question: "Comment puis-je accéder à une assistance juridique gratuite ?",
-          answer: "Notre initiative collabore avec des cliniques juridiques et des avocats professionnels. Contactez-nous via notre formulaire ou participez à nos séances de sensibilisation pour être orienté vers des structures partenaires offrant des consultations initiales gratuites."
+          answer: "Notre initiative collabore avec des cliniques juridiques et des avocats partenaires. Contactez-nous via notre formulaire de contact ou participez à nos séances de sensibilisation pour être orienté(e) vers des structures partenaires offrant des consultations initiales gratuites."
         },
         {
           question: "Que faire si je suis témoin d'une injustice ou d'une violation des droits ?",
-          answer: "Il est crucial de documenter les faits (photos, vidéos, témoignages) sans vous mettre en danger. Ensuite, signalez le cas aux autorités compétentes ou contactez Paza Sauti La Haki pour être orienté vers les structures d'aide et de protection adaptées."
+          answer: "Il est essentiel de documenter les faits (photos, vidéos, témoignages) sans jamais vous mettre en danger. Signalez ensuite la situation aux autorités compétentes ou contactez Paza Sauti La Haki afin d'être orienté(e) vers des structures d'accompagnement et de protection adaptées."
         },
         {
           question: "Comment résoudre un conflit sans aller au tribunal ?",
-          answer: "La médiation est un outil puissant. Nous encourageons le dialogue communautaire et l'intervention de médiateurs neutres (chefs de quartier, leaders religieux, ou nos médiateurs formés) pour trouver un terrain d'entente pacifique avant d'envisager des poursuites judiciaires."
+          answer: "La médiation est une solution efficace. Nous encourageons le dialogue communautaire et l'intervention de médiateurs neutres (cadres de base, chefs de quartier, leaders religieux ou nos propres médiateurs formés) pour trouver un terrain d'entente pacifique avant d'envisager toute démarche judiciaire."
         },
         {
           question: "L'initiative est-elle politiquement affiliée ?",
-          answer: "Non, Paza Sauti La Haki est une initiative citoyenne, neutre et apolitique, portée par des étudiants de différentes universités de Goma. Notre seul parti est celui de la justice, de l'égalité et de la paix en RDC."
+          answer: "Non. Paza Sauti La Haki est une initiative citoyenne, neutre et apolitique, portée par des étudiants issus de différentes universités de Goma. Notre unique engagement est en faveur de la justice, de l'égalité, de la protection de l'environnement et de la paix en RDC."
         },
         {
           question: "Comment puis-je rejoindre l'équipe ou devenir bénévole ?",
-          answer: "Nous accueillons tous les jeunes motivés qui partagent nos valeurs ! Envoyez-nous un message via la section contact, suivez-nous sur les réseaux sociaux ou participez à nos événements publics pour rencontrer l'équipe et découvrir comment contribuer."
+          answer: "Nous accueillons chaleureusement tous les jeunes motivés qui partagent nos valeurs. Envoyez-nous un message via notre page Contact, suivez-nous sur les réseaux sociaux ou participez à nos événements publics pour rencontrer l'équipe et découvrir comment vous engager à nos côtés."
         }
       ]
     },
@@ -274,33 +274,33 @@ export const content = {
     },
     about: {
       title: 'Our History',
-      subtitle: 'Initiative Origin',
-      description: "We are Paza Sauti la Haki, an initiative of young people from different universities in the city of Goma. Our initiative was born following training received at the Alternative University of Pole Institute, as part of the Access to Justice project, supported by a consortium of 3 organizations (Pole Institute, International Alert and I-Peace).",
+      subtitle: 'Origin of the Initiative',
+      description: "We are Paza Sauti La Haki, an initiative led by young students from various universities in Goma. Our collective was born after a training received at the Alternative University of Pole Institute, as part of the \"Access to Justice\" project supported by a consortium of three organizations (Pole Institute, International Alert, and I-Peace).",
     },
     mission: {
-      title: 'Our Vision',
-      subtitle: 'We believe in fair justice and lasting peace. Here are the pillars of our commitment.',
-      cards: [
-        {
-          title: 'Rights for All',
-          text: "Justice is a fundamental right, not a privilege reserved for an elite. We fight for equality."
-        },
-        {
-          title: 'Heard Voice',
-          text: "Everyone deserves to be heard and defended. Access to justice allows every voice to resonate."
-        },
-        {
-          title: 'True Peace',
-          text: "Without justice, there is no true peace. We work to build solid foundations."
-        },
-        {
-          title: "Investing in Future",
-          text: "Investing in peace and conflict management is investing in a better future for all."
-        },
-        {
-          title: "Climate Justice",
-          text: "Protecting the environment is a matter of justice. We defend the right to a healthy environment for current and future generations."
-        }
+      visionTitle: 'Our Vision',
+      visionText: "To build a just, peaceful, and equitable Congolese society where access to justice is no longer a privilege but a guaranteed right accessible to every citizen.",
+      missionTitle: 'Our Mission',
+      missionText: "To bring the law closer to the citizen, promote peaceful conflict resolution, and protect vulnerable populations.",
+      missionSubtitle: "To accomplish this mission, we rely on three pillars:",
+      missionPillars: [
+        { title: "Educate & Popularize", text: "Make laws and fundamental rights understandable to all." },
+        { title: "Guide & Accompany", text: "Provide free legal guidance and assistance in partnership with legal professionals." },
+        { title: "Mobilize & Act", text: "Conduct concrete humanitarian and community actions to ensure equal opportunities and social justice." }
+      ],
+      valuesTitle: 'Our Values',
+      values: [
+        { title: "Equity & Inclusivity", text: "Equal rights for all, regardless of socio-economic status." },
+        { title: "Integrity & Neutrality", text: "A civic, apolitical, and rigorous approach in the service of the general interest." },
+        { title: "Youth Engagement", text: "The conviction that young people are the main actors of social change and peacebuilding." },
+        { title: "Solidarity & Humanity", text: "A caring approach focused on protecting the most fragile members of our community." }
+      ],
+      domainsTitle: "Our Areas of Intervention",
+      domains: [
+        "Access to Justice & Legal Assistance",
+        "Mediation & Conflict Prevention",
+        "Solidarity & Humanitarian Action",
+        "Climate & Environmental Justice"
       ]
     },
     gallery: {
@@ -444,23 +444,23 @@ export const content = {
       items: [
         {
           question: "How can I access free legal assistance?",
-          answer: "Our initiative collaborates with legal clinics and professional lawyers. Contact us via our form or participate in our awareness sessions to be directed to partner structures offering free initial consultations."
+          answer: "Our initiative collaborates with legal clinics and partner lawyers. Contact us via our contact form or participate in our awareness sessions to be directed to partner structures offering free initial consultations."
         },
         {
           question: "What should I do if I witness injustice or a rights violation?",
-          answer: "It is crucial to document the facts (photos, videos, testimonies) without putting yourself in danger. Then, report the case to the competent authorities or contact Paza Sauti La Haki to be directed to appropriate aid and protection structures."
+          answer: "It is essential to document the facts (photos, videos, testimonies) without ever putting yourself in danger. Then, report the situation to the competent authorities or contact Paza Sauti La Haki to be directed to appropriate support and protection structures."
         },
         {
           question: "How to resolve a conflict without going to court?",
-          answer: "Mediation is a powerful tool. We encourage community dialogue and the intervention de neutral mediators (neighborhood chiefs, religious leaders, or our trained mediators) to find a peaceful common ground before considering legal action."
+          answer: "Mediation is an effective solution. We encourage community dialogue and the intervention of neutral mediators (grassroots leaders, neighborhood chiefs, religious leaders, or our own trained mediators) to find a peaceful common ground before considering any legal action."
         },
         {
           question: "Is the initiative politically affiliated?",
-          answer: "No, Paza Sauti La Haki is a citizen initiative, neutral and apolitical, led by students from different universities in Goma. Our only party is that of justice, equality, and peace in the DRC."
+          answer: "No. Paza Sauti La Haki is a citizen initiative, neutral and apolitical, led by students from different universities in Goma. Our only commitment is in favor of justice, equality, environmental protection, and peace in the DRC."
         },
         {
           question: "How can I join the team or become a volunteer?",
-          answer: "We welcome all motivated young people who share our values! Send us a message via the contact section, follow us on social media, or attend our public events to meet the team and find out how to contribute."
+          answer: "We warmly welcome all motivated young people who share our values. Send us a message via our Contact page, follow us on social media, or attend our public events to meet the team and discover how to get involved with us."
         }
       ]
     },

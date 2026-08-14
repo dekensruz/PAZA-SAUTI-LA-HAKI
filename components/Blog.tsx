@@ -1,7 +1,7 @@
 
 import React, { useState, useEffect } from 'react';
 import { BlogPost } from '../types';
-import { Calendar, ArrowRight, X, Share2, Copy, Check, Facebook, Twitter, Linkedin, MessageCircle } from 'lucide-react';
+import { CalendarBlank, ArrowRight, X, ShareNetwork, Copy, Check, FacebookLogo, TwitterLogo, LinkedinLogo, ChatCircle } from '@phosphor-icons/react';
 import { motion, AnimatePresence } from 'framer-motion';
 import { useLanguage } from '../LanguageContext';
 import { Link, useLocation, useNavigate } from 'react-router-dom';
@@ -139,7 +139,7 @@ const Blog: React.FC<BlogProps> = ({ isPage = false }) => {
                   className="relative z-10 w-full h-full object-contain mx-auto transform group-hover:scale-[1.02] transition-transform duration-500"
                 />
                 <div className="absolute top-4 left-4 z-20 bg-white/95 dark:bg-gray-900/95 backdrop-blur-sm px-3 py-1 rounded-full text-xs font-bold text-paza-blue flex items-center gap-1 shadow-sm">
-                    <Calendar size={12} /> {post.date}
+                    <CalendarBlank size={12} /> {post.date}
                 </div>
               </div>
               
@@ -160,7 +160,7 @@ const Blog: React.FC<BlogProps> = ({ isPage = false }) => {
                     onClick={() => setSelectedPost(post)}
                     className="self-start text-paza-blue font-bold flex items-center gap-2 hover:gap-3 transition-all text-sm uppercase tracking-wide"
                   >
-                      {t.blog.readMore} <ArrowRight size={16} />
+                      {t.blog.readMore} <ArrowRight weight="bold" size={16} />
                   </button>
 
                   <div className="relative">
@@ -169,7 +169,7 @@ const Blog: React.FC<BlogProps> = ({ isPage = false }) => {
                       className="p-2.5 text-gray-500 dark:text-gray-400 hover:text-paza-blue hover:bg-gray-100 dark:hover:bg-gray-800 rounded-full transition-all flex items-center justify-center border border-gray-100 dark:border-gray-850"
                       title={t.blog.share}
                     >
-                      <Share2 size={16} />
+                      <ShareNetwork size={16} />
                     </button>
 
                     {/* Custom share dropdown panel */}
@@ -196,7 +196,7 @@ const Blog: React.FC<BlogProps> = ({ isPage = false }) => {
                             >
                               {copiedPostId === post.id ? (
                                 <>
-                                  <Check size={16} className="text-green-500" />
+                                  <Check weight="bold" size={16} className="text-green-500" />
                                   <span className="text-green-500 text-xs">{t.blog.copied}</span>
                                 </>
                               ) : (
@@ -210,28 +210,28 @@ const Blog: React.FC<BlogProps> = ({ isPage = false }) => {
                               onClick={(e) => handleShare('whatsapp', post, e)}
                               className="w-full flex items-center gap-3 px-3 py-2 text-left hover:bg-green-500/10 hover:text-green-600 rounded-lg text-gray-700 dark:text-gray-300 transition-colors"
                             >
-                              <MessageCircle size={16} className="text-green-500" />
+                              <ChatCircle weight="fill" size={16} className="text-green-500" />
                               <span>WhatsApp</span>
                             </button>
                             <button
                               onClick={(e) => handleShare('facebook', post, e)}
                               className="w-full flex items-center gap-3 px-3 py-2 text-left hover:bg-blue-600/10 hover:text-blue-650 rounded-lg text-gray-700 dark:text-gray-300 transition-colors"
                             >
-                              <Facebook size={16} className="text-blue-600" />
+                              <FacebookLogo weight="fill" size={16} className="text-blue-600" />
                               <span>Facebook</span>
                             </button>
                             <button
                               onClick={(e) => handleShare('twitter', post, e)}
                               className="w-full flex items-center gap-3 px-3 py-2 text-left hover:bg-black/10 dark:hover:bg-white/10 rounded-lg text-gray-700 dark:text-gray-300 transition-colors"
                             >
-                              <Twitter size={16} className="text-black dark:text-white" />
+                              <TwitterLogo weight="fill" size={16} className="text-black dark:text-white" />
                               <span>X / Twitter</span>
                             </button>
                             <button
                               onClick={(e) => handleShare('linkedin', post, e)}
                               className="w-full flex items-center gap-3 px-3 py-2 text-left hover:bg-blue-700/10 hover:text-blue-800 rounded-lg text-gray-700 dark:text-gray-300 transition-colors"
                             >
-                              <Linkedin size={16} className="text-blue-700" />
+                              <LinkedinLogo weight="fill" size={16} className="text-blue-700" />
                               <span>LinkedIn</span>
                             </button>
                           </motion.div>
@@ -252,7 +252,7 @@ const Blog: React.FC<BlogProps> = ({ isPage = false }) => {
               to="/blog" 
               className="px-8 py-3 bg-white dark:bg-gray-800 text-paza-blue border-2 border-paza-blue font-bold rounded-lg shadow-sm hover:bg-paza-blue hover:text-white transition-all transform hover:-translate-y-1 inline-flex items-center gap-2"
             >
-              {t.blog.viewAll} <ArrowRight size={20} />
+              {t.blog.viewAll} <ArrowRight weight="bold" size={20} />
             </Link>
           </div>
         )}
@@ -300,11 +300,11 @@ const Blog: React.FC<BlogProps> = ({ isPage = false }) => {
                     className="absolute top-4 right-4 z-30 p-2.5 bg-black/55 hover:bg-black/75 hover:scale-105 rounded-full text-white transition-all shadow-lg border border-white/10"
                     aria-label={t.blog.close}
                   >
-                    <X size={20} />
+                    <X weight="bold" size={20} />
                   </button>
 
                   <div className="absolute bottom-6 left-6 z-30 bg-white/95 dark:bg-gray-900/95 backdrop-blur-sm px-3.5 py-1.5 rounded-full text-xs font-bold text-paza-blue flex items-center gap-1.5 shadow-md">
-                      <Calendar size={13} /> {selectedPost.date}
+                      <CalendarBlank size={13} /> {selectedPost.date}
                   </div>
                </div>
 
@@ -370,7 +370,7 @@ const Blog: React.FC<BlogProps> = ({ isPage = false }) => {
                               >
                                 {copiedPostId === selectedPost.id ? (
                                   <>
-                                    <Check size={16} className="text-green-500" />
+                                    <Check weight="bold" size={16} className="text-green-500" />
                                     <span className="text-green-500 font-bold">{t.blog.copied}</span>
                                   </>
                                 ) : (
@@ -387,7 +387,7 @@ const Blog: React.FC<BlogProps> = ({ isPage = false }) => {
                                 className="p-2.5 bg-green-50 text-green-600 hover:bg-green-100 dark:bg-green-950/20 dark:hover:bg-green-950/40 dark:text-green-400 rounded-xl transition-all hover:scale-[1.05]"
                                 title="WhatsApp"
                               >
-                                <MessageCircle size={18} />
+                                <ChatCircle weight="fill" size={18} />
                               </button>
 
                               {/* Facebook Share */}
@@ -396,7 +396,7 @@ const Blog: React.FC<BlogProps> = ({ isPage = false }) => {
                                 className="p-2.5 bg-blue-50 text-blue-600 hover:bg-blue-100 dark:bg-blue-950/20 dark:hover:bg-blue-950/40 dark:text-blue-400 rounded-xl transition-all hover:scale-[1.05]"
                                 title="Facebook"
                               >
-                                <Facebook size={18} />
+                                <FacebookLogo weight="fill" size={18} />
                               </button>
 
                               {/* Twitter Share */}
@@ -405,7 +405,7 @@ const Blog: React.FC<BlogProps> = ({ isPage = false }) => {
                                 className="p-2.5 bg-gray-50 text-black hover:bg-gray-100 dark:bg-gray-800 dark:hover:bg-gray-755 dark:text-white rounded-xl transition-all hover:scale-[1.05]"
                                 title="X / Twitter"
                               >
-                                <Twitter size={18} />
+                                <TwitterLogo weight="fill" size={18} />
                               </button>
 
                               {/* LinkedIn Share */}
@@ -414,7 +414,7 @@ const Blog: React.FC<BlogProps> = ({ isPage = false }) => {
                                 className="p-2.5 bg-blue-50 text-blue-700 hover:bg-blue-100 dark:bg-blue-950/20 dark:hover:bg-blue-950/40 dark:text-blue-400 rounded-xl transition-all hover:scale-[1.05]"
                                 title="LinkedIn"
                               >
-                                <Linkedin size={18} />
+                                <LinkedinLogo weight="fill" size={18} />
                               </button>
                           </div>
                       </div>

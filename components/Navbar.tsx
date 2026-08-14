@@ -1,6 +1,6 @@
 
 import React, { useState, useEffect } from 'react';
-import { Menu, X, Moon, Sun, Globe } from 'lucide-react';
+import { List, X, Moon, Sun, Globe } from '@phosphor-icons/react';
 import { NavItem } from '../types';
 import { useLanguage } from '../LanguageContext';
 import { NavLink, Link, useLocation } from 'react-router-dom';
@@ -96,7 +96,7 @@ const Navbar: React.FC<NavbarProps> = ({ isDarkMode, toggleTheme }) => {
               className="p-2 rounded-full hover:bg-gray-100 dark:hover:bg-gray-800 transition-colors text-paza-dark dark:text-white font-bold text-sm flex items-center gap-1"
               aria-label="Switch Language"
             >
-              <Globe size={18} />
+              <Globe size={18} weight="duotone" />
               {language.toUpperCase()}
             </button>
 
@@ -106,7 +106,7 @@ const Navbar: React.FC<NavbarProps> = ({ isDarkMode, toggleTheme }) => {
               className="p-2 rounded-full hover:bg-gray-100 dark:hover:bg-gray-800 transition-colors text-paza-dark dark:text-yellow-400"
               aria-label="Toggle Dark Mode"
             >
-              {isDarkMode ? <Sun size={20} /> : <Moon size={20} />}
+              {isDarkMode ? <Sun size={20} weight="duotone" /> : <Moon size={20} weight="duotone" />}
             </button>
           </div>
         </div>
@@ -123,13 +123,13 @@ const Navbar: React.FC<NavbarProps> = ({ isDarkMode, toggleTheme }) => {
             onClick={toggleTheme}
             className="p-2 rounded-full hover:bg-gray-100 dark:hover:bg-gray-800 transition-colors text-paza-dark dark:text-yellow-400"
           >
-            {isDarkMode ? <Sun size={20} /> : <Moon size={20} />}
+            {isDarkMode ? <Sun size={20} weight="duotone" /> : <Moon size={20} weight="duotone" />}
           </button>
           <button
             className="text-paza-dark dark:text-white p-2"
             onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
           >
-            {isMobileMenuOpen ? <X size={24} /> : <Menu size={24} />}
+            {isMobileMenuOpen ? <X size={24} weight="bold" /> : <List size={24} weight="bold" />}
           </button>
         </div>
       </div>

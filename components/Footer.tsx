@@ -1,6 +1,6 @@
 
 import React from 'react';
-import { Phone, MapPin, Facebook, Twitter, Instagram, Mail } from 'lucide-react';
+import { Phone, MapPin, FacebookLogo, TwitterLogo, InstagramLogo, Envelope } from '@phosphor-icons/react';
 import { useLanguage } from '../LanguageContext';
 import { Link } from 'react-router-dom';
 
@@ -29,14 +29,14 @@ const Footer: React.FC = () => {
               {t.footer.description}
             </p>
             <div className="flex gap-4 pt-2">
-              <a href="#" onClick={(e) => { e.preventDefault(); }} className="w-10 h-10 rounded-full bg-gray-800 flex items-center justify-center hover:bg-paza-blue transition-colors">
-                <Facebook size={18} />
+              <a href="#" onClick={(e) => { e.preventDefault(); }} className="w-10 h-10 rounded-full bg-gray-800 flex items-center justify-center hover:bg-paza-blue transition-colors text-white">
+                <FacebookLogo size={20} weight="fill" />
               </a>
-              <a href="#" onClick={(e) => { e.preventDefault(); }} className="w-10 h-10 rounded-full bg-gray-800 flex items-center justify-center hover:bg-paza-blue transition-colors">
-                <Twitter size={18} />
+              <a href="#" onClick={(e) => { e.preventDefault(); }} className="w-10 h-10 rounded-full bg-gray-800 flex items-center justify-center hover:bg-paza-blue transition-colors text-white">
+                <TwitterLogo size={20} weight="fill" />
               </a>
-              <a href="#" onClick={(e) => { e.preventDefault(); }} className="w-10 h-10 rounded-full bg-gray-800 flex items-center justify-center hover:bg-paza-blue transition-colors">
-                <Instagram size={18} />
+              <a href="#" onClick={(e) => { e.preventDefault(); }} className="w-10 h-10 rounded-full bg-gray-800 flex items-center justify-center hover:bg-paza-blue transition-colors text-white">
+                <InstagramLogo size={20} weight="fill" />
               </a>
             </div>
           </div>
@@ -57,15 +57,15 @@ const Footer: React.FC = () => {
              <h4 className="font-heading font-bold text-lg mb-6 text-white border-l-4 border-paza-red pl-3">{t.footer.contactUs}</h4>
              <ul className="space-y-4 text-gray-400">
                <li className="flex items-start gap-3">
-                 <MapPin className="text-paza-red shrink-0" size={20} />
+                 <MapPin className="text-paza-red shrink-0" size={20} weight="duotone" />
                  <span>Goma, Nord-Kivu<br/>République Démocratique du Congo</span>
                </li>
                <li className="flex items-center gap-3">
-                 <Phone className="text-paza-red shrink-0" size={20} />
+                 <Phone className="text-paza-red shrink-0" size={20} weight="duotone" />
                  <span>+243 977 812 672</span>
                </li>
                <li className="flex items-center gap-3">
-                 <Mail className="text-paza-red shrink-0" size={20} />
+                 <Envelope className="text-paza-red shrink-0" size={20} weight="duotone" />
                  <a href="mailto:info@pazasautilahaki.org" className="hover:text-white transition-colors break-all">info@pazasautilahaki.org</a>
                </li>
              </ul>

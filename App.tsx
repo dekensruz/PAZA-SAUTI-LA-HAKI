@@ -9,7 +9,7 @@ import Team from './components/Team';
 import FAQ from './components/FAQ';
 import Blog from './components/Blog';
 import Contact from './components/Contact';
-import Partners from './components/Partners';
+import About from './components/Partners';
 import Footer from './components/Footer';
 import BackToTop from './components/BackToTop';
 import { LanguageProvider } from './LanguageContext';
@@ -54,7 +54,7 @@ const MainPage = () => {
   return (
     <>
       <Hero />
-      <Partners />
+      <About />
       <Mission />
       <Gallery isPage={false} />
       <Team isPage={false} />

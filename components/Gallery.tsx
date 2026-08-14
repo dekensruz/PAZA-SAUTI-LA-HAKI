@@ -2,7 +2,7 @@
 import React, { useState, useEffect, useCallback } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import { useLanguage } from '../LanguageContext';
-import { Camera, X, Maximize2, ArrowRight, ChevronLeft, ChevronRight } from 'lucide-react';
+import { Camera, X, CornersOut, ArrowRight, CaretLeft, CaretRight } from '@phosphor-icons/react';
 import { Link } from 'react-router-dom';
 
 interface GalleryProps {
@@ -60,7 +60,7 @@ const Gallery: React.FC<GalleryProps> = ({ isPage = false }) => {
       <div className="container mx-auto px-4">
         <div className="text-center mb-16">
           <div className="flex items-center justify-center gap-2 mb-2">
-             <Camera className="text-paza-red" size={28} />
+             <Camera className="text-paza-red" size={32} weight="duotone" />
              <h2 className="font-heading font-bold text-3xl md:text-4xl text-paza-dark dark:text-white">{t.gallery.title}</h2>
           </div>
           <div className="w-20 h-1 bg-paza-red mx-auto rounded-full mb-4"></div>
@@ -88,7 +88,7 @@ const Gallery: React.FC<GalleryProps> = ({ isPage = false }) => {
                     className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-110"
                     />
                     <div className="absolute inset-0 bg-black/0 group-hover:bg-black/20 transition-colors flex items-center justify-center">
-                        <Maximize2 className="text-white opacity-0 group-hover:opacity-100 transform scale-50 group-hover:scale-100 transition-all duration-300" size={24} />
+                        <CornersOut className="text-white opacity-0 group-hover:opacity-100 transform scale-50 group-hover:scale-100 transition-all duration-300" size={24} weight="bold" />
                     </div>
                 </motion.div>
             ))}
@@ -101,7 +101,7 @@ const Gallery: React.FC<GalleryProps> = ({ isPage = false }) => {
               to="/gallery" 
               className="px-8 py-3 bg-white dark:bg-gray-800 text-paza-red border-2 border-paza-red font-bold rounded-lg shadow-sm hover:bg-paza-red hover:text-white transition-all transform hover:-translate-y-1 inline-flex items-center gap-2"
             >
-              {t.gallery.viewAll} <ArrowRight size={20} />
+              {t.gallery.viewAll} <ArrowRight size={20} weight="bold" />
             </Link>
           </div>
         )}
@@ -122,7 +122,7 @@ const Gallery: React.FC<GalleryProps> = ({ isPage = false }) => {
                 onClick={() => setSelectedImageIndex(null)}
                 className="absolute top-4 right-4 text-white/70 hover:text-white p-2 z-20"
               >
-                 <X size={32} />
+                 <X size={32} weight="bold" />
               </button>
 
               {/* Prev Button */}
@@ -130,7 +130,7 @@ const Gallery: React.FC<GalleryProps> = ({ isPage = false }) => {
                 onClick={handlePrev}
                 className="absolute left-4 top-1/2 -translate-y-1/2 text-white/50 hover:text-white p-3 rounded-full hover:bg-white/10 transition-all z-20 hidden md:block"
               >
-                <ChevronLeft size={48} />
+                <CaretLeft size={48} weight="bold" />
               </button>
 
               {/* Next Button */}
@@ -138,7 +138,7 @@ const Gallery: React.FC<GalleryProps> = ({ isPage = false }) => {
                 onClick={handleNext}
                 className="absolute right-4 top-1/2 -translate-y-1/2 text-white/50 hover:text-white p-3 rounded-full hover:bg-white/10 transition-all z-20 hidden md:block"
               >
-                <ChevronRight size={48} />
+                <CaretRight size={48} weight="bold" />
               </button>
               
               <motion.img 

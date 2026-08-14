@@ -1,7 +1,7 @@
 
 import React, { useState } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
-import { Plus, Minus, HelpCircle } from 'lucide-react';
+import { Plus, Minus, Question } from '@phosphor-icons/react';
 import { useLanguage } from '../LanguageContext';
 
 const FAQ: React.FC = () => {
@@ -17,7 +17,7 @@ const FAQ: React.FC = () => {
       <div className="container mx-auto px-4">
         <div className="text-center mb-16">
           <div className="flex items-center justify-center gap-2 mb-2">
-             <HelpCircle className="text-paza-blue" size={28} />
+             <Question className="text-paza-blue" size={32} weight="duotone" />
              <h2 className="font-heading font-bold text-3xl md:text-4xl text-paza-dark dark:text-white">{t.faq.title}</h2>
           </div>
           <div className="w-20 h-1 bg-paza-blue mx-auto rounded-full mb-4"></div>
@@ -40,7 +40,7 @@ const FAQ: React.FC = () => {
                   {faq.question}
                 </span>
                 <div className={`p-1 rounded-full flex-shrink-0 ml-4 transition-colors ${activeIndex === index ? 'bg-paza-blue text-white' : 'bg-gray-100 dark:bg-gray-800 text-gray-500 dark:text-gray-400'}`}>
-                  {activeIndex === index ? <Minus size={20} /> : <Plus size={20} />}
+                  {activeIndex === index ? <Minus size={20} weight="bold" /> : <Plus size={20} weight="bold" />}
                 </div>
               </button>
               

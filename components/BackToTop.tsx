@@ -1,6 +1,6 @@
 
 import React, { useState, useEffect } from 'react';
-import { ArrowUp } from 'lucide-react';
+import { CaretUp } from '@phosphor-icons/react';
 
 const BackToTop: React.FC = () => {
   const [isVisible, setIsVisible] = useState(false);
@@ -33,7 +33,7 @@ const BackToTop: React.FC = () => {
       }`}
       aria-label="Back to top"
     >
-      <ArrowUp size={24} />
+      <CaretUp size={24} weight="bold" />
     </button>
   );
 };

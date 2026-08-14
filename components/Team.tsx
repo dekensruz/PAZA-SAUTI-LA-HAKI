@@ -2,12 +2,12 @@
 import React, { useState, useEffect } from 'react';
 import { TeamMember } from '../types';
 import { motion, AnimatePresence } from 'framer-motion';
-import { X, User, ArrowRight } from 'lucide-react';
+import { X, User, ArrowRight } from '@phosphor-icons/react';
 import { useLanguage } from '../LanguageContext';
 import { Link } from 'react-router-dom';
 
 const teamMembers: TeamMember[] = [
-  { id: '1', name: 'Mwangilwa Kituangano Gédéon', image: 'https://i.ibb.co/5xJD99Jh/17.jpg' },
+  { id: '1', name: 'MWANGILWA KITUNGANO Gédéon', image: 'https://i.ibb.co/5xJD99Jh/17.jpg' },
   { id: '2', name: 'Balola Mugisho Daniel', image: 'https://i.ibb.co/BVSPJLgv/18.jpg' },
   { id: '3', name: 'Dekens Ruzuba', image: 'https://i.ibb.co/s9zQCqbj/16.jpg' },
   { id: '4', name: 'Byeka Kipanga Chanceline', image: 'https://i.ibb.co/4ZKVCQDd/14.jpg' },
@@ -97,7 +97,7 @@ const Team: React.FC<TeamProps> = ({ isPage = false }) => {
               to="/team" 
               className="px-8 py-3 bg-white dark:bg-gray-800 text-paza-blue border-2 border-paza-blue font-bold rounded-lg shadow-sm hover:bg-paza-blue hover:text-white transition-all transform hover:-translate-y-1 inline-flex items-center gap-2"
             >
-              {t.team.viewAll} <ArrowRight size={20} />
+              {t.team.viewAll} <ArrowRight size={20} weight="bold" />
             </Link>
           </div>
         )}
@@ -124,7 +124,7 @@ const Team: React.FC<TeamProps> = ({ isPage = false }) => {
                 onClick={() => setSelectedMember(null)}
                 className="absolute top-4 right-4 z-10 p-2 bg-white/20 backdrop-blur-md hover:bg-white/40 rounded-full text-white transition-colors"
               >
-                <X size={20} />
+                <X size={20} weight="bold" />
               </button>
               
               <div className="h-64 relative">
@@ -142,7 +142,7 @@ const Team: React.FC<TeamProps> = ({ isPage = false }) => {
                 <div className="space-y-3">
                     <div className="flex items-center gap-3 text-gray-600 dark:text-gray-300 text-sm">
                         <div className="p-2 bg-gray-100 dark:bg-gray-700 rounded-full">
-                            <User size={16} />
+                            <User size={16} weight="duotone" />
                         </div>
                         <p>{t.team.studentDesc}</p>
                     </div>

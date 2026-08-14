@@ -1,7 +1,7 @@
 
 import React, { useState } from 'react';
 import { motion } from 'framer-motion';
-import { Send, CheckCircle, User, MessageSquare, Briefcase } from 'lucide-react';
+import { PaperPlaneRight, CheckCircle, User, ChatCircle, Briefcase } from '@phosphor-icons/react';
 import { useLanguage } from '../LanguageContext';
 
 const Contact: React.FC = () => {
@@ -70,7 +70,7 @@ const Contact: React.FC = () => {
                 
                 <div className="space-y-4">
                   <div className="flex items-center gap-3">
-                    <User size={18} className="text-blue-200" />
+                    <User size={18} weight="duotone" className="text-blue-200" />
                     <span className="text-sm">{t.contact.servicePartnership}</span>
                   </div>
                 </div>
@@ -90,7 +90,7 @@ const Contact: React.FC = () => {
                   className="h-full flex flex-col items-center justify-center text-center py-10"
                 >
                   <div className="w-16 h-16 bg-green-100 dark:bg-green-900 text-green-500 rounded-full flex items-center justify-center mb-4">
-                    <CheckCircle size={32} />
+                    <CheckCircle size={32} weight="duotone" />
                   </div>
                   <h3 className="font-heading font-bold text-2xl text-gray-800 dark:text-white mb-2">{t.contact.successTitle}</h3>
                   <p className="text-gray-600 dark:text-gray-400">{t.contact.successDesc}</p>
@@ -101,7 +101,7 @@ const Contact: React.FC = () => {
                     <div className="space-y-2">
                       <label className="text-sm font-semibold text-gray-700 dark:text-gray-300 ml-1">{t.contact.form.name}</label>
                       <div className="relative">
-                        <User className="absolute left-3 top-3 text-gray-400" size={18} />
+                        <User className="absolute left-3 top-3 text-gray-400" size={18} weight="duotone" />
                         <input 
                           type="text" 
                           name="name"
@@ -116,7 +116,7 @@ const Contact: React.FC = () => {
                     <div className="space-y-2">
                       <label className="text-sm font-semibold text-gray-700 dark:text-gray-300 ml-1">{t.contact.form.email}</label>
                       <div className="relative">
-                        <Briefcase className="absolute left-3 top-3 text-gray-400" size={18} />
+                        <Briefcase className="absolute left-3 top-3 text-gray-400" size={18} weight="duotone" />
                         <input 
                           type="email" 
                           name="email"
@@ -133,7 +133,7 @@ const Contact: React.FC = () => {
                   <div className="space-y-2">
                     <label className="text-sm font-semibold text-gray-700 dark:text-gray-300 ml-1">{t.contact.form.subject}</label>
                     <div className="relative">
-                        <Briefcase className="absolute left-3 top-3 text-gray-400" size={18} />
+                        <Briefcase className="absolute left-3 top-3 text-gray-400" size={18} weight="duotone" />
                         <select
                             name="subject"
                             value={formData.subject}
@@ -152,7 +152,7 @@ const Contact: React.FC = () => {
                   <div className="space-y-2">
                     <label className="text-sm font-semibold text-gray-700 dark:text-gray-300 ml-1">{t.contact.form.message}</label>
                     <div className="relative">
-                      <MessageSquare className="absolute left-3 top-3 text-gray-400" size={18} />
+                      <ChatCircle className="absolute left-3 top-3 text-gray-400" size={18} weight="duotone" />
                       <textarea 
                         name="message"
                         required
@@ -174,7 +174,7 @@ const Contact: React.FC = () => {
                       <span className="w-5 h-5 border-2 border-white border-t-transparent rounded-full animate-spin"></span>
                     ) : (
                       <>
-                        {t.contact.form.submit} <Send size={18} />
+                        {t.contact.form.submit} <PaperPlaneRight size={18} weight="fill" />
                       </>
                     )}
                   </button>
