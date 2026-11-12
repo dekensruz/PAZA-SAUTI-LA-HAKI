@@ -1,0 +1,129 @@
+@import "tailwindcss";
+@plugin "@tailwindcss/typography";
+
+@custom-variant dark (&:where(.dark, .dark *));
+
+@theme {
+  --font-sans: "Manrope", ui-sans-serif, system-ui, sans-serif;
+  --font-display: "Fraunces", ui-serif, Georgia, serif;
+
+  /* Couleurs de la marque (drapeau de la RDC) */
+  --color-paza-blue: #0a6cff;
+  --color-paza-blue-dark: #0848b8;
+  --color-paza-red: #ce1021;
+  --color-paza-yellow: #f7d618;
+  --color-ink: #0b1a30;
+  --color-ink-soft: #14284a;
+  --color-paper: #f7f5f0;
+  --color-paper-dark: #0a1222;
+
+  --animate-marquee: marquee 40s linear infinite;
+  @keyframes marquee {
+    from { transform: translateX(0); }
+    to { transform: translateX(-50%); }
+  }
+}
+
+@layer base {
+  html {
+    scroll-behavior: smooth;
+    -webkit-tap-highlight-color: transparent;
+  }
+  body {
+    @apply bg-paper text-ink antialiased dark:bg-paper-dark dark:text-slate-100;
+    font-feature-settings: "ss01", "cv11";
+  }
+  ::selection {
+    @apply bg-paza-blue text-white;
+  }
+  :focus-visible {
+    @apply outline-2 outline-offset-2 outline-paza-blue;
+  }
+}
+
+@utility btn {
+  @apply inline-flex items-center justify-center gap-2 rounded-full px-6 py-3 text-sm font-bold transition-all duration-200 disabled:cursor-not-allowed disabled:opacity-50;
+}
+
+@layer components {
+  .container-page {
+    @apply mx-auto w-full max-w-7xl px-4 sm:px-6 lg:px-8;
+  }
+  .eyebrow {
+    @apply inline-flex items-center gap-2 text-xs font-bold uppercase tracking-[0.2em] text-paza-blue;
+  }
+  .eyebrow::before {
+    content: "";
+    @apply h-px w-8 bg-current;
+  }
+  .btn-primary {
+    @apply btn bg-ink text-white shadow-lg shadow-ink/10 hover:-translate-y-0.5 hover:bg-paza-blue dark:bg-white dark:text-ink dark:hover:bg-paza-blue dark:hover:text-white;
+  }
+  .btn-blue {
+    @apply btn bg-paza-blue text-white hover:bg-paza-blue-dark;
+  }
+  .btn-ghost {
+    @apply btn border border-ink/15 text-ink hover:border-ink hover:bg-ink hover:text-white dark:border-white/20 dark:text-white dark:hover:bg-white dark:hover:text-ink;
+  }
+  .card {
+    @apply rounded-3xl border border-ink/5 bg-white shadow-[0_1px_2px_rgba(11,26,48,0.04),0_8px_24px_-12px_rgba(11,26,48,0.12)] dark:border-white/5 dark:bg-ink-soft/60;
+  }
+  .input {
+    @apply w-full rounded-xl border border-ink/10 bg-white px-4 py-3 text-sm text-ink transition outline-none placeholder:text-slate-400 focus:border-paza-blue focus:ring-4 focus:ring-paza-blue/10 dark:border-white/10 dark:bg-ink dark:text-white;
+  }
+  .label {
+    @apply mb-1.5 block text-xs font-bold uppercase tracking-wider text-slate-500 dark:text-slate-400;
+  }
+}
+
+/* Contenu des articles (HTML produit par Quill) */
+.article-content {
+  @apply prose prose-lg max-w-none prose-slate dark:prose-invert
+    prose-headings:font-display prose-headings:font-semibold prose-headings:tracking-tight
+    prose-a:text-paza-blue prose-a:no-underline hover:prose-a:underline
+    prose-blockquote:border-l-paza-red prose-blockquote:font-display prose-blockquote:text-2xl prose-blockquote:font-medium prose-blockquote:not-italic prose-blockquote:text-ink dark:prose-blockquote:text-white
+    prose-img:rounded-2xl prose-li:marker:text-paza-red;
+}
+.article-content img { display: inline-block; height: auto; }
+.article-content .ql-align-center { text-align: center; }
+.article-content .ql-align-right { text-align: right; }
+.article-content .ql-align-justify { text-align: justify; }
+.article-content p:has(> img:only-child) { margin: 2rem 0; }
+.article-content .ql-size-small { font-size: 0.8em; }
+.article-content .ql-size-large { font-size: 1.4em; }
+.article-content .ql-size-huge { font-size: 2em; }
+.article-content iframe.ql-video { width: 100%; aspect-ratio: 16 / 9; border-radius: 1rem; }
+
+.no-scrollbar::-webkit-scrollbar { display: none; }
+.no-scrollbar { scrollbar-width: none; }
+
+.grain {
+  background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.85' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='.5'/%3E%3C/svg%3E");
+}
+
+/* Éditeur Quill (espace d'administration) */
+.rich-editor .ql-toolbar.ql-snow {
+  @apply sticky top-0 z-[5] rounded-t-2xl border-ink/10 bg-white/95 px-3 py-2.5 backdrop-blur dark:border-white/10 dark:bg-ink;
+  font-family: var(--font-sans);
+}
+.rich-editor .ql-container.ql-snow {
+  @apply rounded-b-2xl border-ink/10 bg-white dark:border-white/10 dark:bg-ink-soft/50;
+  font-family: var(--font-sans);
+}
+.rich-editor .ql-editor {
+  @apply min-h-[28rem] px-6 py-6 text-[1.05rem] leading-relaxed text-ink md:px-10 dark:text-slate-100;
+}
+.rich-editor .ql-editor.ql-blank::before { @apply left-6 not-italic text-slate-400 md:left-10; }
+.rich-editor .ql-editor h2, .rich-editor .ql-editor h3, .rich-editor .ql-editor h4 { @apply mt-6 mb-2 font-display font-semibold tracking-tight; }
+.rich-editor .ql-editor h2 { @apply text-3xl; }
+.rich-editor .ql-editor h3 { @apply text-2xl; }
+.rich-editor .ql-editor h4 { @apply text-xl; }
+.rich-editor .ql-editor p { @apply mb-3; }
+.rich-editor .ql-editor blockquote { @apply my-4 border-l-4 border-paza-red pl-4 font-display text-xl; }
+.rich-editor .ql-editor img { @apply inline-block cursor-pointer rounded-xl; max-width: 100%; height: auto; }
+.rich-editor .ql-editor a { @apply text-paza-blue underline; }
+.dark .rich-editor .ql-snow .ql-stroke { stroke: #cbd5e1; }
+.dark .rich-editor .ql-snow .ql-fill { fill: #cbd5e1; }
+.dark .rich-editor .ql-snow .ql-picker { color: #cbd5e1; }
+.dark .rich-editor .ql-snow .ql-picker-options { @apply bg-ink; }
+.rich-editor .ql-snow .ql-tooltip { @apply z-20 rounded-xl border-ink/10 shadow-xl; }

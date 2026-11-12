@@ -1,74 +1,41 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="fr">
   <head>
-    <meta name="google-site-verification" content="pqNOGlwgQHk1m2Gc76ALPXS0AsO-B8wHvPJxmEa4m_I" />
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Paza Sauti la Haki</title>
-    <link rel="icon" type="image/png" href="https://i.ibb.co/5gCvZcKM/Logo.png" />
-    <link rel="shortcut icon" type="image/png" href="https://i.ibb.co/5gCvZcKM/Logo.png" />
-    <script src="https://cdn.tailwindcss.com"></script>
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;500;600;700;800&family=Open+Sans:wght@400;600&display=swap" rel="stylesheet">
+    <meta name="google-site-verification" content="pqNOGlwgQHk1m2Gc76ALPXS0AsO-B8wHvPJxmEa4m_I" />
+    <meta name="theme-color" content="#0b1a30" />
+    <link rel="icon" type="image/png" href="/favicon.png" />
+    <link rel="apple-touch-icon" href="/favicon.png" />
+    <!--SEO:START-->
+    <title>Paza Sauti La Haki — Élève la voix de la justice</title>
+    <meta name="description" content="Initiative des jeunes de Goma pour rendre la justice accessible à tous en RDC et promouvoir la paix." />
+    <meta property="og:type" content="website" />
+    <meta property="og:site_name" content="Paza Sauti La Haki" />
+    <meta property="og:title" content="Paza Sauti La Haki — Élève la voix de la justice" />
+    <meta property="og:description" content="Initiative des jeunes de Goma pour rendre la justice accessible à tous en RDC et promouvoir la paix." />
+    <meta property="og:url" content="https://pazasautilahaki.org/" />
+    <meta property="og:image" content="%VITE_SUPABASE_URL%/storage/v1/object/public/media/brand/logo-og.jpg" />
+    <meta property="og:image:width" content="1200" />
+    <meta property="og:image:height" content="630" />
+    <meta name="twitter:card" content="summary_large_image" />
+    <!--SEO:END-->
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,500..800;1,9..144,500..700&family=Manrope:wght@400;500;600;700;800&display=swap"
+      rel="stylesheet"
+    />
     <script>
-      tailwind.config = {
-        darkMode: 'class',
-        theme: {
-          extend: {
-            fontFamily: {
-              sans: ['Open Sans', 'sans-serif'],
-              heading: ['Montserrat', 'sans-serif'],
-            },
-            colors: {
-              paza: {
-                blue: '#007bff', 
-                red: '#ce1021',
-                yellow: '#f7d618',
-                dark: '#1a1a1a',
-                light: '#f8f9fa'
-              }
-            }
-          }
-        }
-      }
+      // Applique le thème avant le premier rendu (évite le flash blanc)
+      try {
+        var t = localStorage.getItem('pslh-theme');
+        if (t === 'dark' || (!t && matchMedia('(prefers-color-scheme: dark)').matches)) document.documentElement.classList.add('dark');
+      } catch (e) {}
     </script>
-    <style>
-      /* Custom scrollbar for better aesthetics */
-      ::-webkit-scrollbar {
-        width: 10px;
-      }
-      ::-webkit-scrollbar-track {
-        background: #f1f1f1;
-      }
-      .dark ::-webkit-scrollbar-track {
-        background: #2d3748;
-      }
-      ::-webkit-scrollbar-thumb {
-        background: #888;
-        border-radius: 5px;
-      }
-      ::-webkit-scrollbar-thumb:hover {
-        background: #555;
-      }
-    </style>
-  <script type="importmap">
-{
-  "imports": {
-    "react/": "https://aistudiocdn.com/react@^19.2.0/",
-    "react": "https://aistudiocdn.com/react@^19.2.0",
-    "framer-motion": "https://aistudiocdn.com/framer-motion@^12.23.24",
-    "lucide-react": "https://aistudiocdn.com/lucide-react@^0.555.0",
-    "react-dom/": "https://aistudiocdn.com/react-dom@^19.2.0/",
-    "react-router-dom": "https://aistudiocdn.com/react-router-dom@6.22.3"
-  }
-}
-</script>
-<link rel="stylesheet" href="/index.css">
-</head>
+  </head>
   <body>
     <div id="root"></div>
-    <script type="module" src="./index.tsx"></script>
-  <script type="module" src="/index.tsx"></script>
-</body>
+    <script type="module" src="/src/main.tsx"></script>
+  </body>
 </html>
