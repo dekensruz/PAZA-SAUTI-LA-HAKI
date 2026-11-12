@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import { motion } from 'framer-motion';
-import { ArrowUp } from '@phosphor-icons/react';
+import { IconArrowUp as ArrowUp } from '@tabler/icons-react';
 
 export const SectionHeading: React.FC<{
   eyebrow?: string;
@@ -73,7 +73,7 @@ export const BackToTop: React.FC = () => {
         visible ? 'translate-y-0 opacity-100' : 'pointer-events-none translate-y-4 opacity-0'
       }`}
     >
-      <ArrowUp size={20} weight="bold" />
+      <ArrowUp size={20} stroke={2.2} />
     </button>
   );
 };

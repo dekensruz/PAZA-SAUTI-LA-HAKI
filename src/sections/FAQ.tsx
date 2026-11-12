@@ -1,48 +1,73 @@
+
 import React, { useState } from 'react';
-import { AnimatePresence, motion } from 'framer-motion';
-import { Plus } from '@phosphor-icons/react';
-import { Link } from 'react-router-dom';
+import { motion, AnimatePresence } from 'framer-motion';
+import { IconPlus as Plus, IconMinus as Minus, IconHelpCircle as Question } from '@tabler/icons-react';
 import { useLanguage } from '@/i18n/LanguageContext';
+import { Link } from 'react-router-dom';
+import { IconMessages as ChatsCircle } from '@tabler/icons-react';
+import SectionHeader from '@/components/SectionHeader';
 
 const FAQ: React.FC = () => {
+  const [activeIndex, setActiveIndex] = useState<number | null>(0);
   const { t } = useLanguage();
-  const [open, setOpen] = useState<number | null>(0);
+
+  const toggleFAQ = (index: number) => {
+    setActiveIndex(activeIndex === index ? null : index);
+  };
 
   return (
-    <section id="faq" className="scroll-mt-24 py-24 md:py-32">
-      <div className="container-page grid gap-12 lg:grid-cols-12">
-        <div className="lg:col-span-4">
-          <div className="lg:sticky lg:top-32">
-            <span className="eyebrow mb-4">FAQ</span>
-            <h2 className="font-display text-4xl leading-[1.05] font-semibold tracking-tight text-ink md:text-5xl dark:text-white">{t.faq.title}</h2>
-            <p className="mt-5 text-lg leading-relaxed text-slate-600 dark:text-slate-400">{t.faq.subtitle}</p>
-            <Link to="/contact" className="btn-primary mt-8">
-              {t.contact.title}
+    <section id="faq" className="py-20 bg-white dark:bg-gray-900 transition-colors duration-300">
+      <div className="container mx-auto px-4">
+        <SectionHeader eyebrow="FAQ" title={t.faq.title} subtitle={t.faq.subtitle} icon={Question} accent="blue" />
+
+        <div className="max-w-3xl mx-auto space-y-4">
+          {t.faq.items.map((faq, index) => (
+            <div 
+              key={index} 
+              className={`border border-gray-200 dark:border-gray-700 rounded-xl overflow-hidden transition-all duration-300 ${activeIndex === index ? 'shadow-md bg-slate-50 dark:bg-gray-800 border-paza-blue/30 dark:border-paza-blue/30' : 'bg-white dark:bg-gray-900 hover:border-paza-blue/30 dark:hover:border-gray-600'}`}
+            >
+              <button
+                onClick={() => toggleFAQ(index)}
+                className="w-full flex items-center justify-between p-5 text-left focus:outline-none focus-visible:ring-2 focus-visible:ring-inset focus-visible:ring-paza-blue rounded-xl"
+                aria-expanded={activeIndex === index}
+              >
+                <span className={`font-heading font-bold text-lg ${activeIndex === index ? 'text-paza-blue' : 'text-gray-800 dark:text-gray-200'}`}>
+                  {faq.question}
+                </span>
+                <div className={`p-1 rounded-full flex-shrink-0 ml-4 transition-colors ${activeIndex === index ? 'bg-paza-blue text-white' : 'bg-gray-100 dark:bg-gray-800 text-gray-500 dark:text-gray-400'}`}>
+                  {activeIndex === index ? <Minus size={20} stroke={2.2} /> : <Plus size={20} stroke={2.2} />}
+                </div>
+              </button>
+              
+              <AnimatePresence>
+                {activeIndex === index && (
+                  <motion.div
+                    initial={{ height: 0, opacity: 0 }}
+                    animate={{ height: 'auto', opacity: 1 }}
+                    exit={{ height: 0, opacity: 0 }}
+                    transition={{ duration: 0.3, ease: "easeInOut" }}
+                  >
+                    <div className="p-5 pt-0 text-gray-600 dark:text-gray-300 leading-relaxed border-t border-gray-100/50 dark:border-gray-700/50">
+                      {faq.answer}
+                    </div>
+                  </motion.div>
+                )}
+              </AnimatePresence>
+            </div>
+          ))}
+
+          <div className="mt-10 flex flex-col sm:flex-row items-center justify-between gap-4 rounded-2xl bg-paza-blue/5 dark:bg-paza-blue/10 border border-paza-blue/15 p-6">
+            <div className="flex items-center gap-4 text-center sm:text-left">
+              <ChatsCircle size={36} stroke={1.6} className="text-paza-blue shrink-0 hidden sm:block" />
+              <div>
+                <p className="font-heading font-bold text-paza-dark dark:text-white">{t.faq.moreTitle}</p>
+                <p className="text-sm text-gray-600 dark:text-gray-300">{t.faq.moreText}</p>
+              </div>
+            </div>
+            <Link to="/contact" className="shrink-0 px-6 py-3 rounded-full bg-paza-blue text-white font-bold text-sm hover:bg-paza-blue-dark transition-colors">
+              {t.nav.contact}
             </Link>
           </div>
-        </div>
-        <div className="divide-y divide-ink/10 border-y border-ink/10 lg:col-span-8 dark:divide-white/10 dark:border-white/10">
-          {t.faq.items.map((item, i) => {
-            const isOpen = open === i;
-            return (
-              <div key={item.question}>
-                <button onClick={() => setOpen(isOpen ? null : i)} className="flex w-full items-start gap-6 py-7 text-left" aria-expanded={isOpen}>
-                  <span className="mt-1 font-mono text-sm text-slate-400">0{i + 1}</span>
-                  <span className="flex-1 font-display text-xl leading-snug font-semibold text-ink md:text-2xl dark:text-white">{item.question}</span>
-                  <span className={`mt-1 flex size-9 shrink-0 items-center justify-center rounded-full border transition ${isOpen ? 'rotate-45 border-paza-red bg-paza-red text-white' : 'border-ink/15 text-ink dark:border-white/20 dark:text-white'}`}>
-                    <Plus size={16} weight="bold" />
-                  </span>
-                </button>
-                <AnimatePresence initial={false}>
-                  {isOpen && (
-                    <motion.div initial={{ height: 0, opacity: 0 }} animate={{ height: 'auto', opacity: 1 }} exit={{ height: 0, opacity: 0 }} transition={{ duration: 0.3 }} className="overflow-hidden">
-                      <p className="pb-8 pl-12 text-lg leading-relaxed text-slate-600 md:pr-16 dark:text-slate-400">{item.answer}</p>
-                    </motion.div>
-                  )}
-                </AnimatePresence>
-              </div>
-            );
-          })}
         </div>
       </div>
     </section>

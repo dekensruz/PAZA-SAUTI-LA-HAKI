@@ -1,146 +1,178 @@
-import React, { useEffect, useState } from 'react';
-import { List, X, Moon, Sun } from '@phosphor-icons/react';
-import { AnimatePresence, motion } from 'framer-motion';
-import { NavLink, Link, useLocation } from 'react-router-dom';
-import { useLanguage } from '@/i18n/LanguageContext';
-import { useTheme } from '@/lib/theme';
 import { brand } from '@/lib/media';
+import React, { useState, useEffect } from 'react';
+import { IconMenu2 as List, IconX as X, IconMoon as Moon, IconSun as Sun, IconLanguage as Translate, IconArrowRight as ArrowRight } from '@tabler/icons-react';
+import { AnimatePresence, motion } from 'framer-motion';
+import { useLanguage } from '@/i18n/LanguageContext';
+import { Link, useLocation } from 'react-router-dom';
 
-export const Logo: React.FC<{ light?: boolean; compact?: boolean }> = ({ light, compact }) => (
-  <span className="flex items-center gap-3">
-    <span className="flex size-11 shrink-0 items-center justify-center overflow-hidden rounded-full bg-white p-1 shadow-sm ring-1 ring-ink/5 md:size-12">
-      <img src={brand.logo} alt="" className="size-full object-contain" width={48} height={48} />
-    </span>
-    {!compact && (
-      <span className="flex flex-col leading-none">
-        <span className={`font-display text-lg font-semibold tracking-tight ${light ? 'text-white' : 'text-ink dark:text-white'}`}>Paza Sauti</span>
-        <span className="mt-0.5 text-[0.7rem] font-extrabold uppercase tracking-[0.28em] text-paza-red">La Haki</span>
-      </span>
-    )}
-  </span>
-);
+interface NavbarProps {
+  isDarkMode: boolean;
+  toggleTheme: () => void;
+}
 
-const Navbar: React.FC = () => {
-  const [scrolled, setScrolled] = useState(false);
-  const [open, setOpen] = useState(false);
-  const { t, language, setLanguage } = useLanguage();
-  const { isDark, toggle } = useTheme();
-  const location = useLocation();
+const HOME_ROUTES = ['/', '/about', '/mission', '/faq', '/contact'];
+const SECTION_IDS = ['home', 'about', 'mission', 'gallery', 'team', 'faq', 'blog', 'contact'];
 
-  const items = [
-    { label: t.nav.about, href: '/about' },
-    { label: t.nav.mission, href: '/mission' },
-    { label: t.nav.blog, href: '/blog' },
-    { label: t.nav.gallery, href: '/gallery' },
-    { label: t.nav.team, href: '/team' },
-    { label: t.nav.faq, href: '/faq' },
-  ];
-
+/** Section visible à l'écran (page d'accueil) pour surligner le bon lien du menu. */
+function useActiveSection(enabled: boolean) {
+  const [active, setActive] = useState('home');
   useEffect(() => {
-    const onScroll = () => setScrolled(window.scrollY > 12);
+    if (!enabled) return;
+    const onScroll = () => {
+      const y = window.scrollY + 140;
+      let current = 'home';
+      for (const id of SECTION_IDS) {
+        const el = document.getElementById(id);
+        if (el && el.offsetTop <= y) current = id;
+      }
+      setActive(current);
+    };
     onScroll();
     window.addEventListener('scroll', onScroll, { passive: true });
     return () => window.removeEventListener('scroll', onScroll);
-  }, []);
+  }, [enabled]);
+  return active;
+}
 
-  useEffect(() => setOpen(false), [location.pathname]);
+const Navbar: React.FC<NavbarProps> = ({ isDarkMode, toggleTheme }) => {
+  const [isScrolled, setIsScrolled] = useState(false);
+  const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
+  const { t, language, setLanguage } = useLanguage();
+  const { pathname } = useLocation();
+  const onHome = HOME_ROUTES.includes(pathname);
+  const activeSection = useActiveSection(onHome);
+
+  const navItems = [
+    { label: t.nav.home, href: '/', id: 'home' },
+    { label: t.nav.about, href: '/about', id: 'about' },
+    { label: t.nav.mission, href: '/mission', id: 'mission' },
+    { label: t.nav.gallery, href: '/gallery', id: 'gallery' },
+    { label: t.nav.team, href: '/team', id: 'team' },
+    { label: t.nav.faq, href: '/faq', id: 'faq' },
+    { label: t.nav.blog, href: '/blog', id: 'blog' },
+  ];
+
+  const isActive = (item: (typeof navItems)[number]) =>
+    onHome ? activeSection === item.id : item.href !== '/' && pathname.startsWith(item.href);
 
   useEffect(() => {
-    document.body.style.overflow = open ? 'hidden' : '';
+    const handleScroll = () => setIsScrolled(window.scrollY > 20);
+    handleScroll();
+    window.addEventListener('scroll', handleScroll, { passive: true });
+    return () => window.removeEventListener('scroll', handleScroll);
+  }, []);
+
+  // Ferme le menu mobile à chaque navigation et bloque le défilement quand il est ouvert
+  useEffect(() => setIsMobileMenuOpen(false), [pathname]);
+  useEffect(() => {
+    document.body.style.overflow = isMobileMenuOpen ? 'hidden' : '';
     return () => {
       document.body.style.overflow = '';
     };
-  }, [open]);
+  }, [isMobileMenuOpen]);
 
-  const linkClass = ({ isActive }: { isActive: boolean }) =>
-    `relative rounded-full px-3.5 py-2 text-sm font-semibold transition-colors ${
-      isActive ? 'text-ink dark:text-white' : 'text-slate-500 hover:text-ink dark:text-slate-400 dark:hover:text-white'
-    }`;
+  const toggleLanguage = () => setLanguage(language === 'fr' ? 'en' : 'fr');
+
+  const iconBtn = 'p-2.5 rounded-full hover:bg-gray-100 dark:hover:bg-gray-800 transition-colors text-paza-dark dark:text-white';
 
   return (
-    <header className="fixed inset-x-0 top-0 z-50 px-3 pt-3 sm:px-4">
+    <>
+      <a href="#main" className="sr-only focus:not-sr-only focus:fixed focus:top-2 focus:left-2 focus:z-[60] focus:bg-paza-blue focus:text-white focus:px-4 focus:py-2 focus:rounded-lg">
+        {language === 'fr' ? 'Aller au contenu' : 'Skip to content'}
+      </a>
       <nav
-        className={`container-page flex h-16 items-center justify-between rounded-full transition-all duration-300 md:h-[4.5rem] ${
-          scrolled || open
-            ? 'border border-ink/5 bg-white/85 shadow-lg shadow-ink/5 backdrop-blur-xl dark:border-white/10 dark:bg-ink/80'
-            : 'border border-transparent bg-transparent'
+        className={`fixed top-0 left-0 w-full z-50 transition-all duration-300 ${
+          isScrolled || isMobileMenuOpen ? 'bg-white/90 dark:bg-gray-900/90 backdrop-blur-lg shadow-md py-2' : 'bg-white dark:bg-gray-900 py-3 md:py-4'
         }`}
       >
-        <Link to="/" aria-label="Paza Sauti La Haki — accueil">
-          <Logo />
-        </Link>
-
-        <div className="hidden items-center gap-1 lg:flex">
-          {items.map((item) => (
-            <NavLink key={item.href} to={item.href} className={linkClass}>
-              {({ isActive }) => (
-                <>
-                  {item.label}
-                  {isActive && <motion.span layoutId="nav-dot" className="absolute inset-x-3.5 -bottom-0.5 h-0.5 rounded-full bg-paza-red" />}
-                </>
-              )}
-            </NavLink>
-          ))}
-        </div>
-
-        <div className="flex items-center gap-1.5">
-          <button
-            onClick={() => setLanguage(language === 'fr' ? 'en' : 'fr')}
-            className="flex h-10 items-center rounded-full px-3 text-xs font-extrabold tracking-wider text-ink transition hover:bg-ink/5 dark:text-white dark:hover:bg-white/10"
-            aria-label={language === 'fr' ? 'Switch to English' : 'Passer en français'}
-          >
-            <span className={language === 'fr' ? '' : 'opacity-40'}>FR</span>
-            <span className="mx-1 opacity-30">/</span>
-            <span className={language === 'en' ? '' : 'opacity-40'}>EN</span>
-          </button>
-          <button
-            onClick={toggle}
-            className="flex size-10 items-center justify-center rounded-full text-ink transition hover:bg-ink/5 dark:text-paza-yellow dark:hover:bg-white/10"
-            aria-label="Thème clair / sombre"
-          >
-            {isDark ? <Sun size={19} weight="bold" /> : <Moon size={19} weight="bold" />}
-          </button>
-          <Link to="/contact" className="btn-primary ml-1 hidden !px-5 !py-2.5 sm:inline-flex">
-            {t.nav.contact}
+        <div className="container mx-auto px-4 flex justify-between items-center gap-4">
+          {/* Logo */}
+          <Link to="/" className="flex items-center gap-3 shrink-0" aria-label="Paza Sauti La Haki — accueil">
+            <div className={`bg-white rounded-full p-1 flex items-center justify-center shadow-sm border border-gray-100 overflow-hidden transition-all duration-300 ${isScrolled ? 'w-11 h-11 md:w-12 md:h-12' : 'w-12 h-12 md:w-14 md:h-14'}`}>
+              <img src={brand.logo} alt="" className="w-full h-full object-contain" width={56} height={56} />
+            </div>
+            <div className="flex flex-col">
+              <span className="font-heading font-bold text-paza-dark dark:text-white text-lg md:text-xl tracking-tight leading-none">PAZA SAUTI</span>
+              <span className="font-heading font-bold text-paza-red text-base md:text-lg tracking-tight leading-none">LA HAKI</span>
+            </div>
           </Link>
-          <button
-            className="flex size-10 items-center justify-center rounded-full text-ink hover:bg-ink/5 lg:hidden dark:text-white dark:hover:bg-white/10"
-            onClick={() => setOpen((o) => !o)}
-            aria-label="Menu"
-            aria-expanded={open}
-          >
-            {open ? <X size={22} weight="bold" /> : <List size={22} weight="bold" />}
-          </button>
-        </div>
-      </nav>
 
-      <AnimatePresence>
-        {open && (
-          <motion.div
-            initial={{ opacity: 0, y: -8 }}
-            animate={{ opacity: 1, y: 0 }}
-            exit={{ opacity: 0, y: -8 }}
-            transition={{ duration: 0.2 }}
-            className="container-page mt-2 rounded-3xl border border-ink/5 bg-white/95 p-3 shadow-2xl backdrop-blur-xl lg:hidden dark:border-white/10 dark:bg-ink/95"
-          >
-            {[{ label: t.nav.home, href: '/' }, ...items, { label: t.nav.contact, href: '/contact' }].map((item) => (
-              <NavLink
+          {/* Menu ordinateur */}
+          <div className="hidden lg:flex items-center gap-1 xl:gap-2">
+            {navItems.map((item) => (
+              <Link
                 key={item.href}
                 to={item.href}
-                end
-                className={({ isActive }) =>
-                  `flex items-center justify-between rounded-2xl px-4 py-3.5 font-display text-xl font-medium ${
-                    isActive ? 'bg-ink/5 text-ink dark:bg-white/10 dark:text-white' : 'text-slate-600 dark:text-slate-300'
-                  }`
-                }
+                aria-current={isActive(item) ? 'page' : undefined}
+                className={`relative px-3 py-2 rounded-full font-semibold text-[0.8rem] xl:text-sm uppercase tracking-wide transition-colors ${
+                  isActive(item) ? 'text-paza-blue' : 'text-gray-600 dark:text-gray-300 hover:text-paza-blue dark:hover:text-paza-blue'
+                }`}
               >
                 {item.label}
-              </NavLink>
+                {isActive(item) && <motion.span layoutId="nav-underline" className="absolute left-3 right-3 -bottom-0.5 h-0.5 rounded-full bg-paza-blue" />}
+              </Link>
             ))}
-          </motion.div>
-        )}
-      </AnimatePresence>
-    </header>
+          </div>
+
+          <div className="flex items-center gap-1">
+            <button onClick={toggleLanguage} className={`${iconBtn} font-bold text-sm flex items-center gap-1.5`} aria-label={language === 'fr' ? 'Switch to English' : 'Passer en français'}>
+              <Translate size={18} stroke={1.6} className="hidden sm:block" />
+              {language.toUpperCase()}
+            </button>
+            <button onClick={toggleTheme} className={`${iconBtn} dark:text-yellow-400`} aria-label={isDarkMode ? 'Mode clair' : 'Mode sombre'}>
+              {isDarkMode ? <Sun size={20} stroke={1.6} /> : <Moon size={20} stroke={1.6} />}
+            </button>
+            <Link
+              to="/contact"
+              className="hidden md:inline-flex ml-2 items-center gap-2 px-5 py-2.5 rounded-full bg-paza-blue text-white text-sm font-bold shadow-md shadow-paza-blue/25 hover:bg-paza-blue-dark hover:-translate-y-0.5 transition-all"
+            >
+              {t.nav.contact}
+            </Link>
+            <button
+              className="lg:hidden p-2.5 rounded-full text-paza-dark dark:text-white hover:bg-gray-100 dark:hover:bg-gray-800"
+              onClick={() => setIsMobileMenuOpen((o) => !o)}
+              aria-label="Menu"
+              aria-expanded={isMobileMenuOpen}
+            >
+              {isMobileMenuOpen ? <X size={24} stroke={2.2} /> : <List size={24} stroke={2.2} />}
+            </button>
+          </div>
+        </div>
+
+        {/* Menu mobile */}
+        <AnimatePresence>
+          {isMobileMenuOpen && (
+            <motion.div
+              initial={{ opacity: 0, y: -10 }}
+              animate={{ opacity: 1, y: 0 }}
+              exit={{ opacity: 0, y: -10 }}
+              transition={{ duration: 0.2 }}
+              className="lg:hidden absolute top-full inset-x-0 h-[calc(100dvh-100%)] overflow-y-auto bg-white dark:bg-gray-900 border-t border-gray-100 dark:border-gray-800"
+            >
+              <div className="container mx-auto px-4 py-4 flex flex-col">
+                {[...navItems, { label: t.nav.contact, href: '/contact', id: 'contact' }].map((item, i) => (
+                  <motion.div key={item.href} initial={{ opacity: 0, x: -10 }} animate={{ opacity: 1, x: 0 }} transition={{ delay: i * 0.03 }}>
+                    <Link
+                      to={item.href}
+                      onClick={() => setIsMobileMenuOpen(false)}
+                      className={`flex items-center justify-between py-4 border-b border-gray-100 dark:border-gray-800 font-heading font-bold text-lg ${
+                        isActive(item) ? 'text-paza-blue' : 'text-gray-800 dark:text-gray-100'
+                      }`}
+                    >
+                      {item.label}
+                      <ArrowRight size={18} stroke={2.2} className={isActive(item) ? 'text-paza-blue' : 'text-gray-300 dark:text-gray-600'} />
+                    </Link>
+                  </motion.div>
+                ))}
+                <Link to="/contact" onClick={() => setIsMobileMenuOpen(false)} className="mt-6 w-full text-center px-6 py-4 rounded-full bg-paza-blue text-white font-bold">
+                  {t.hero.ctaJoin}
+                </Link>
+              </div>
+            </motion.div>
+          )}
+        </AnimatePresence>
+      </nav>
+    </>
   );
 };
 

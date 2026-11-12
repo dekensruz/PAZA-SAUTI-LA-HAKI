@@ -1,50 +1,91 @@
-import React from 'react';
-import { ArrowRight } from '@phosphor-icons/react';
-import { Link } from 'react-router-dom';
-import { useLanguage } from '@/i18n/LanguageContext';
-import { brand } from '@/lib/media';
-import { Img, Reveal } from '@/components/ui';
 
-const partners = ['Pole Institute', 'International Alert', 'I-Peace'];
+import { brand } from '@/lib/media';
+import React, { useRef } from 'react';
+import { motion, useScroll, useTransform } from 'framer-motion';
+import { useLanguage } from '@/i18n/LanguageContext';
+import { IconUsersGroup as UsersThree, IconArrowRight as ArrowRight, IconQuote as Quotes } from '@tabler/icons-react';
+import { Link } from 'react-router-dom';
 
 const About: React.FC = () => {
   const { t } = useLanguage();
-  const [first, ...rest] = t.about.description.split(/(?<=\.)\s+/);
+  const ref = useRef<HTMLDivElement>(null);
+  
+  const { scrollYProgress } = useScroll({
+    target: ref,
+    offset: ["start end", "end start"]
+  });
+
+  const yImage = useTransform(scrollYProgress, [0, 1], [30, -30]);
+
+  // Split description for creative editorial layout
+  const parts = t.about.description.split('.');
+  const firstSentence = parts[0] + '.';
+  const restOfText = parts.slice(1).join('.').trim();
 
   return (
-    <section id="about" className="scroll-mt-24 py-24 md:py-32">
-      <div className="container-page grid items-center gap-14 lg:grid-cols-12 lg:gap-20">
-        <Reveal className="lg:col-span-6">
-          <div className="relative">
-            <Img src={brand.formation} alt="Formation à l'Université Alternative de Pole Institute" wrapperClassName="aspect-[5/4] rounded-[2rem]" className="size-full object-cover" />
-            <div className="absolute -right-4 -bottom-8 max-w-[15rem] rounded-3xl bg-paza-yellow p-6 text-ink shadow-xl md:-right-8">
-              <p className="font-display text-4xl font-semibold">3</p>
-              <p className="mt-1 text-sm leading-snug font-semibold">
-                {t.about.subtitle}
-                <br />
-                <span className="font-medium opacity-80">{partners.join(' · ')}</span>
+    <section id="about" className="py-24 bg-white dark:bg-gray-900 transition-colors duration-300 overflow-hidden relative" ref={ref}>
+      {/* Background abstract shapes */}
+      <div className="absolute top-0 right-0 w-full lg:w-1/2 h-full bg-slate-50 dark:bg-gray-800/50 lg:rounded-l-[120px] z-0"></div>
+      
+      <div className="container mx-auto px-4 max-w-7xl relative z-10">
+        <div className="grid lg:grid-cols-12 gap-12 lg:gap-16 items-center">
+          
+          {/* Text / Narrative - spans 5 columns */}
+          <motion.div
+            initial={{ opacity: 0, x: -50 }}
+            whileInView={{ opacity: 1, x: 0 }}
+            viewport={{ once: true, margin: "-100px" }}
+            transition={{ duration: 0.8 }}
+            className="lg:col-span-5 order-2 lg:order-1"
+          >
+            <div className="inline-flex items-center gap-2 mb-8 px-4 py-2 bg-paza-blue/10 dark:bg-paza-blue/20 rounded-full text-paza-blue border border-paza-blue/20">
+              <UsersThree size={18} stroke={1.6} />
+              <span className="font-heading font-bold text-xs tracking-widest uppercase">{t.about.subtitle}</span>
+            </div>
+            
+            <h2 className="font-heading font-extrabold text-3xl md:text-4xl lg:text-5xl text-paza-dark dark:text-white mb-10 leading-tight text-balance">
+              {t.about.title}
+            </h2>
+            
+            <div className="relative mb-8 pt-4">
+              <Quotes className="absolute -top-4 -left-2 md:-left-6 text-paza-red/20 rotate-180" size={64} />
+              <p className="text-xl md:text-2xl text-gray-800 dark:text-gray-200 leading-snug font-bold relative z-10 pl-4 md:pl-6 border-l-4 border-paza-red">
+                {firstSentence}
               </p>
             </div>
-          </div>
-        </Reveal>
+            
+            <p className="text-gray-600 dark:text-gray-400 leading-loose text-lg mb-10 pl-4 md:pl-6">
+              {restOfText}
+            </p>
+            
+            <Link to="/mission" className="inline-flex items-center gap-3 px-8 py-4 bg-paza-dark dark:bg-white text-white dark:text-paza-dark font-bold rounded-full hover:bg-paza-blue dark:hover:bg-paza-blue hover:text-white transition-all shadow-lg hover:shadow-xl hover:-translate-y-1 group ml-4 md:ml-6">
+              {t.hero.ctaMission}
+              <ArrowRight size={20} stroke={2.2} className="group-hover:translate-x-1 transition-transform" />
+            </Link>
+          </motion.div>
 
-        <Reveal delay={0.1} className="lg:col-span-6">
-          <span className="eyebrow mb-5">{t.about.subtitle}</span>
-          <h2 className="font-display text-4xl leading-[1.05] font-semibold tracking-tight text-ink md:text-6xl dark:text-white">{t.about.title}</h2>
-          <p className="mt-8 font-display text-2xl leading-snug font-medium text-ink md:text-[1.7rem] dark:text-white">{first}</p>
-          <p className="mt-6 text-lg leading-relaxed text-slate-600 dark:text-slate-400">{rest.join(' ')}</p>
-          <div className="mt-8 flex flex-wrap gap-2">
-            {partners.map((p) => (
-              <span key={p} className="rounded-full border border-ink/10 px-4 py-2 text-sm font-semibold text-ink dark:border-white/15 dark:text-white">
-                {p}
-              </span>
-            ))}
+          {/* Image Block - spans 7 columns */}
+          <div className="lg:col-span-7 order-1 lg:order-2 relative mt-8 lg:mt-0">
+            <motion.div 
+              style={{ y: yImage }}
+              className="relative rounded-[2rem] lg:rounded-[3rem] overflow-hidden shadow-2xl border-4 md:border-8 border-white dark:border-gray-800 bg-gray-100 z-10"
+            >
+              {/* Subtle overlay to blend slightly with theme */}
+              <div className="absolute inset-0 bg-paza-blue/5 mix-blend-overlay z-10 pointer-events-none"></div>
+              
+              <img 
+                src={brand.formation} 
+                alt="Formation Pôle Institute - Équipe Paza Sauti La Haki" 
+                className="w-full h-auto block object-contain transform hover:scale-105 transition-transform duration-1000 ease-out"
+              />
+            </motion.div>
+            
+            {/* Cinematic Decorative Blurs */}
+            <div className="absolute top-1/4 -right-8 w-48 md:w-64 h-48 md:h-64 bg-paza-red/20 blur-[80px] rounded-full -z-0"></div>
+            <div className="absolute -bottom-10 left-1/4 w-48 md:w-64 h-48 md:h-64 bg-paza-blue/20 blur-[80px] rounded-full -z-0"></div>
           </div>
-          <Link to="/mission" className="btn-primary group mt-10">
-            {t.hero.ctaMission}
-            <ArrowRight size={18} weight="bold" className="transition group-hover:translate-x-1" />
-          </Link>
-        </Reveal>
+
+        </div>
       </div>
     </section>
   );

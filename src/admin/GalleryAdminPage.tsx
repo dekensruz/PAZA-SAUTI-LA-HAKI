@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { ArrowLeft, ArrowRight, Trash, UploadSimple } from '@phosphor-icons/react';
+import { IconArrowLeft as ArrowLeft, IconArrowRight as ArrowRight, IconTrash as Trash, IconUpload as UploadSimple } from '@tabler/icons-react';
 import { supabase } from '@/lib/supabase';
 import { formatBytes, mediaUrl, removeMedia, uploadImage } from '@/lib/media';
 import { useAsync } from '@/lib/useAsync';
@@ -64,7 +64,7 @@ const GalleryAdminPage: React.FC = () => {
           <p className="mt-1 text-slate-500">Les photos sont compressées automatiquement avant l'envoi.</p>
         </div>
         <label className="btn-blue cursor-pointer">
-          <UploadSimple size={18} weight="bold" /> Ajouter des photos
+          <UploadSimple size={18} stroke={2.2} /> Ajouter des photos
           <input type="file" accept="image/*" multiple className="hidden" onChange={(e) => upload(e.target.files)} />
         </label>
       </div>

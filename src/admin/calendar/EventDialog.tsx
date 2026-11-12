@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import { motion } from 'framer-motion';
-import { X, Trash, UploadSimple, DownloadSimple, ImageSquare } from '@phosphor-icons/react';
+import { IconX as X, IconTrash as Trash, IconUpload as UploadSimple, IconDownload as DownloadSimple, IconPhoto as ImageSquare } from '@tabler/icons-react';
 import { supabase } from '@/lib/supabase';
 import { formatBytes, mediaUrl, removeMedia, uploadImage } from '@/lib/media';
 import { ErrorNote, Spinner } from '@/components/ui';
@@ -123,7 +123,7 @@ const EventDialog: React.FC<Props> = ({ event, isNew, articles, onClose, onSaved
                 const on = ev.channels.includes(id);
                 return (
                   <button key={id} type="button" onClick={() => set('channels', on ? ev.channels.filter((c) => c !== id) : [...ev.channels, id])} className={`flex items-center gap-1.5 rounded-full border px-3 py-1.5 text-sm font-semibold transition ${on ? 'border-ink bg-ink text-white dark:border-white dark:bg-white dark:text-ink' : 'border-ink/10 text-slate-500 hover:border-ink/30 dark:border-white/15'}`}>
-                    <Icon size={15} weight={on ? 'fill' : 'regular'} /> {label}
+                    <Icon size={15} /> {label}
                   </button>
                 );
               })}

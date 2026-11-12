@@ -1,4 +1,5 @@
-import { FacebookLogo, Globe, InstagramLogo, LinkedinLogo, TiktokLogo, WhatsappLogo, XLogo, type Icon } from '@phosphor-icons/react';
+import { IconBrandFacebook as FacebookLogo, IconWorld as Globe, IconBrandInstagram as InstagramLogo, IconBrandLinkedin as LinkedinLogo, IconBrandTiktok as TiktokLogo, IconBrandWhatsapp as WhatsappLogo, IconBrandX as XLogo } from '@tabler/icons-react';
+import type { Icon } from '@tabler/icons-react';
 
 export interface CalendarEvent {
   id: string;

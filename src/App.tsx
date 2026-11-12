@@ -1,89 +1,130 @@
 import React, { Suspense, lazy, useEffect } from 'react';
+import { MotionConfig } from 'framer-motion';
 import { BrowserRouter, Outlet, Route, Routes, useLocation } from 'react-router-dom';
 import Navbar from '@/components/Navbar';
 import Footer from '@/components/Footer';
-import { BackToTop, Spinner } from '@/components/ui';
-import { LanguageProvider } from '@/i18n/LanguageContext';
-import { ThemeProvider } from '@/lib/theme';
-import HomePage from '@/pages/HomePage';
-import BlogPage from '@/pages/BlogPage';
-import ArticlePage from '@/pages/ArticlePage';
-import NotFound from '@/pages/NotFound';
+import BackToTop from '@/components/BackToTop';
+import { Spinner } from '@/components/ui';
+import Hero from '@/sections/Hero';
+import About from '@/sections/About';
+import Mission from '@/sections/Mission';
 import Gallery from '@/sections/Gallery';
 import Team from '@/sections/Team';
+import FAQ from '@/sections/FAQ';
+import Blog from '@/sections/Blog';
+import Contact from '@/sections/Contact';
+import ArticlePage from '@/pages/ArticlePage';
+import { LanguageProvider, useLanguage } from '@/i18n/LanguageContext';
+import { ThemeProvider, useTheme } from '@/lib/theme';
 import { useSeo } from '@/lib/useSeo';
-import { useLanguage } from '@/i18n/LanguageContext';
 
 // L'espace d'administration (Quill, calendrier…) est chargé à la demande
 const AdminApp = lazy(() => import('@/admin/AdminApp'));
 
-const HOME_SECTIONS = ['/', '/about', '/mission', '/faq', '/contact'];
-
-const ScrollToTop: React.FC = () => {
-  const { pathname } = useLocation();
+const ScrollToTop = () => {
+  const location = useLocation();
   useEffect(() => {
-    if (!HOME_SECTIONS.includes(pathname) || pathname === '/') window.scrollTo(0, 0);
-  }, [pathname]);
+    window.scrollTo(0, 0);
+  }, [location.pathname]);
   return null;
 };
 
-const SiteLayout: React.FC = () => (
-  <div className="flex min-h-screen flex-col">
-    <Navbar />
-    <main className="flex-1">
-      <Outlet />
-    </main>
-    <Footer />
-    <BackToTop />
-  </div>
-);
-
-const GalleryPage: React.FC = () => {
+// Page d'accueil : toutes les sections, avec défilement vers /about, /mission…
+const MainPage = () => {
+  const location = useLocation();
   const { t } = useLanguage();
-  useSeo({ title: t.gallery.title, description: t.gallery.subtitle });
-  return <Gallery isPage />;
+  useSeo({ description: t.hero.description });
+
+  useEffect(() => {
+    if (location.pathname === '/') return;
+    const element = document.getElementById(location.pathname.substring(1));
+    if (element) {
+      const timer = setTimeout(() => {
+        const offsetPosition = element.getBoundingClientRect().top + window.pageYOffset - 80;
+        window.scrollTo({ top: offsetPosition, behavior: 'smooth' });
+      }, 100);
+      return () => clearTimeout(timer);
+    }
+  }, [location]);
+
+  return (
+    <>
+      <Hero />
+      <About />
+      <Mission />
+      <Gallery isPage={false} />
+      <Team isPage={false} />
+      <FAQ />
+      <Blog isPage={false} />
+      <Contact />
+    </>
+  );
 };
 
-const TeamPage: React.FC = () => {
-  const { t } = useLanguage();
-  useSeo({ title: t.team.title, description: t.team.subtitle });
-  return <Team isPage />;
+const Page: React.FC<{ title: string; description?: string; children: React.ReactNode }> = ({ title, description, children }) => {
+  useSeo({ title, description });
+  return <>{children}</>;
 };
 
-const Loader = () => (
-  <div className="flex min-h-screen items-center justify-center text-paza-blue">
-    <Spinner className="size-8" />
-  </div>
-);
+const SiteLayout = () => {
+  const { isDark, toggle } = useTheme();
+  return (
+    <div className="min-h-screen font-sans transition-colors duration-300 flex flex-col bg-white text-gray-900 dark:bg-gray-900 dark:text-white selection:bg-paza-blue selection:text-white">
+      <Navbar isDarkMode={isDark} toggleTheme={toggle} />
+      <main id="main" className="flex-grow pt-20">
+        <Outlet />
+      </main>
+      <Footer />
+      <BackToTop />
+    </div>
+  );
+};
 
-const App: React.FC = () => (
-  <ThemeProvider>
-    <LanguageProvider>
-      <BrowserRouter>
-        <ScrollToTop />
-        <Routes>
-          <Route element={<SiteLayout />}>
-            {HOME_SECTIONS.map((p) => (
-              <Route key={p} path={p} element={<HomePage />} />
-            ))}
-            <Route path="/blog" element={<BlogPage />} />
-            <Route path="/blog/:slug" element={<ArticlePage />} />
-            <Route path="/gallery" element={<GalleryPage />} />
-            <Route path="/team" element={<TeamPage />} />
-            <Route path="*" element={<NotFound />} />
-          </Route>
-          <Route
-            path="/admin/*"
-            element={
-              <Suspense fallback={<Loader />}>
-                <AdminApp />
-              </Suspense>
+const Pages = () => {
+  const { t } = useLanguage();
+  return (
+    <Routes>
+      <Route element={<SiteLayout />}>
+        <Route path="/" element={<MainPage />} />
+        <Route path="/about" element={<MainPage />} />
+        <Route path="/mission" element={<MainPage />} />
+        <Route path="/faq" element={<MainPage />} />
+        <Route path="/contact" element={<MainPage />} />
+        <Route path="/gallery" element={<Page title={t.gallery.title} description={t.gallery.subtitle}><Gallery isPage /></Page>} />
+        <Route path="/team" element={<Page title={t.team.title} description={t.team.subtitle}><Team isPage /></Page>} />
+        <Route path="/blog" element={<Page title={t.nav.blog} description={t.blog.subtitle}><Blog isPage /></Page>} />
+        <Route path="/blog/:slug" element={<ArticlePage />} />
+        <Route path="*" element={<MainPage />} />
+      </Route>
+      <Route
+        path="/admin/*"
+        element={
+          <Suspense
+            fallback={
+              <div className="flex min-h-screen items-center justify-center text-paza-blue">
+                <Spinner className="size-8" />
+              </div>
             }
-          />
-        </Routes>
-      </BrowserRouter>
-    </LanguageProvider>
-  </ThemeProvider>
+          >
+            <AdminApp />
+          </Suspense>
+        }
+      />
+    </Routes>
+  );
+};
+
+const App = () => (
+  <MotionConfig reducedMotion="user">
+    <ThemeProvider>
+      <LanguageProvider>
+        <BrowserRouter>
+          <ScrollToTop />
+          <Pages />
+        </BrowserRouter>
+      </LanguageProvider>
+    </ThemeProvider>
+  </MotionConfig>
 );
 
 export default App;

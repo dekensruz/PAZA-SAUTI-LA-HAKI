@@ -1,6 +1,6 @@
 import React, { useCallback, useEffect } from 'react';
 import { AnimatePresence, motion } from 'framer-motion';
-import { CaretLeft, CaretRight, X } from '@phosphor-icons/react';
+import { IconChevronLeft as CaretLeft, IconChevronRight as CaretRight, IconX as X } from '@tabler/icons-react';
 
 interface Props {
   images: { src: string; caption?: string | null }[];
@@ -33,13 +33,13 @@ const Lightbox: React.FC<Props> = ({ images, index, onChange }) => {
       {open && index !== null && (
         <motion.div initial={{ opacity: 0 }} animate={{ opacity: 1 }} exit={{ opacity: 0 }} className="fixed inset-0 z-[80] flex items-center justify-center bg-ink/95 p-4 backdrop-blur" onClick={() => onChange(null)} role="dialog" aria-modal>
           <button onClick={() => onChange(null)} className="absolute top-5 right-5 flex size-12 items-center justify-center rounded-full bg-white/10 text-white hover:bg-white/20" aria-label="Fermer">
-            <X size={22} weight="bold" />
+            <X size={22} stroke={2.2} />
           </button>
           <button onClick={(e) => (e.stopPropagation(), prev())} className="absolute left-4 hidden size-14 items-center justify-center rounded-full bg-white/10 text-white hover:bg-white/20 md:flex" aria-label="Précédente">
-            <CaretLeft size={26} weight="bold" />
+            <CaretLeft size={26} stroke={2.2} />
           </button>
           <button onClick={(e) => (e.stopPropagation(), next())} className="absolute right-4 hidden size-14 items-center justify-center rounded-full bg-white/10 text-white hover:bg-white/20 md:flex" aria-label="Suivante">
-            <CaretRight size={26} weight="bold" />
+            <CaretRight size={26} stroke={2.2} />
           </button>
           <motion.figure key={index} initial={{ opacity: 0, scale: 0.97 }} animate={{ opacity: 1, scale: 1 }} className="flex max-h-full flex-col items-center" onClick={(e) => e.stopPropagation()}>
             <motion.img

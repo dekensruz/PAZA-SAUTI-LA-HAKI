@@ -1,10 +1,10 @@
 import React, { useEffect, useState } from 'react';
 import { NavLink, Outlet, Link } from 'react-router-dom';
-import { Article, CalendarDots, Images, EnvelopeSimple, SignOut, ArrowSquareOut, Moon, Sun, List, X } from '@phosphor-icons/react';
+import { IconArticle as Article, IconCalendarMonth as CalendarDots, IconLibraryPhoto as Images, IconMail as EnvelopeSimple, IconLogout as SignOut, IconExternalLink as ArrowSquareOut, IconMoon as Moon, IconSun as Sun, IconMenu2 as List, IconX as X } from '@tabler/icons-react';
 import { useAuth } from './auth';
 import { useTheme } from '@/lib/theme';
 import { supabase } from '@/lib/supabase';
-import { Logo } from '@/components/Navbar';
+import { Logo } from '@/components/Logo';
 
 const AdminLayout: React.FC = () => {
   const { session, signOut } = useAuth();
@@ -41,7 +41,7 @@ const AdminLayout: React.FC = () => {
             }`
           }
         >
-          <Icon size={20} weight="duotone" />
+          <Icon size={20} stroke={1.6} />
           <span className="flex-1">{label}</span>
           {badge ? <span className="rounded-full bg-paza-red px-2 py-0.5 text-[0.7rem] font-bold text-white">{badge}</span> : null}
         </NavLink>

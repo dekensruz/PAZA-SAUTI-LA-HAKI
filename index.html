@@ -4,7 +4,7 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <meta name="google-site-verification" content="pqNOGlwgQHk1m2Gc76ALPXS0AsO-B8wHvPJxmEa4m_I" />
-    <meta name="theme-color" content="#0b1a30" />
+    <meta name="theme-color" content="#007bff" />
     <link rel="icon" type="image/png" href="/favicon.png" />
     <link rel="apple-touch-icon" href="/favicon.png" />
     <!--SEO:START-->
@@ -23,14 +23,13 @@
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link
-      href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,500..800;1,9..144,500..700&family=Manrope:wght@400;500;600;700;800&display=swap"
+      href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;500;600;700;800&family=Open+Sans:ital,wght@0,400;0,600;0,700;1,400&display=swap"
       rel="stylesheet"
     />
     <script>
-      // Applique le thème avant le premier rendu (évite le flash blanc)
+      // Mode clair par défaut ; sombre seulement si le visiteur l'a choisi
       try {
-        var t = localStorage.getItem('pslh-theme');
-        if (t === 'dark' || (!t && matchMedia('(prefers-color-scheme: dark)').matches)) document.documentElement.classList.add('dark');
+        if (localStorage.getItem('pslh-theme') === 'dark') document.documentElement.classList.add('dark');
       } catch (e) {}
     </script>
   </head>

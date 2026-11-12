@@ -1,6 +1,6 @@
 import React, { useMemo, useState } from 'react';
 import { Link } from 'react-router-dom';
-import { Plus, MagnifyingGlass, PencilSimple, ArrowSquareOut } from '@phosphor-icons/react';
+import { IconPlus as Plus, IconSearch as MagnifyingGlass, IconPencil as PencilSimple, IconExternalLink as ArrowSquareOut } from '@tabler/icons-react';
 import { supabase } from '@/lib/supabase';
 import { articleState, type ArticleRow, type ArticleState } from '@/lib/articles';
 import { mediaUrl } from '@/lib/media';
@@ -47,7 +47,7 @@ const ArticlesPage: React.FC = () => {
           <p className="mt-1 text-slate-500">Rédigez, programmez et publiez les articles du blog.</p>
         </div>
         <Link to="/admin/articles/new" className="btn-blue">
-          <Plus size={18} weight="bold" /> Nouvel article
+          <Plus size={18} stroke={2.2} /> Nouvel article
         </Link>
       </div>
 

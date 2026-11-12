@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { ArrowBendUpLeft, EnvelopeOpen, Trash } from '@phosphor-icons/react';
+import { IconArrowBackUp as ArrowBendUpLeft, IconMailOpened as EnvelopeOpen, IconTrash as Trash } from '@tabler/icons-react';
 import { supabase } from '@/lib/supabase';
 import { formatDate } from '@/lib/format';
 import { useAsync } from '@/lib/useAsync';

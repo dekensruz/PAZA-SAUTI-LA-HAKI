@@ -2,7 +2,7 @@ import React, { useEffect, useImperativeHandle, useRef, useState, forwardRef } f
 import Quill from 'quill';
 import type { Range } from 'quill';
 import 'quill/dist/quill.snow.css';
-import { TextAlignCenter, TextAlignLeft, TextAlignRight, Trash } from '@phosphor-icons/react';
+import { IconAlignCenter as TextAlignCenter, IconAlignLeft as TextAlignLeft, IconAlignRight as TextAlignRight, IconTrash as Trash } from '@tabler/icons-react';
 import { uploadImage, formatBytes } from '@/lib/media';
 
 export interface RichEditorHandle {

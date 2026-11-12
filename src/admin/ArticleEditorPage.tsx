@@ -1,6 +1,6 @@
 import React, { useEffect, useMemo, useRef, useState } from 'react';
 import { Link, useNavigate, useParams } from 'react-router-dom';
-import { ArrowLeft, ArrowSquareOut, FloppyDisk, ImageSquare, Trash, UploadSimple, CalendarCheck } from '@phosphor-icons/react';
+import { IconArrowLeft as ArrowLeft, IconExternalLink as ArrowSquareOut, IconDeviceFloppy as FloppyDisk, IconPhoto as ImageSquare, IconTrash as Trash, IconUpload as UploadSimple, IconCalendarCheck as CalendarCheck } from '@tabler/icons-react';
 import { supabase, SITE_URL } from '@/lib/supabase';
 import { articleState, slugify, type ArticleRow } from '@/lib/articles';
 import { formatBytes, mediaUrl, removeMedia, uploadCover } from '@/lib/media';
@@ -145,7 +145,7 @@ const ArticleEditorPage: React.FC = () => {
     <div className="pb-24">
       <div className="mb-6 flex flex-wrap items-center justify-between gap-3">
         <Link to="/admin" className="inline-flex items-center gap-2 text-sm font-semibold text-slate-500 hover:text-ink dark:hover:text-white">
-          <ArrowLeft size={16} weight="bold" /> Articles
+          <ArrowLeft size={16} stroke={2.2} /> Articles
         </Link>
         <div className="flex items-center gap-2">
           <span className={`rounded-full px-3 py-1 text-xs font-bold ${stateBadge[state].cls}`}>{stateBadge[state].label}</span>
@@ -200,7 +200,7 @@ const ArticleEditorPage: React.FC = () => {
             </label>
             {message && (message.type === 'error' ? <ErrorNote>{message.text}</ErrorNote> : <p className="text-sm font-semibold text-emerald-600">{message.text}</p>)}
             <button type="button" onClick={() => save()} disabled={saving} className="btn-blue w-full">
-              {saving ? <Spinner className="size-4" /> : <FloppyDisk size={18} weight="bold" />} Enregistrer
+              {saving ? <Spinner className="size-4" /> : <FloppyDisk size={18} stroke={2.2} />} Enregistrer
             </button>
             {!isNew && (
               <button type="button" onClick={destroy} className="flex w-full items-center justify-center gap-2 text-sm font-semibold text-slate-400 hover:text-paza-red">

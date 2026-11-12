@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import { Navigate, useLocation } from 'react-router-dom';
 import { supabase, isSupabaseConfigured } from '@/lib/supabase';
-import { Logo } from '@/components/Navbar';
+import { Logo } from '@/components/Logo';
 import { ErrorNote, Spinner } from '@/components/ui';
 import { useAuth } from './auth';
 

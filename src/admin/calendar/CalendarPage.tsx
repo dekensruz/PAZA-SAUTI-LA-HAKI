@@ -4,7 +4,7 @@ import {
   addDays, addMonths, addWeeks, endOfMonth, endOfWeek, format, isSameDay, isSameMonth, isToday, startOfDay, startOfMonth, startOfWeek, subMonths, subWeeks, differenceInMinutes, setHours, setMinutes,
 } from 'date-fns';
 import { fr } from 'date-fns/locale';
-import { CaretLeft, CaretRight, Plus, Article, Images } from '@phosphor-icons/react';
+import { IconChevronLeft as CaretLeft, IconChevronRight as CaretRight, IconPlus as Plus, IconArticle as Article, IconLibraryPhoto as Images } from '@tabler/icons-react';
 import { supabase } from '@/lib/supabase';
 import { articleState } from '@/lib/articles';
 import { mediaUrl } from '@/lib/media';
@@ -129,7 +129,7 @@ const CalendarPage: React.FC = () => {
       className={`flex w-full items-center gap-1.5 truncate rounded-md border-l-[3px] px-1.5 py-1 text-left text-[11px] leading-tight font-semibold transition hover:brightness-95 ${COLORS[item.color].chip} ${COLORS[item.color].bar}`}
       title={item.title}
     >
-      {item.kind === 'article' ? <Article size={12} weight="bold" className="shrink-0" /> : item.event.poster_paths.length > 0 ? <Images size={12} weight="bold" className="shrink-0" /> : null}
+      {item.kind === 'article' ? <Article size={12} stroke={2.2} className="shrink-0" /> : item.event.poster_paths.length > 0 ? <Images size={12} stroke={2.2} className="shrink-0" /> : null}
       {!item.allDay && !compact && <span className="shrink-0 opacity-70">{format(item.start, 'HH:mm')}</span>}
       <span className="truncate">{item.title || 'Sans titre'}</span>
     </button>
@@ -158,15 +158,15 @@ const CalendarPage: React.FC = () => {
           <p className="mt-1 text-slate-500">Planifiez affiches, publications réseaux sociaux et articles. Glissez un élément pour le déplacer.</p>
         </div>
         <button onClick={() => create(new Date())} className="btn-blue self-start lg:self-auto">
-          <Plus size={18} weight="bold" /> Planifier
+          <Plus size={18} stroke={2.2} /> Planifier
         </button>
       </div>
 
       <div className="mb-4 flex flex-wrap items-center justify-between gap-3">
         <div className="flex items-center gap-2">
           <button onClick={() => setCursor(new Date())} className="btn-ghost !px-4 !py-2">Aujourd'hui</button>
-          <button onClick={() => go(-1)} className="flex size-9 items-center justify-center rounded-full hover:bg-white dark:hover:bg-white/10" aria-label="Précédent"><CaretLeft size={18} weight="bold" /></button>
-          <button onClick={() => go(1)} className="flex size-9 items-center justify-center rounded-full hover:bg-white dark:hover:bg-white/10" aria-label="Suivant"><CaretRight size={18} weight="bold" /></button>
+          <button onClick={() => go(-1)} className="flex size-9 items-center justify-center rounded-full hover:bg-white dark:hover:bg-white/10" aria-label="Précédent"><CaretLeft size={18} stroke={2.2} /></button>
+          <button onClick={() => go(1)} className="flex size-9 items-center justify-center rounded-full hover:bg-white dark:hover:bg-white/10" aria-label="Suivant"><CaretRight size={18} stroke={2.2} /></button>
           <h2 className="ml-1 font-display text-2xl font-semibold capitalize">{title}</h2>
           {loading && <Spinner className="ml-2 size-4 text-paza-blue" />}
         </div>

@@ -30,6 +30,8 @@ export const content = {
       description: "Nous sommes Paza Sauti La Haki, une initiative portée par de jeunes étudiants issus de différentes universités de Goma. Notre collectif est né à l'issue d'une formation reçue à l'Université Alternative de Pole Institute, dans le cadre du projet « Accès à la Justice » soutenu par un consortium de trois organisations (Pole Institute, International Alert et I-Peace).",
     },
     mission: {
+      sectionEyebrow: 'Ce qui nous guide',
+      sectionTitle: 'Vision, mission & valeurs',
       visionTitle: 'Notre Vision',
       visionText: "Bâtir une société congolaise juste, pacifique et équitable, où l'accès à la justice n'est plus un privilège mais un droit garanti et accessible à chaque citoyen.",
       missionTitle: 'Notre Mission',
@@ -100,6 +102,8 @@ export const content = {
     },
     faq: {
       title: 'Questions Fréquentes',
+      moreTitle: "Vous ne trouvez pas votre réponse ?",
+      moreText: "Écrivez-nous, notre équipe vous oriente gratuitement.",
       subtitle: "Des réponses à vos questions sur l'accès à la justice et la résolution des conflits.",
       items: [
         {
@@ -129,6 +133,10 @@ export const content = {
       subtitle: "Vous voulez rejoindre l'initiative, devenir partenaire ou simplement poser une question ? Écrivez-nous.",
       infoTitle: 'Info Contact',
       infoDesc: 'Remplissez le formulaire et notre équipe vous répondra dans les 24 heures.',
+      whatsappHint: 'Sur téléphone, votre message s’ouvrira directement dans WhatsApp.',
+      callUs: 'Appelez-nous',
+      writeUs: 'Écrivez-nous',
+      findUs: 'Nous trouver',
       servicePartnership: 'Service Partenariat',
       successTitle: 'Message Envoyé !',
       successDesc: 'Merci de nous avoir contactés. Nous reviendrons vers vous très bientôt.',
@@ -191,6 +199,8 @@ export const content = {
       description: "We are Paza Sauti La Haki, an initiative led by young students from various universities in Goma. Our collective was born after a training received at the Alternative University of Pole Institute, as part of the \"Access to Justice\" project supported by a consortium of three organizations (Pole Institute, International Alert, and I-Peace).",
     },
     mission: {
+      sectionEyebrow: 'What guides us',
+      sectionTitle: 'Vision, mission & values',
       visionTitle: 'Our Vision',
       visionText: "To build a just, peaceful, and equitable Congolese society where access to justice is no longer a privilege but a guaranteed right accessible to every citizen.",
       missionTitle: 'Our Mission',
@@ -261,6 +271,8 @@ export const content = {
     },
     faq: {
       title: 'Frequently Asked Questions',
+      moreTitle: "Can't find your answer?",
+      moreText: 'Write to us, our team will guide you for free.',
       subtitle: "Answers to your questions about access to justice and conflict resolution.",
       items: [
         {
@@ -290,6 +302,10 @@ export const content = {
       subtitle: "Want to join the initiative, become a partner, or just ask a question? Write to us.",
       infoTitle: 'Contact Info',
       infoDesc: 'Fill out the form and our team will reply within 24 hours.',
+      whatsappHint: 'On a phone, your message will open directly in WhatsApp.',
+      callUs: 'Call us',
+      writeUs: 'Write to us',
+      findUs: 'Find us',
       servicePartnership: 'Partnership Service',
       successTitle: 'Message Sent!',
       successDesc: 'Thank you for contacting us. We will get back to you very soon.',
